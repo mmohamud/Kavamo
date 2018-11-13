@@ -1,3 +1,0 @@
-# Kavamo
-Ohtu-projekti
-Lisäys
