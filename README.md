@@ -1,6 +1,3 @@
 # Kavamo
-Ohtu-projekti
-Ohtu-projekti2
-Ohtu-projekti-nella
-Muokkausta.
-Vielä yksi lisäys..
+
+Product backlog: https://docs.google.com/spreadsheets/d/15lDRqxfrTMXDCPrglwGqPN0BPR3I7Vm245LOIWF9vEQ/edit?usp=sharing
