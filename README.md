@@ -5,7 +5,7 @@ Product backlog: https://docs.google.com/spreadsheets/d/15lDRqxfrTMXDCPrglwGqPN0
 
 Definition of done:
 - User story toteuttaa hyväksymäkriteerit ja Cucumberissa määritellyt hyväksymätestit menevät läpi.
-    - Cucumberin hvyäksymätestit: 
+    - Cucumberin hyväksymätestit:
 - User story läpäisee yksikkötestit (rivikattavuus vähintään 80%)
 - User storyn koodi on pushattu githubiin
 
@@ -14,3 +14,22 @@ Definition of done:
     - CamelCase-nimeäminen
     - CheckStyle:
         - tähän mitä sääntöjä halutaan käyttää?
+
+
+# Käyttöohjeita
+
+1.
+javafx-gradle-plugin -tietoja löytyi mm. täältä
+https://github.com/FibreFoX/javafx-gradle-plugin/blob/newyear2018release/README.md
+
+2.
+./gradlew tasks näyttää gradle-komennot javafx:lle, erityisesti: jfxRun käynnistää ohjelman.
+HUOM: käynnistyy sekä tekstin tulostaminen että graafinen käyttöliittymä.
+Ohjelman voi lopettaa klikkaamalla grafiikkaikkuna oik. yläkulman ruksia.
+
+3.
+/libs -kansiossa oleva jar ei toimi.
+Sen sijaan build/jfx/app -kansiossa voi kirjoittaa: java -jar project-jfx.jar
+
+4.
+Kääntäminen onnistuu Netbeansissa, ajaminen ei.
