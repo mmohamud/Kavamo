@@ -28,12 +28,13 @@ repositories {
 }
 
 apply plugin: 'javafx-gradle-plugin'
+apply plugin: 'application'
 
 
 jfx {
     // minimal requirement for jfxJar-task
     verbose = true
-    mainClass = "mytips.Main"
+    //mainClass = 'MyReadingTips.mytips.Main'
     
     // minimal requirement for jfxNative-task
     // vendor = 'YourName'
@@ -59,11 +60,11 @@ jfx {
 }
 
 // Netbeansissa ajo vaatii tämän?? ei
-//jar {
-//    manifest {
-//        attributes 'Main-Class': 'mytips.Main'
-//    }
-//}
+jar {
+    manifest {
+        attributes 'Main-Class': 'mytips.Main'
+    }
+}
 
 
 dependencies {
@@ -76,5 +77,5 @@ dependencies {
 
 // Define the main class for the application
 // Seuraava rivi kommentoitu pois koska estää ohjelman ajamisen netbeansissä
-// mainClassName = 'mytips.Main'
+mainClassName = 'mytips.Main'
 
