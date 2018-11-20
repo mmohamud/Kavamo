@@ -30,6 +30,7 @@ repositories {
 apply plugin: 'javafx-gradle-plugin'
 apply plugin: 'application'
 
+apply plugin: 'checkstyle'
 
 jfx {
     // minimal requirement for jfxJar-task
