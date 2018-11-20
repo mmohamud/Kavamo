@@ -3,12 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mytips;
+package mytips.model;
 
 /**
  *
  * @author mmohamud
  */
 public class BookTip {
+    private String Author;
+    private String Name;
+    private String ISBN;
     
 }
