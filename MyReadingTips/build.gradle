@@ -22,8 +22,8 @@ buildscript {
 apply plugin: 'java'
 
 repositories {
-//    mavenLocal()
-//    mavenCentral()
+    mavenLocal()
+    mavenCentral()
     jcenter()
 }
 
@@ -74,6 +74,13 @@ dependencies {
 
     // Use JUnit test framework
     testCompile 'junit:junit:4.12'
+    
+    // Use Hibernate for ORMs
+    compile 'org.hibernate:hibernate-core:5.3.7.Final'
+	
+    https://mvnrepository.com/artifact/javax.persistence/persistence-api
+    compile 'javax.persistence', name: 'persistence-api', version: '1.0.2'
+
 }
 
 // Define the main class for the application

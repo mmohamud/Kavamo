@@ -6,35 +6,59 @@
 package mytips.model;
 
 import java.util.ArrayList;
-
+import javax.persistence.Entity;
 /**
  *
  * @author mmohamud
  */
+
+@Entity
+@Table(name = "BookTip")
 public class BookTip {
-    private String Author;
-    private String Name;
+    private int id;
+    private String author;    
+    private String title;
     private String ISBN;
     private String summary;
-    private ArrayList<String> tags;
-    private ArrayList<String> preliminaryKnowldge;
-    private ArrayList<String> relatedCourses;
+    private String comment;
+    //private ArrayList<String> tags;
+    //private ArrayList<String> prerequisiteCourses;
+    //private ArrayList<String> relatedCourses;
 
-    public String getAuthor() {
-        return Author;
+    
+    public BookTip(int id, String author, String title, String ISBN, String summary, String comment) {
+        this.author = author;
+        this.title = title;
+        this.ISBN = ISBN;
+        this.summary = summary;
+        this.comment = comment;
+        //this.tags = tags;
+        //this.prerequisiteCourses = prerequisiteCourses;
+        //this.relatedCourses = relatedCourses;
     }
 
-    public void setAuthor(String Author) {
-        this.Author = Author;
+    public BookTip() {
+    }   
+    
+    public int getId() {
+        return id;
+    }
+   
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     
-    public String getName() {
-        return Name;
+    public String getTitle() {
+        return title;
     }
 
     public void setName(String Name) {
-        this.Name = Name;
+        this.title = title;
     }
 
     
@@ -53,31 +77,36 @@ public class BookTip {
     public void setSummary(String summary) {
         this.summary = summary;
     }
-    
-    
 
-    public ArrayList<String> getTags() {
-        return tags;
+    public String getComment() {
+        return comment;
     }
-    
-    public void addTag(String tag) {
-        this.tags.add(tag);
-    }
-    
-    public ArrayList<String> getPreliminaryKnowldge() {
-        return preliminaryKnowldge;
-    }
-    
-   public void addPreliminaryKnowledge(String knowledge) {
-       this.preliminaryKnowldge.add(knowledge);
-   }
 
-    public ArrayList<String> getRelatedCourses() {
-        return relatedCourses;
+    public void setComment(String comment) {
+        this.comment = comment;
     }
-   
-   public void addRelatedCourse(String courseName) {
-       this.relatedCourses.add(courseName);
-   }
-   
+
+//    public ArrayList<String> getTags() {
+//        return tags;
+//    }
+//    
+//    public void addTag(String tag) {
+//        this.tags.add(tag);
+//    }
+//    
+//    public ArrayList<String> getPrerequisiteCourses() {
+//        return prerequisiteCourses;
+//    }
+//    
+//   public void addPreliminaryKnowledge(String knowledge) {
+//       this.prerequisiteCourses.add(knowledge);
+//   }
+//
+//    public ArrayList<String> getRelatedCourses() {
+//        return relatedCourses;
+//    }
+//   
+//   public void addRelatedCourse(String courseName) {
+//       this.relatedCourses.add(courseName);
+//   }
 }

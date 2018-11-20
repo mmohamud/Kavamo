@@ -10,9 +10,51 @@ package mytips.model;
  * @author mmohamud
  */
 public class WebTip {
-    private String Title;
-    private String Author;
+    private String title;
+    private String author;
     private String url;
     private String type;
+    private String summary;
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+    
     
 }
