@@ -39,7 +39,9 @@ public class Main extends Application {
      */
     public static void main(String[] args) {
         System.out.println("Aloitus onnistuu!");
-        launch(args);
+        //launch(args);
+        TextualUI ui = new TextualUI();
+        ui.start();
     }
     
 }
