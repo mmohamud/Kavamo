@@ -7,92 +7,93 @@ package mytips.model;
 
 import java.util.ArrayList;
 //import javax.persistence.Entity;
+
 /**
  *
  * @author mmohamud
  */
 
 public class BookTip {
-=======
-@Entity
-@Table(name = "BookTip")
-public class BookTip implements ReadingTip {
-    private int id;
-    private String author;    
-    private String title;
-    private String ISBN;
-    private String summary;
-    private String comment;
-    //private ArrayList<String> tags;
-    //private ArrayList<String> prerequisiteCourses;
-    //private ArrayList<String> relatedCourses;
 
-    
-    public BookTip(int id, String author, String title, String ISBN, String summary, String comment) {
-        this.author = author;
-        this.title = title;
-        this.ISBN = ISBN;
-        this.summary = summary;
-        this.comment = comment;
-        //this.tags = tags;
-        //this.prerequisiteCourses = prerequisiteCourses;
-        //this.relatedCourses = relatedCourses;
-    }
+    @Entity
+    @Table(name = "BookTip")
+    public class BookTip implements ReadingTip {
 
-    public BookTip() {
-    }   
+        private int id;
+        private String author;
+        private String title;
+        private String ISBN;
+        private String summary;
+        private String comment;
+        //private ArrayList<String> tags;
+        //private ArrayList<String> prerequisiteCourses;
+        //private ArrayList<String> relatedCourses;
 
-    public void setId(int id) {
-        this.id = id;
-    }
-    
-    public int getId() {
-        return id;
-    }
+        public BookTip(int id, String author, String title, String ISBN, String summary, String comment) {
+            this.author = author;
+            this.title = title;
+            this.ISBN = ISBN;
+            this.summary = summary;
+            this.comment = comment;
+            //this.tags = tags;
+            //this.prerequisiteCourses = prerequisiteCourses;
+            //this.relatedCourses = relatedCourses;
+        }
 
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-   
-    public String getAuthor() {
-        return author;
-    }
+        public BookTip() {
+        }
 
-    public void setName(String name) {
-        this.title = name;
-    }
+        public void setId(int id) {
+            this.id = id;
+        }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+        public int getId() {
+            return id;
+        }
 
-    public String getTitle() {
-        return title;
-    }
+        public void setAuthor(String author) {
+            this.author = author;
+        }
 
-    public void setISBN(String ISBN) {
-        this.ISBN = ISBN;
-    }
-    
-    public String getISBN() {
-        return ISBN;
-    }
+        public String getAuthor() {
+            return author;
+        }
 
-    public void setSummary(String summary) {
-        this.summary = summary;
-    }
+        public void setName(String name) {
+            this.title = name;
+        }
 
-    public String getSummary() {
-        return summary;
-    }
+        public void setTitle(String title) {
+            this.title = title;
+        }
 
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
+        public String getTitle() {
+            return title;
+        }
 
-    public String getComment() {
-        return comment;
-    }
+        public void setISBN(String ISBN) {
+            this.ISBN = ISBN;
+        }
+
+        public String getISBN() {
+            return ISBN;
+        }
+
+        public void setSummary(String summary) {
+            this.summary = summary;
+        }
+
+        public String getSummary() {
+            return summary;
+        }
+
+        public void setComment(String comment) {
+            this.comment = comment;
+        }
+
+        public String getComment() {
+            return comment;
+        }
 
 //    public ArrayList<String> getTags() {
 //        return tags;
@@ -117,4 +118,5 @@ public class BookTip implements ReadingTip {
 //   public void addRelatedCourse(String courseName) {
 //       this.relatedCourses.add(courseName);
 //   }
+    }
 }
