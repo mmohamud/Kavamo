@@ -2,4 +2,20 @@
 <checkstyle version="5.9">
 <file name="/home/mmohamud/Ohtu/Kavamo/MyReadingTips/src/main/java/mytips/Main.java">
 </file>
+<file name="/home/mmohamud/Ohtu/Kavamo/MyReadingTips/src/main/java/mytips/model/BookTip.java">
+<error line="8" column="8" severity="error" message="Unused import - java.util.ArrayList." source="com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck"/>
+<error line="22" column="20" severity="error" message="Name &apos;ISBN&apos; must match pattern &apos;^[a-z][a-zA-Z0-9]*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck"/>
+<error line="30" severity="error" message="Line is longer than 80 characters (found 102)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="30" column="64" severity="error" message="Name &apos;ISBN&apos; must match pattern &apos;^[a-z][a-zA-Z0-9]*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck"/>
+<error line="61" column="32" severity="error" message="Name &apos;Name&apos; must match pattern &apos;^[a-z][a-zA-Z0-9]*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck"/>
+<error line="70" column="32" severity="error" message="Name &apos;ISBN&apos; must match pattern &apos;^[a-z][a-zA-Z0-9]*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck"/>
+</file>
+<file name="/home/mmohamud/Ohtu/Kavamo/MyReadingTips/src/main/java/mytips/model/PrerequisiteCourses.java">
+</file>
+<file name="/home/mmohamud/Ohtu/Kavamo/MyReadingTips/src/main/java/mytips/model/RelatedCourses.java">
+</file>
+<file name="/home/mmohamud/Ohtu/Kavamo/MyReadingTips/src/main/java/mytips/model/RelatedTags.java">
+</file>
+<file name="/home/mmohamud/Ohtu/Kavamo/MyReadingTips/src/main/java/mytips/model/WebTip.java">
+</file>
 </checkstyle>

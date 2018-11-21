@@ -6,7 +6,7 @@
 package mytips.model;
 
 import java.util.ArrayList;
-import javax.persistence.Entity;
+import javax.persistence.*;
 /**
  *
  * @author mmohamud
@@ -15,6 +15,7 @@ import javax.persistence.Entity;
 @Entity
 @Table(name = "BookTip")
 public class BookTip {
+    @Id @GeneratedValue
     private int id;
     private String author;    
     private String title;
