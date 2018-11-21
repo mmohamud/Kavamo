@@ -76,6 +76,10 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
+run {
+    standardInput = System.in
+}
+
 // Define the main class for the application
 // Seuraava rivi kommentoitu pois koska estää ohjelman ajamisen netbeansissä
 mainClassName = 'mytips.Main'
