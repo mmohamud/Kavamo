@@ -1,1 +1,6 @@
 /MyReadingTips/.nb-gradle/
+.classpath
+.project
+.settings/
+.DS_Store
+MyReadingTips/bin/
