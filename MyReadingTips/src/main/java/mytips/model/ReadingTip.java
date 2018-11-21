@@ -8,10 +8,10 @@ public interface ReadingTip {
     public int getId();
     public void setTitle(String title);
     public String getTitle();
-    public void setReadingDate(Date date);
-    public Date getReadingStatus();
-    public void setDescription(String description);
-    public String getDescription();
-    public void setRelatedCourses(List<String> course);
-    public List<String> getRelatedCourses();
+    public void setSummary(String description);
+    public String getSummary();
+    // public void setReadingDate(Date date);
+    // public Date getReadingDate();
+    // public void setRelatedCourses(List<String> course);
+    // public List<String> getRelatedCourses();
 }
