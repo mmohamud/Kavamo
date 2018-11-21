@@ -6,15 +6,19 @@
 package mytips.model;
 
 import java.util.ArrayList;
+<<<<<<< HEAD
 import javax.persistence.*;
+=======
+//import javax.persistence.Entity;
+
+>>>>>>> c817bad4814b9e64487e5d80c8afda544ebb30e5
 /**
  *
  * @author mmohamud
  */
 
-@Entity
-@Table(name = "BookTip")
 public class BookTip {
+<<<<<<< HEAD
     @Id @GeneratedValue
     private int id;
     private String author;    
@@ -37,55 +41,88 @@ public class BookTip {
         //this.prerequisiteCourses = prerequisiteCourses;
         //this.relatedCourses = relatedCourses;
     }
+=======
+>>>>>>> c817bad4814b9e64487e5d80c8afda544ebb30e5
 
-    public BookTip() {
-    }   
-    
-    public int getId() {
-        return id;
-    }
-   
-    public String getAuthor() {
-        return author;
-    }
+    @Entity
+    @Table(name = "BookTip")
+    public class BookTip implements ReadingTip {
 
-    public void setAuthor(String author) {
-        this.author = author;
-    }
+        private int id;
+        private String author;
+        private String title;
+        private String ISBN;
+        private String summary;
+        private String comment;
+        //private ArrayList<String> tags;
+        //private ArrayList<String> prerequisiteCourses;
+        //private ArrayList<String> relatedCourses;
 
-    
-    public String getTitle() {
-        return title;
-    }
+        public BookTip(int id, String author, String title, String ISBN, String summary, String comment) {
+            this.author = author;
+            this.title = title;
+            this.ISBN = ISBN;
+            this.summary = summary;
+            this.comment = comment;
+            //this.tags = tags;
+            //this.prerequisiteCourses = prerequisiteCourses;
+            //this.relatedCourses = relatedCourses;
+        }
 
-    public void setName(String Name) {
-        this.title = title;
-    }
+        public BookTip() {
+        }
 
-    
-    public String getISBN() {
-        return ISBN;
-    }
+        public void setId(int id) {
+            this.id = id;
+        }
 
-    public void setISBN(String ISBN) {
-        this.ISBN = ISBN;
-    }
+        public int getId() {
+            return id;
+        }
 
-    public String getSummary() {
-        return summary;
-    }
+        public void setAuthor(String author) {
+            this.author = author;
+        }
 
-    public void setSummary(String summary) {
-        this.summary = summary;
-    }
+        public String getAuthor() {
+            return author;
+        }
 
-    public String getComment() {
-        return comment;
-    }
+        public void setName(String name) {
+            this.title = name;
+        }
 
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
+        public void setTitle(String title) {
+            this.title = title;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+
+        public void setISBN(String ISBN) {
+            this.ISBN = ISBN;
+        }
+
+        public String getISBN() {
+            return ISBN;
+        }
+
+        public void setSummary(String summary) {
+            this.summary = summary;
+        }
+
+        public String getSummary() {
+            return summary;
+        }
+
+        public void setComment(String comment) {
+            this.comment = comment;
+        }
+
+        public String getComment() {
+            return comment;
+        }
 
 //    public ArrayList<String> getTags() {
 //        return tags;
@@ -110,4 +147,5 @@ public class BookTip {
 //   public void addRelatedCourse(String courseName) {
 //       this.relatedCourses.add(courseName);
 //   }
+    }
 }
