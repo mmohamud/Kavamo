@@ -69,7 +69,7 @@ public class TextualUI {
     }
 
     private void searchReadingTips() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
 
     private void addReadingTip() {
@@ -94,11 +94,11 @@ public class TextualUI {
     }
 
     private void modifyReadingTip() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");  
     }
 
     private void removeReadingTip() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     private void addBook() {
@@ -134,11 +134,12 @@ public class TextualUI {
                 String tag = this.addString("Lisää tagi: ");
                 tags.add(tag);
             } else if (action == 2) {
-                String prerequisiteCourse = this.addString("Lisää esitietokurssi: ");
+                String prerequisiteCourse = 
+                    this.addString("Lisää esitietokurssi: ");
                 prerequisiteCourses.add(prerequisiteCourse);
             } else if (action == 3) {
-                String relatedCourse = this.addString
-                    ("Lisää aiheeseen liittyvä kurssi: ");
+                String relatedCourse = 
+                    this.addString("Lisää aiheeseen liittyvä kurssi: ");
                 relatedCourses.add(relatedCourse);
             } else if (action == 4) {
                 return;
@@ -146,16 +147,17 @@ public class TextualUI {
         }
         
         //Luodaan uusi kirjalukuvinkki
-        //BookTip bookTip = new BookTip("1", author, title, isbn, summary, comment,
+        //BookTip bookTip = 
+            //new BookTip("1", author, title, isbn, summary, comment,
         //    tags, prerequisiteCourses, relatedCourses);
     }
 
     private void addUrlTip() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     private void addPodcast() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     private String addString(String headline) {
