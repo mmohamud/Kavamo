@@ -6,14 +6,14 @@
 package mytips.model;
 
 import java.util.ArrayList;
-import javax.persistence.Entity;
+//import javax.persistence.Entity;
 /**
  *
  * @author mmohamud
  */
 
-@Entity
-@Table(name = "BookTip")
+//@Entity
+//@Table(name = "BookTip")
 public class BookTip {
     private int id;
     private String author;    

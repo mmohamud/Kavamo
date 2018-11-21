@@ -74,12 +74,17 @@ dependencies {
 
     // Use JUnit test framework
     testCompile 'junit:junit:4.12'
-    
+
+    // Use cucumber
+    testCompile 'info.cukes:cucumber-java:1.2.5'
+    testCompile 'info.cukes:cucumber-junit:1.2.5'
+
+
     // Use Hibernate for ORMs
-    compile 'org.hibernate:hibernate-core:5.3.7.Final'
+//    compile 'org.hibernate:hibernate-core:5.3.7.Final'
 	
-    https://mvnrepository.com/artifact/javax.persistence/persistence-api
-    compile 'javax.persistence', name: 'persistence-api', version: '1.0.2'
+//    https://mvnrepository.com/artifact/javax.persistence/persistence-api
+//    compile 'javax.persistence', name: 'persistence-api', version: '1.0.2'
 
 }
 
@@ -91,3 +96,7 @@ run {
 // Seuraava rivi kommentoitu pois koska estää ohjelman ajamisen netbeansissä
 mainClassName = 'mytips.Main'
 
+test {
+    testLogging.showStandardStreams = true
+    systemProperties System.getProperties()
+}
