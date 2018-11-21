@@ -12,9 +12,11 @@ import java.util.ArrayList;
  * @author mmohamud
  */
 
-//@Entity
-//@Table(name = "BookTip")
 public class BookTip {
+=======
+@Entity
+@Table(name = "BookTip")
+public class BookTip implements ReadingTip {
     private int id;
     private String author;    
     private String title;
@@ -39,51 +41,57 @@ public class BookTip {
 
     public BookTip() {
     }   
+
+    public void setId(int id) {
+        this.id = id;
+    }
     
     public int getId() {
         return id;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
    
     public String getAuthor() {
         return author;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setName(String name) {
+        this.title = name;
     }
 
-    
-    public String getTitle() {
-        return title;
-    }
-
-    public void setName(String Name) {
+    public void setTitle(String title) {
         this.title = title;
     }
 
-    
-    public String getISBN() {
-        return ISBN;
+    public String getTitle() {
+        return title;
     }
 
     public void setISBN(String ISBN) {
         this.ISBN = ISBN;
     }
-
-    public String getSummary() {
-        return summary;
+    
+    public String getISBN() {
+        return ISBN;
     }
 
     public void setSummary(String summary) {
         this.summary = summary;
     }
 
-    public String getComment() {
-        return comment;
+    public String getSummary() {
+        return summary;
     }
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public String getComment() {
+        return comment;
     }
 
 //    public ArrayList<String> getTags() {
