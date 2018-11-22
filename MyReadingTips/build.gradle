@@ -75,11 +75,10 @@ dependencies {
     // Use JUnit test framework
     testCompile 'junit:junit:4.12'
 
-<<<<<<< HEAD
     // https://mvnrepository.com/artifact/org.hibernate.javax.persistence/hibernate-jpa-2.1-api
     compile group: 'org.hibernate.javax.persistence', name: 'hibernate-jpa-2.1-api', version: '1.0.2.Final'
 
-=======
+
     // Use cucumber
     testCompile 'info.cukes:cucumber-java:1.2.5'
     testCompile 'info.cukes:cucumber-junit:1.2.5'
@@ -92,7 +91,7 @@ dependencies {
 //    compile 'javax.persistence', name: 'persistence-api', version: '1.0.2'
 
 }
->>>>>>> c817bad4814b9e64487e5d80c8afda544ebb30e5
+
 
 run {
     standardInput = System.in
