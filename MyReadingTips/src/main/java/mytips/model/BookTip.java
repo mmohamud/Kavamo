@@ -5,7 +5,7 @@
  */
 package mytips.model;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import javax.persistence.*;
 //import javax.persistence.Entity;
 
