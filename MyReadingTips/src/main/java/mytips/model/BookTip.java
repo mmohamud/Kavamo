@@ -6,43 +6,15 @@
 package mytips.model;
 
 import java.util.ArrayList;
-<<<<<<< HEAD
 import javax.persistence.*;
-=======
 //import javax.persistence.Entity;
 
->>>>>>> c817bad4814b9e64487e5d80c8afda544ebb30e5
 /**
  *
  * @author mmohamud
  */
 
-public class BookTip {
-<<<<<<< HEAD
-    @Id @GeneratedValue
-    private int id;
-    private String author;    
-    private String title;
-    private String ISBN;
-    private String summary;
-    private String comment;
-    //private ArrayList<String> tags;
-    //private ArrayList<String> prerequisiteCourses;
-    //private ArrayList<String> relatedCourses;
 
-    
-    public BookTip(int id, String author, String title, String ISBN, String summary, String comment) {
-        this.author = author;
-        this.title = title;
-        this.ISBN = ISBN;
-        this.summary = summary;
-        this.comment = comment;
-        //this.tags = tags;
-        //this.prerequisiteCourses = prerequisiteCourses;
-        //this.relatedCourses = relatedCourses;
-    }
-=======
->>>>>>> c817bad4814b9e64487e5d80c8afda544ebb30e5
 
     @Entity
     @Table(name = "BookTip")
@@ -148,4 +120,4 @@ public class BookTip {
 //       this.relatedCourses.add(courseName);
 //   }
     }
-}
+
