@@ -5,6 +5,7 @@
  */
 package mytips;
 
+import mytips.model.BookTip;
 import java.util.*;
 
 /**
@@ -14,9 +15,11 @@ import java.util.*;
 public class TextualUI {
 
     private static Scanner scanner;
+    private ArrayList<BookTip> books;
 
     public TextualUI() {
         this.scanner = new Scanner(System.in);
+        this.books = new ArrayList<>();
     }
 
     public void start() {
@@ -117,6 +120,8 @@ public class TextualUI {
         
         System.out.println("Lisää tiivistelmä: ");
         String  summary = scanner.next();
+
+       
         
         int action = 0;
         ArrayList<String> tags = new ArrayList<>();
@@ -142,14 +147,16 @@ public class TextualUI {
                     this.addString("Lisää aiheeseen liittyvä kurssi: ");
                 relatedCourses.add(relatedCourse);
             } else if (action == 4) {
+                //Luodaan uusi kirjalukuvinkki
+                BookTip bookTip = 
+                        new BookTip(1, author, title, isbn, summary, comment);
+                books.add(bookTip);
+
+                System.out.println("Kirja tallennettu tietokantaan!");
+                books.get(books.size() - 1).print();
                 return;
             }
-        }
-        
-        //Luodaan uusi kirjalukuvinkki
-        //BookTip bookTip = 
-            //new BookTip("1", author, title, isbn, summary, comment,
-        //    tags, prerequisiteCourses, relatedCourses);
+        }      
     }
 
     private void addUrlTip() {

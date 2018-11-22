@@ -30,6 +30,7 @@ public class BookTip implements ReadingTip {
     
     public BookTip(int id, String author, String title, 
                 String isbn, String summary, String comment) {
+        this.id = id;
         this.author = author;
         this.title = title;
         this.isbn = isbn;
@@ -41,6 +42,14 @@ public class BookTip implements ReadingTip {
     }
 
     public BookTip() {
+    }
+
+    public void print() {
+        System.out.println("Kirjan nimi: " + this.title);
+        System.out.println("Kirjoittaja: " + this.author);
+        System.out.println("ISBN: " + this.isbn);
+        System.out.println("Tiivistelmä: " + this.summary);
+        System.out.println("Kommentti: " + this.comment);
     }
 
     public void setId(int id) {
