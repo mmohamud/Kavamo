@@ -8,15 +8,15 @@ Product backlog: https://docs.google.com/spreadsheets/d/15lDRqxfrTMXDCPrglwGqPN0
 
 Definition of done:
 - User story toteuttaa hyväksymäkriteerit ja Cucumberissa määritellyt hyväksymätestit menevät läpi.
-    - Cucumberin hyväksymätestit:
+    - Cucumberin featuret:
+        - Käyttäjä pystyy lisäämään uuden kirjalukuvinkin: https://github.com/mmohamud/Kavamo/blob/master/MyReadingTips/src/test/resources/mytips/model/newBookTip.feature
 - User story läpäisee yksikkötestit (rivikattavuus vähintään 80%)
 - User storyn koodi on pushattu githubiin
 
 - Koodin ylläpidettävyys ja yhtenäinen koodityyli:
     - Nimeäminen englanniksi kuvaavilla nimillä
     - CamelCase-nimeäminen
-    - CheckStyle:
-        - tähän mitä sääntöjä halutaan käyttää?
+    - CheckStyle
 
 
 # Käyttöohjeita
