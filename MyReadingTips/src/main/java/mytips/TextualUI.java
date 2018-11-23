@@ -39,7 +39,7 @@ public class TextualUI {
                 this.searchReadingTips();
                 break;
             default:
-                break;
+                return;
         }
     }
 
@@ -154,7 +154,7 @@ public class TextualUI {
 
                 System.out.println("Kirja tallennettu tietokantaan!");
                 books.get(books.size() - 1).print();
-                return;
+                this.start();
             }
         }      
     }

@@ -38,10 +38,10 @@ public class Main extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println("Aloitus onnistuu!");
         //launch(args);
         TextualUI ui = new TextualUI();
         ui.start();
+        System.out.println("Lopetetaan");
     }
     
 }
