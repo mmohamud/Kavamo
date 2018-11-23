@@ -14,17 +14,17 @@ import java.util.*;
  */
 public class TextualUI {
 
-    private static Scanner scanner;
+    private Scanner scanner;
     private ArrayList<BookTip> books;
 
     public TextualUI() {
         this.scanner = new Scanner(System.in);
         this.books = new ArrayList<>();
+        System.out.println("\nTervetuloa lukuvinkkisovellukseen!\n");
     }
 
     public void start() {
-        System.out.println("\nTervetuloa lukuvinkkisovellukseen!\n");
-        System.out.println("Mitä haluat tehdä?\n"
+        System.out.println("\nMitä haluat tehdä?\n"
                 + "1 - Hallinnoi lukuvinkkejä\n"
                 + "2 - Selaa lukuvinkkejä\n"
                 + "3 - Lopeta\n");
@@ -39,12 +39,12 @@ public class TextualUI {
                 this.searchReadingTips();
                 break;
             default:
-                return;
+                scanner.close();
         }
     }
 
     private void manageReadingTips() {
-        System.out.println("Lukuvinkkien hallinnointi\n\n"
+        System.out.println("\nLukuvinkkien hallinnointi\n\n"
                 + "Mitä haluat tehdä?\n"
                 + "1 - Lisää lukuvinkki\n"
                 + "2 - Muokkaa lukuvinkkiä\n"
@@ -63,10 +63,8 @@ public class TextualUI {
             case 3:
                 this.removeReadingTip();
                 break;
-            case 4:
-                this.start();
-                break;
             default:
+                this.start();
                 break;
         }
     }
@@ -76,7 +74,7 @@ public class TextualUI {
     }
 
     private void addReadingTip() {
-        System.out.println("Lukuvinkin lisäys\n\n"
+        System.out.println("\nLukuvinkin lisäys\n\n"
                 + "Minkä lukuvinkin haluat lisätä?\n"
                 + "1 - Kirja\n"
                 + "2 - Video tai blogipostaus\n"
@@ -85,14 +83,19 @@ public class TextualUI {
 
         int action = scanner.nextInt();
 
-        if (action == 1) {
-            this.addBook();
-        } else if (action == 2) {
-            this.addUrlTip();
-        } else if (action == 3) {
-            this.addPodcast();
-        } else if (action == 4) {
-            this.manageReadingTips();
+        switch (action) {
+            case 1:
+                this.addBook();
+                break;
+            case 2:
+                this.addUrlTip();
+                break;
+            case 3:
+                this.addPodcast();
+                break;
+            default:
+                this.manageReadingTips();
+                break;
         }
     }
 
@@ -105,27 +108,32 @@ public class TextualUI {
     }
 
     private void addBook() {
-        System.out.println("Lisää uusi kirjalukuvinkki\n"
+        System.out.println("\nLisää uusi kirjalukuvinkki\n"
                 + "Anna ISBN: ");
-        String isbn = scanner.next();
+        String isbn = "";
+        isbn += scanner.nextLine();
 
         System.out.println("Anna kirjoittaja: ");
-        String author = scanner.next();
+        String author = "";
+        author += scanner.nextLine();
 
         System.out.println("Anna otsikko: ");
-        String title = scanner.next();
+        String title = "";
+        title += scanner.nextLine();
 
         System.out.println("Lisää kommentti: ");
-        String comment = scanner.next();
+        String comment = "";
+        comment = scanner.nextLine();
         
         System.out.println("Lisää tiivistelmä: ");
-        String  summary = scanner.next();
+        String summary = "";
+        summary = scanner.nextLine();
 
        
         
         int action = 0;
         ArrayList<String> tags = new ArrayList<>();
-        ArrayList<String> prerequisiteCourses = new ArrayList<>();
+        ArrayList<String> preCourses = new ArrayList<>();
         ArrayList<String> relatedCourses = new ArrayList<>();
         while (action != 4) {
             System.out.println("1 - Lisää tagi\n"
@@ -135,26 +143,34 @@ public class TextualUI {
 
             action = scanner.nextInt();
 
-            if (action == 1) {
-                String tag = this.addString("Lisää tagi: ");
-                tags.add(tag);
-            } else if (action == 2) {
-                String prerequisiteCourse = 
-                    this.addString("Lisää esitietokurssi: ");
-                prerequisiteCourses.add(prerequisiteCourse);
-            } else if (action == 3) {
-                String relatedCourse = 
-                    this.addString("Lisää aiheeseen liittyvä kurssi: ");
-                relatedCourses.add(relatedCourse);
-            } else if (action == 4) {
-                //Luodaan uusi kirjalukuvinkki
-                BookTip bookTip = 
-                        new BookTip(1, author, title, isbn, summary, comment);
-                books.add(bookTip);
-
-                System.out.println("Kirja tallennettu tietokantaan!");
-                books.get(books.size() - 1).print();
-                this.start();
+            switch (action) {
+                case 1:
+                    String tag = "";
+                    tag += this.addString("Lisää tagi: ");
+                    tags.add(tag);
+                    break;
+                case 2:
+                    String preCourse = "";
+                    preCourse = this.addString("Lisää esitietokurssi: ");
+                    preCourses.add(preCourse);
+                    break;
+                case 3:
+                    String relatedCourse = "";
+                    relatedCourse = 
+                            this.addString("Lisää aiheeseen liittyvä kurssi: ");
+                    relatedCourses.add(relatedCourse);
+                    break;
+                case 4:
+                    //Luodaan uusi kirjalukuvinkki
+                    BookTip bookTip =
+                            new BookTip(1, author, title, isbn, summary, comment);
+                    books.add(bookTip);
+                    System.out.println("Kirja tallennettu tietokantaan!");
+                    books.get(books.size() - 1).print();
+                    this.start();
+                    break;
+                default:
+                    break;
             }
         }      
     }
@@ -169,6 +185,6 @@ public class TextualUI {
 
     private String addString(String headline) {
         System.out.println(headline);
-        return scanner.next();
+        return scanner.nextLine();
     }
 }
