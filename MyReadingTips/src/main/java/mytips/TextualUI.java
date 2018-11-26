@@ -219,7 +219,7 @@ public class TextualUI {
                 case 4:
                     //Luodaan uusi kirjalukuvinkki
                     BookTip bookTip
-                            = new BookTip(1, author, title, isbn, summary, comment);
+                            = new BookTip(1, author, title, summary, comment);
                     books.add(bookTip);
                     System.out.println("\nKirja tallennettu!");
                     books.get(books.size() - 1).print();

@@ -1,10 +1,10 @@
-
 package mytips.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 // import java.util.ArrayList;
 import java.util.List;
 import mytips.database.*;
@@ -19,7 +19,6 @@ public class BookTipDao implements Dao {
     }
 
 // Mallista AiheDao korvattu "Aihe" sanalla "BookTip" ja "nimi" sanalla "author"
-    
     @Override
     public Object findOne(Object key) throws SQLException { // Katsotaan, löytyykö booktip nimen ja id:n yhdistelmällä tai ID:llä
         BookTip etsittavaBookTip = (BookTip) key;
@@ -28,20 +27,22 @@ public class BookTipDao implements Dao {
         stmt.setString(1, etsittavaBookTip.getAuthor());
 //        stmt.setInt(2, etsittavaAihe.getKurssiId());
         stmt.setInt(2, etsittavaBookTip.getId());
-                
+
         ResultSet rs = stmt.executeQuery();
         boolean hasOne = rs.next();
         if (!hasOne) {
             return null;
         }
 
-        String author = rs.getString("author");
         int id = rs.getInt("id");
+        String author = rs.getString("author");
+        String title = rs.getString("title");
+        String summary = rs.getString("summary");
+        String comment = rs.getString("comment");
 // "Palauttaa" tietokannasta oikeasti vain id:n ja authorin
-        BookTip lisattavaBookTip = new BookTip(id, author, "title","isbn","Summary","Comment");
-        
-//        lisattavaAihe.setKysymykset(new KysymysDao(db).findAllByAiheId(id));  // Alkuperäisessä oli tämä
+        BookTip lisattavaBookTip = new BookTip(id, author, title, summary, comment);
 
+//        lisattavaAihe.setKysymykset(new KysymysDao(db).findAllByAiheId(id));  // Alkuperäisessä oli tämä
         stmt.close();
         rs.close();
         conn.close();
@@ -49,20 +50,61 @@ public class BookTipDao implements Dao {
         return lisattavaBookTip;
     }
 
-    
     @Override
     public List findAll() throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List bookTips = new ArrayList<>();
+        Connection conn = db.getConnection();
+        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM BookTip");
+        ResultSet rs = stmt.executeQuery();
+
+        while (rs.next()) {
+            int id = rs.getInt("id");
+            String author = rs.getString("author");
+            String title = rs.getString("title");
+            String summary = rs.getString("summary");
+            String comment = rs.getString("comment");
+            BookTip lisattavaBookTip = new BookTip(id, author, title, summary, comment);
+            bookTips.add(lisattavaBookTip);
+        }
+        return bookTips;
     }
 
     @Override
     public Object saveOrUpdate(Object object) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        BookTip bookTip = (BookTip) object;
+        
+        BookTip compareTo = (BookTip) findOne(bookTip);
+        if (compareTo != null) {
+            return bookTip;
+        }
+        
+        try (Connection conn = db.getConnection()) {
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Booktip (id, author, title, summary, comment, type)");
+            stmt.setInt(1, bookTip.getId());
+            stmt.setString(2, bookTip.getAuthor());
+            stmt.setString(3, bookTip.getTitle());
+            stmt.setString(4, bookTip.getSummary());
+            stmt.setString(5, bookTip.getComment());
+            stmt.setString(6, "book");
+            stmt.executeUpdate();
+        }
+        return findOne(bookTip);
     }
 
     @Override
     public void delete(Object key) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (findOne(key) == null) {
+            return;
+        }
+        BookTip bookTip = (BookTip) findOne(key);
+        
+        Connection conn = db.getConnection();
+        PreparedStatement stmt = conn.prepareStatement("DELETE FROM Booktip WHERE id = ?");
+        
+        stmt.setInt(1, bookTip.getId());
+        stmt.executeUpdate();
+
+        stmt.close();
+        conn.close();
     }
- 
 }

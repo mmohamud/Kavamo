@@ -20,8 +20,8 @@ import javax.persistence.*;
 public class BookTip extends ReadingTip {
 
     
-    public BookTip(int id, String author, String title, 
-                String isbn, String summary, String comment) {
+    public BookTip(int id, String author, String title,
+            String summary, String comment) {
         super(id, author, title, summary, comment, "book");
     }
 
@@ -31,8 +31,5 @@ public class BookTip extends ReadingTip {
         System.out.println("Tiivistelmä: " + super.getSummary());
         System.out.println("Kommentti: " + super.getComment());
     }
-    
-
-
 }
 
