@@ -1,5 +1,6 @@
 package mytips;
 
+import java.util.*;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -7,6 +8,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import mytips.model.ReadingTip;
+import mytips.model.ReadingTipManager;
+import mytips.model.TipManager;
 
 
 
@@ -39,7 +43,8 @@ public class Main extends Application {
      */
     public static void main(String[] args) {
         //launch(args);
-        TextualUI ui = new TextualUI();
+        ReadingTipManager readingTipManager = new ReadingTipManager();
+        TextualUI ui = new TextualUI(readingTipManager);
         ui.start();
         System.out.println("Lopetetaan");
     }

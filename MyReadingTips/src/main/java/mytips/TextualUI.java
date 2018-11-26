@@ -7,6 +7,8 @@ package mytips;
 
 import mytips.model.BookTip;
 import java.util.*;
+import mytips.model.ReadingTip;
+import mytips.model.TipManager;
 
 /**
  *
@@ -15,9 +17,11 @@ import java.util.*;
 public class TextualUI {
 
     private ArrayList<BookTip> books;
+    private TipManager tipManager;
 
-    public TextualUI() {
+    public TextualUI(TipManager tipManager) {
         this.books = new ArrayList<>();
+        this.tipManager = tipManager;
         System.out.println("\nTervetuloa lukuvinkkisovellukseen!");
     }
 
@@ -87,7 +91,30 @@ public class TextualUI {
     }
 
     private void searchReadingTips() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        System.out.println("\nLukuvinkkien selaus\n\n"
+                + "Mitä haluat tehdä?\n"
+                + "1 - Listaa kaikki lukuvinkit\n"
+                + "2 - Palaa alkuun\n");
+        
+        Scanner sc = new Scanner(System.in);
+        int action = 0;
+        try {
+            action = sc.nextInt();
+        } catch (java.util.InputMismatchException e) {
+            sc.nextLine();
+        }
+
+        switch (action) {
+            case 1:
+                this.listReadingTips();
+                break;
+            case 2:
+                this.start();
+                break;
+            default:
+                this.searchReadingTips();
+                break;
+        }        
     }
 
     private void addReadingTip() {
@@ -218,5 +245,15 @@ public class TextualUI {
         Scanner sc = new Scanner(System.in);
         System.out.println(headline);
         return sc.nextLine();
+    }
+
+    private void listReadingTips() {
+        ArrayList<ReadingTip> readingTips = tipManager.getReadingTips();
+        
+        for (ReadingTip tip : readingTips) {
+            System.out.println(tip.toString() + "\n");
+        }
+        
+        this.searchReadingTips();
     }
 }
