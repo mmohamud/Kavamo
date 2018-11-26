@@ -221,7 +221,7 @@ public class TextualUI {
                     BookTip bookTip
                             = new BookTip(1, author, title, isbn, summary, comment);
                     books.add(bookTip);
-                    System.out.println("\nKirja tallennettu tietokantaan!");
+                    System.out.println("\nKirja tallennettu!");
                     books.get(books.size() - 1).print();
 
                     //Palaa aloitusvalikkoon
