@@ -12,7 +12,6 @@ package mytips.model;
 public class WebTip {
     private String title;
     private String author;
-    private String url;
     private String type;
     private String summary;
 
@@ -32,10 +31,6 @@ public class WebTip {
         return type;
     }
 
-    public String getUrl() {
-        return url;
-    }
-
     public void setAuthor(String author) {
         this.author = author;
     }
@@ -52,9 +47,6 @@ public class WebTip {
         this.summary = summary;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
     
     
 }
