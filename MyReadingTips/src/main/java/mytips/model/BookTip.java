@@ -22,7 +22,7 @@ public class BookTip extends ReadingTip {
     
     public BookTip(int id, String author, String title, 
                 String isbn, String summary, String comment) {
-        super(id, author, title, summary, comment);
+        super(id, author, title, summary, comment, "book");
         this.isbn = isbn;
     }
 
