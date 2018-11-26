@@ -18,7 +18,7 @@ public class TextualUI {
 
     public TextualUI() {
         this.books = new ArrayList<>();
-        System.out.println("\nTervetuloa lukuvinkkisovellukseen!\n");
+        System.out.println("\nTervetuloa lukuvinkkisovellukseen!");
     }
 
     public void start() {
@@ -28,7 +28,12 @@ public class TextualUI {
                 + "3 - Lopeta\n");
 
         Scanner sc = new Scanner(System.in);
-        int action = sc.nextInt();
+        int action = 0;
+        try {
+            action = sc.nextInt();
+        } catch (java.util.InputMismatchException e) {
+            sc.nextLine();
+        }
 
         switch (action) {
             case 1:
@@ -55,7 +60,12 @@ public class TextualUI {
                 + "4 - Palaa alkuun\n");
 
         Scanner sc = new Scanner(System.in);
-        int action = sc.nextInt();
+        int action = 0;
+        try {
+            action = sc.nextInt();
+        } catch (java.util.InputMismatchException e) {
+            sc.nextLine();
+        }
 
         switch (action) {
             case 1:
@@ -77,7 +87,7 @@ public class TextualUI {
     }
 
     private void searchReadingTips() {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     private void addReadingTip() {
@@ -88,8 +98,13 @@ public class TextualUI {
                 + "3 - Podcast\n"
                 + "4 - Palaa lukuvinkkien hallinnointivalikkoon\n");
 
-        Scanner sc = new Scanner(System.in);        
-        int action = sc.nextInt();
+        Scanner sc = new Scanner(System.in);
+        int action = 0;
+        try {
+            action = sc.nextInt();
+        } catch (java.util.InputMismatchException e) {
+            sc.nextLine();
+        }
 
         switch (action) {
             case 1:
@@ -111,7 +126,7 @@ public class TextualUI {
     }
 
     private void modifyReadingTip() {
-        throw new UnsupportedOperationException("Not supported yet.");  
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     private void removeReadingTip() {
@@ -136,13 +151,11 @@ public class TextualUI {
         System.out.println("\nLisää kommentti: ");
         String comment = "";
         comment = sc.nextLine();
-        
+
         System.out.println("\nLisää tiivistelmä: ");
         String summary = "";
         summary = sc.nextLine();
 
-       
-        
         int action = 0;
         ArrayList<String> tags = new ArrayList<>();
         ArrayList<String> preCourses = new ArrayList<>();
@@ -153,8 +166,12 @@ public class TextualUI {
                     + "3 - Lisää aiheeseen liittyvä kurssi\n"
                     + "4 - Valmis\n");
 
-            action = sc.nextInt();
-
+            try {
+                action = sc.nextInt();
+            } catch (java.util.InputMismatchException e) {
+                sc.nextLine();
+            }
+            
             switch (action) {
                 case 1:
                     String tag = "";
@@ -168,25 +185,25 @@ public class TextualUI {
                     break;
                 case 3:
                     String relatedCourse = "";
-                    relatedCourse = 
-                            this.addString("Lisää aiheeseen liittyvä kurssi: ");
+                    relatedCourse
+                            = this.addString("Lisää aiheeseen liittyvä kurssi: ");
                     relatedCourses.add(relatedCourse);
                     break;
                 case 4:
                     //Luodaan uusi kirjalukuvinkki
-                    BookTip bookTip =
-                            new BookTip(1, author, title, isbn, summary, comment);
+                    BookTip bookTip
+                            = new BookTip(1, author, title, isbn, summary, comment);
                     books.add(bookTip);
                     System.out.println("\nKirja tallennettu tietokantaan!");
                     books.get(books.size() - 1).print();
-                    
+
                     //Palaa aloitusvalikkoon
                     this.start();
                     break;
                 default:
                     break;
             }
-        }      
+        }
     }
 
     private void addUrlTip() {
