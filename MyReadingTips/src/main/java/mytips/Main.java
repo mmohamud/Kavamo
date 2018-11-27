@@ -67,7 +67,8 @@ public class Main extends Application {
 //        }
     
         ReadingTipManager readingTipManager = new ReadingTipManager();
-        TextualUI ui = new TextualUI(readingTipManager);
+        ConsoleIO io = new ConsoleIO();
+        TextualUI ui = new TextualUI(readingTipManager, io);
         ui.start();
         System.out.println("Lopetetaan");
         
