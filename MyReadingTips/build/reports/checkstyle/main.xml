@@ -1,51 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="5.9">
-<file name="/home/mmohamud/Ohtu/Kavamo/MyReadingTips/src/main/java/mytips/Main.java">
-<error line="50" column="23" severity="error" message="Name &apos;MBT&apos; must match pattern &apos;^[a-z][a-zA-Z0-9]*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck"/>
-<error line="53" severity="error" message="Line is longer than 80 characters (found 107)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
-<error line="54" severity="error" message="Line is longer than 80 characters (found 103)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<file name="/home/mmohamud/Kavamo/MyReadingTips/src/main/java/mytips/Main.java">
+<error line="11" column="8" severity="error" message="Unused import - mytips.model.ReadingTip." source="com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck"/>
+<error line="13" column="8" severity="error" message="Unused import - mytips.model.TipManager." source="com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck"/>
+<error line="15" column="8" severity="error" message="Unused import - mytips.dao.BookTipDao." source="com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck"/>
+<error line="25" severity="error" message="Line is longer than 80 characters (found 100)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="52" severity="error" message="Line is longer than 80 characters (found 88)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="56" severity="error" message="Line is longer than 80 characters (found 92)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
 </file>
-<file name="/home/mmohamud/Ohtu/Kavamo/MyReadingTips/src/main/java/mytips/TextualUI.java">
-<error line="72" severity="error" message="Line is longer than 80 characters (found 135)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
-<error line="97" severity="error" message="Line is longer than 80 characters (found 135)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
-<error line="101" severity="error" message="Line is longer than 80 characters (found 135)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
-<error line="137" severity="error" message="Line is longer than 80 characters (found 85)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
-<error line="141" column="21" severity="error" message="&apos;(&apos; should be on the previous line." source="com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck"/>
-<error line="149" severity="error" message="Line is longer than 80 characters (found 83)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
-<error line="154" severity="error" message="Line is longer than 80 characters (found 135)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
-<error line="158" severity="error" message="Line is longer than 80 characters (found 135)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<file name="/home/mmohamud/Kavamo/MyReadingTips/src/main/java/mytips/TextualUI.java">
+<error line="216" severity="error" message="Line is longer than 80 characters (found 82)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
 </file>
-<file name="/home/mmohamud/Ohtu/Kavamo/MyReadingTips/src/main/java/mytips/controller/ManageBookTip.java">
-<error line="9" column="8" severity="error" message="Unused import - java.util.Date." source="com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck"/>
-<error line="16" column="8" severity="error" message="Unused import - org.hibernate.cfg.AnnotationConfiguration." source="com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck"/>
-<error line="26" column="20" severity="error" message="Variable &apos;factory&apos; must be private and have accessor methods." source="com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck"/>
-<error line="42" severity="error" message="Line is longer than 80 characters (found 105)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
-<error line="42" column="67" severity="error" message="Name &apos;ISBN&apos; must match pattern &apos;^[a-z][a-zA-Z0-9]*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck"/>
-<error line="42" column="96" severity="error" message="Name &apos;Comment&apos; must match pattern &apos;^[a-z][a-zA-Z0-9]*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck"/>
-<error line="77" severity="error" message="Line is longer than 80 characters (found 81)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<file name="/home/mmohamud/Kavamo/MyReadingTips/src/main/java/mytips/dao/BookTipDao.java">
+<error line="15" column="14" severity="error" message="Variable &apos;db&apos; must be private and have accessor methods." source="com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck"/>
+<error line="23" severity="error" message="Line is longer than 80 characters (found 129)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="26" severity="error" message="Line is longer than 80 characters (found 139)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="43" severity="error" message="Line is longer than 80 characters (found 84)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="45" severity="error" message="Line is longer than 80 characters (found 106)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="66" severity="error" message="Line is longer than 80 characters (found 88)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="82" severity="error" message="Line is longer than 80 characters (found 126)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="102" severity="error" message="Line is longer than 80 characters (found 91)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
 </file>
-<file name="/home/mmohamud/Ohtu/Kavamo/MyReadingTips/src/main/java/mytips/model/BookTip.java">
-<error line="8" column="8" severity="error" message="Unused import - java.util.ArrayList." source="com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck"/>
-<error line="34" column="24" severity="error" message="Name &apos;ISBN&apos; must match pattern &apos;^[a-z][a-zA-Z0-9]*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck"/>
-<error line="46" severity="error" message="Line is longer than 80 characters (found 108)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
-<error line="88" column="36" severity="error" message="Name &apos;ISBN&apos; must match pattern &apos;^[a-z][a-zA-Z0-9]*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck"/>
+<file name="/home/mmohamud/Kavamo/MyReadingTips/src/main/java/mytips/dao/Dao.java">
 </file>
-<file name="/home/mmohamud/Ohtu/Kavamo/MyReadingTips/src/main/java/mytips/model/PrerequisiteCourses.java">
+<file name="/home/mmohamud/Kavamo/MyReadingTips/src/main/java/mytips/dao/WebTipDao.java">
 </file>
-<file name="/home/mmohamud/Ohtu/Kavamo/MyReadingTips/src/main/java/mytips/model/ReadingTip.java">
-<error line="3" column="8" severity="error" message="Unused import - java.util.List." source="com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck"/>
-<error line="4" column="8" severity="error" message="Unused import - java.util.Date." source="com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck"/>
-<error line="7" column="5" severity="error" message="Redundant &apos;public&apos; modifier." source="com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck"/>
-<error line="8" column="5" severity="error" message="Redundant &apos;public&apos; modifier." source="com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck"/>
-<error line="9" column="5" severity="error" message="Redundant &apos;public&apos; modifier." source="com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck"/>
-<error line="10" column="5" severity="error" message="Redundant &apos;public&apos; modifier." source="com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck"/>
-<error line="11" column="5" severity="error" message="Redundant &apos;public&apos; modifier." source="com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck"/>
-<error line="12" column="5" severity="error" message="Redundant &apos;public&apos; modifier." source="com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck"/>
+<file name="/home/mmohamud/Kavamo/MyReadingTips/src/main/java/mytips/database/Database.java">
 </file>
-<file name="/home/mmohamud/Ohtu/Kavamo/MyReadingTips/src/main/java/mytips/model/RelatedCourses.java">
+<file name="/home/mmohamud/Kavamo/MyReadingTips/src/main/java/mytips/model/BookTip.java">
 </file>
-<file name="/home/mmohamud/Ohtu/Kavamo/MyReadingTips/src/main/java/mytips/model/RelatedTags.java">
+<file name="/home/mmohamud/Kavamo/MyReadingTips/src/main/java/mytips/model/ISBN.java">
+<error line="13" column="20" severity="error" message="Name &apos;ISBN&apos; must match pattern &apos;^[a-z][a-zA-Z0-9]*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck"/>
+<error line="19" column="32" severity="error" message="Name &apos;ISBN&apos; must match pattern &apos;^[a-z][a-zA-Z0-9]*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck"/>
 </file>
-<file name="/home/mmohamud/Ohtu/Kavamo/MyReadingTips/src/main/java/mytips/model/WebTip.java">
+<file name="/home/mmohamud/Kavamo/MyReadingTips/src/main/java/mytips/model/PrerequisiteCourses.java">
+</file>
+<file name="/home/mmohamud/Kavamo/MyReadingTips/src/main/java/mytips/model/ReadingTip.java">
+</file>
+<file name="/home/mmohamud/Kavamo/MyReadingTips/src/main/java/mytips/model/ReadingTipManager.java">
+</file>
+<file name="/home/mmohamud/Kavamo/MyReadingTips/src/main/java/mytips/model/RelatedCourses.java">
+</file>
+<file name="/home/mmohamud/Kavamo/MyReadingTips/src/main/java/mytips/model/RelatedTags.java">
+</file>
+<file name="/home/mmohamud/Kavamo/MyReadingTips/src/main/java/mytips/model/TipManager.java">
+</file>
+<file name="/home/mmohamud/Kavamo/MyReadingTips/src/main/java/mytips/model/WebTip.java">
+</file>
+<file name="/home/mmohamud/Kavamo/MyReadingTips/src/main/java/mytips/model/url.java">
+<error line="12" column="14" severity="error" message="Name &apos;url&apos; must match pattern &apos;^[A-Z][a-zA-Z0-9]*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck"/>
 </file>
 </checkstyle>

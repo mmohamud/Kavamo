@@ -8,16 +8,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-<<<<<<< HEAD
-import mytips.controller.ManageBookTip;
-=======
 import mytips.model.ReadingTip;
 import mytips.model.ReadingTipManager;
 import mytips.model.TipManager;
 import mytips.database.Database;
 import mytips.dao.BookTipDao;
 import java.sql.*;
->>>>>>> c7f657861d5e25656e31fb2c83d8c49b260a5d29
 
 // import spark.ModelAndView;
 // import static spark.Spark.*;
@@ -52,13 +48,8 @@ public class Main extends Application {
     /**
      * @param args the command line arguments
      */
-<<<<<<< HEAD
-    /*public static void main(String[] args) {
-        System.out.println("Aloitus onnistuu!");
-=======
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
->>>>>>> c7f657861d5e25656e31fb2c83d8c49b260a5d29
         //launch(args);
 
 // Seuraavat toiminnot ovat nyt Database.javassa
@@ -78,23 +69,11 @@ public class Main extends Application {
         ReadingTipManager readingTipManager = new ReadingTipManager();
         TextualUI ui = new TextualUI(readingTipManager);
         ui.start();
-<<<<<<< HEAD
-    }*/
-    
-    public static void main(String[] args) {
-
-        ManageBookTip MBT = new ManageBookTip();
-
-        /* Add few BookTip records in database */
-        Integer btId1 = MBT.addBookTip("Charles Darwin", "The Origin Of Species", "9781515383284", "", "");
-        Integer btId2 = MBT.addBookTip("Richard Dawkins", "The Selfish Gene", "9788932471112", "", "");
-        MBT.listBookTips();
-=======
         System.out.println("Lopetetaan");
         
->>>>>>> c7f657861d5e25656e31fb2c83d8c49b260a5d29
     }
 
     
     
 }
+
