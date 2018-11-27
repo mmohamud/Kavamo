@@ -63,7 +63,7 @@ set CMD_LINE_ARGS=%*
 :execute
 @rem Setup the command line
 
-set CLASSPATH=%APP_HOME%\lib\MyReadingTips.jar;%APP_HOME%\lib\guava-20.0.jar;%APP_HOME%\lib\hibernate-jpa-2.1-api-1.0.2.Final.jar
+set CLASSPATH=%APP_HOME%\lib\MyReadingTips.jar;%APP_HOME%\lib\guava-20.0.jar;%APP_HOME%\lib\hibernate-core-4.3.6.Final.jar;%APP_HOME%\lib\hibernate-jpa-2.1-api-1.0.2.Final.jar;%APP_HOME%\lib\jboss-logging-3.1.3.GA.jar;%APP_HOME%\lib\jboss-logging-annotations-1.2.0.Beta1.jar;%APP_HOME%\lib\jboss-transaction-api_1.2_spec-1.0.0.Final.jar;%APP_HOME%\lib\dom4j-1.6.1.jar;%APP_HOME%\lib\hibernate-commons-annotations-4.0.5.Final.jar;%APP_HOME%\lib\javassist-3.18.1-GA.jar;%APP_HOME%\lib\antlr-2.7.7.jar;%APP_HOME%\lib\jandex-1.1.0.Final.jar;%APP_HOME%\lib\xml-apis-1.0.b2.jar;%APP_HOME%\lib\resource
 
 @rem Execute MyReadingTips
 "%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %MY_READING_TIPS_OPTS%  -classpath "%CLASSPATH%" mytips.Main %CMD_LINE_ARGS%
