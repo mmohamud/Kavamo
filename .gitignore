@@ -4,3 +4,6 @@
 .settings/
 .DS_Store
 MyReadingTips/bin/
+.gradle
+build/
+.vscode

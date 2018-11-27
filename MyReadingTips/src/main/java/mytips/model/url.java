@@ -9,12 +9,16 @@ package mytips.model;
  *
  * @author mmohamud
  */
+public class url {
+    private String url;
 
-public class WebTip extends ReadingTip {
-
-    public WebTip(int id, String url, String author, String title, 
-            String summary, String comment) {
-        super(id, author, title, summary, comment, "web");
+    public String getUrl() {
+        return url;
     }
 
+    public void setUrl(String url) {
+        this.url = url;
+    }
+    
+    
 }

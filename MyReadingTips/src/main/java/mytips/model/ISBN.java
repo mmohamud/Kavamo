@@ -9,12 +9,16 @@ package mytips.model;
  *
  * @author mmohamud
  */
+public class ISBN {
+    private String ISBN;
 
-public class WebTip extends ReadingTip {
-
-    public WebTip(int id, String url, String author, String title, 
-            String summary, String comment) {
-        super(id, author, title, summary, comment, "web");
+    public String getISBN() {
+        return ISBN;
     }
 
+    public void setISBN(String ISBN) {
+        this.ISBN = ISBN;
+    }
+    
+    
 }

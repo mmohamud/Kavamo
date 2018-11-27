@@ -5,7 +5,7 @@
  */
 package mytips.model;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import javax.persistence.*;
 //import javax.persistence.Entity;
 
@@ -14,8 +14,12 @@ import javax.persistence.*;
  * @author mmohamud
  */
 
+@Entity
+@Table(name = "BookTip")
 
+public class BookTip extends ReadingTip {
 
+<<<<<<< HEAD
     @Entity
     @Table(name = "BookTip")
     public class BookTip implements ReadingTip {
@@ -108,29 +112,19 @@ import javax.persistence.*;
         public String getComment() {
             return comment;
         }
-
-//    public ArrayList<String> getTags() {
-//        return tags;
-//    }
-//    
-//    public void addTag(String tag) {
-//        this.tags.add(tag);
-//    }
-//    
-//    public ArrayList<String> getPrerequisiteCourses() {
-//        return prerequisiteCourses;
-//    }
-//    
-//   public void addPreliminaryKnowledge(String knowledge) {
-//       this.prerequisiteCourses.add(knowledge);
-//   }
-//
-//    public ArrayList<String> getRelatedCourses() {
-//        return relatedCourses;
-//    }
-//   
-//   public void addRelatedCourse(String courseName) {
-//       this.relatedCourses.add(courseName);
-//   }
+=======
+    
+    public BookTip(int id, String author, String title,
+            String summary, String comment) {
+        super(id, author, title, summary, comment, "book");
     }
+>>>>>>> c7f657861d5e25656e31fb2c83d8c49b260a5d29
+
+    public void print() {
+        System.out.println("Kirjan nimi: " + super.getTitle());
+        System.out.println("Kirjoittaja: " + super.getAuthor());
+        System.out.println("Tiivistelmä: " + super.getSummary());
+        System.out.println("Kommentti: " + super.getComment());
+    }
+}
 

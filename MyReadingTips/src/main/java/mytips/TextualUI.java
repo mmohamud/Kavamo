@@ -5,7 +5,10 @@
  */
 package mytips;
 
+import mytips.model.BookTip;
 import java.util.*;
+import mytips.model.ReadingTip;
+import mytips.model.TipManager;
 
 /**
  *
@@ -13,20 +16,28 @@ import java.util.*;
  */
 public class TextualUI {
 
-    private static Scanner scanner;
+    private ArrayList<BookTip> books;
+    private TipManager tipManager;
 
-    public TextualUI() {
-        this.scanner = new Scanner(System.in);
+    public TextualUI(TipManager tipManager) {
+        this.books = new ArrayList<>();
+        this.tipManager = tipManager;
+        System.out.println("\nTervetuloa lukuvinkkisovellukseen!");
     }
 
     public void start() {
-        System.out.println("\nTervetuloa lukuvinkkisovellukseen!\n");
-        System.out.println("Mitä haluat tehdä?\n"
+        System.out.println("\nMitä haluat tehdä?\n"
                 + "1 - Hallinnoi lukuvinkkejä\n"
                 + "2 - Selaa lukuvinkkejä\n"
                 + "3 - Lopeta\n");
 
-        int action = scanner.nextInt();
+        Scanner sc = new Scanner(System.in);
+        int action = 0;
+        try {
+            action = sc.nextInt();
+        } catch (java.util.InputMismatchException e) {
+            sc.nextLine();
+        }
 
         switch (action) {
             case 1:
@@ -35,20 +46,30 @@ public class TextualUI {
             case 2:
                 this.searchReadingTips();
                 break;
+            case 3:
+                sc.close();
+                break;
             default:
+                this.start();
                 break;
         }
     }
 
     private void manageReadingTips() {
-        System.out.println("Lukuvinkkien hallinnointi\n\n"
+        System.out.println("\nLukuvinkkien hallinnointi\n\n"
                 + "Mitä haluat tehdä?\n"
                 + "1 - Lisää lukuvinkki\n"
                 + "2 - Muokkaa lukuvinkkiä\n"
                 + "3 - Poista lukuvinkki\n"
                 + "4 - Palaa alkuun\n");
 
-        int action = scanner.nextInt();
+        Scanner sc = new Scanner(System.in);
+        int action = 0;
+        try {
+            action = sc.nextInt();
+        } catch (java.util.InputMismatchException e) {
+            sc.nextLine();
+        }
 
         switch (action) {
             case 1:
@@ -64,102 +85,175 @@ public class TextualUI {
                 this.start();
                 break;
             default:
+                this.manageReadingTips();
                 break;
         }
     }
 
     private void searchReadingTips() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("\nLukuvinkkien selaus\n\n"
+                + "Mitä haluat tehdä?\n"
+                + "1 - Listaa kaikki lukuvinkit\n"
+                + "2 - Palaa alkuun\n");
+        
+        Scanner sc = new Scanner(System.in);
+        int action = 0;
+        try {
+            action = sc.nextInt();
+        } catch (java.util.InputMismatchException e) {
+            sc.nextLine();
+        }
+
+        switch (action) {
+            case 1:
+                this.listReadingTips();
+                break;
+            case 2:
+                this.start();
+                break;
+            default:
+                this.searchReadingTips();
+                break;
+        }        
     }
 
     private void addReadingTip() {
-        System.out.println("Lukuvinkin lisäys\n\n"
+        System.out.println("\nLukuvinkin lisäys\n\n"
                 + "Minkä lukuvinkin haluat lisätä?\n"
                 + "1 - Kirja\n"
                 + "2 - Video tai blogipostaus\n"
                 + "3 - Podcast\n"
                 + "4 - Palaa lukuvinkkien hallinnointivalikkoon\n");
 
-        int action = scanner.nextInt();
+        Scanner sc = new Scanner(System.in);
+        int action = 0;
+        try {
+            action = sc.nextInt();
+        } catch (java.util.InputMismatchException e) {
+            sc.nextLine();
+        }
 
-        if (action == 1) {
-            this.addBook();
-        } else if (action == 2) {
-            this.addUrlTip();
-        } else if (action == 3) {
-            this.addPodcast();
-        } else if (action == 4) {
-            this.manageReadingTips();
+        switch (action) {
+            case 1:
+                this.addBook();
+                break;
+            case 2:
+                this.addUrlTip();
+                break;
+            case 3:
+                this.addPodcast();
+                break;
+            case 4:
+                this.manageReadingTips();
+                break;
+            default:
+                this.addReadingTip();
+                break;
         }
     }
 
     private void modifyReadingTip() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     private void removeReadingTip() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     private void addBook() {
-        System.out.println("Lisää uusi kirjalukuvinkki\n"
+        Scanner sc = new Scanner(System.in);
+        System.out.println("\nLisää uusi kirjalukuvinkki\n"
                 + "Anna ISBN: ");
-        String isbn = scanner.next();
+        String isbn = "";
+        isbn += sc.nextLine();
 
-        System.out.println("Anna kirjoittaja: ");
-        String author = scanner.next();
+        System.out.println("\nAnna kirjoittaja: ");
+        String author = "";
+        author += sc.nextLine();
 
-        System.out.println("Anna otsikko: ");
-        String title = scanner.next();
+        System.out.println("\nAnna otsikko: ");
+        String title = "";
+        title += sc.nextLine();
 
-        System.out.println("Lisää kommentti: ");
-        String comment = scanner.next();
-        
-        System.out.println("Lisää tiivistelmä: ");
-        String  summary = scanner.next();
-        
+        System.out.println("\nLisää kommentti: ");
+        String comment = "";
+        comment = sc.nextLine();
+
+        System.out.println("\nLisää tiivistelmä: ");
+        String summary = "";
+        summary = sc.nextLine();
+
         int action = 0;
         ArrayList<String> tags = new ArrayList<>();
-        ArrayList<String> prerequisiteCourses = new ArrayList<>();
+        ArrayList<String> preCourses = new ArrayList<>();
         ArrayList<String> relatedCourses = new ArrayList<>();
         while (action != 4) {
-            System.out.println("1 - Lisää tagi\n"
+            System.out.println("\n1 - Lisää tagi\n"
                     + "2 - Lisää esitietokurssi\n"
                     + "3 - Lisää aiheeseen liittyvä kurssi\n"
                     + "4 - Valmis\n");
 
-            action = scanner.nextInt();
+            try {
+                action = sc.nextInt();
+            } catch (java.util.InputMismatchException e) {
+                sc.nextLine();
+            }
+            
+            switch (action) {
+                case 1:
+                    String tag = "";
+                    tag += this.addString("Lisää tagi: ");
+                    tags.add(tag);
+                    break;
+                case 2:
+                    String preCourse = "";
+                    preCourse = this.addString("Lisää esitietokurssi: ");
+                    preCourses.add(preCourse);
+                    break;
+                case 3:
+                    String relatedCourse = "";
+                    relatedCourse
+                            = this.addString("Lisää aiheeseen liittyvä kurssi: ");
+                    relatedCourses.add(relatedCourse);
+                    break;
+                case 4:
+                    //Luodaan uusi kirjalukuvinkki
+                    BookTip bookTip
+                            = new BookTip(1, author, title, summary, comment);
+                    books.add(bookTip);
+                    System.out.println("\nKirja tallennettu!");
+                    books.get(books.size() - 1).print();
 
-            if (action == 1) {
-                String tag = this.addString("Lisää tagi: ");
-                tags.add(tag);
-            } else if (action == 2) {
-                String prerequisiteCourse = this.addString("Lisää esitietokurssi: ");
-                prerequisiteCourses.add(prerequisiteCourse);
-            } else if (action == 3) {
-                String relatedCourse = this.addString
-                    ("Lisää aiheeseen liittyvä kurssi: ");
-                relatedCourses.add(relatedCourse);
-            } else if (action == 4) {
-                return;
+                    //Palaa aloitusvalikkoon
+                    this.start();
+                    break;
+                default:
+                    break;
             }
         }
-        
-        //Luodaan uusi kirjalukuvinkki
-        //BookTip bookTip = new BookTip("1", author, title, isbn, summary, comment,
-        //    tags, prerequisiteCourses, relatedCourses);
     }
 
     private void addUrlTip() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     private void addPodcast() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     private String addString(String headline) {
+        Scanner sc = new Scanner(System.in);
         System.out.println(headline);
-        return scanner.next();
+        return sc.nextLine();
+    }
+
+    private void listReadingTips() {
+        ArrayList<ReadingTip> readingTips = tipManager.getReadingTips();
+        
+        for (ReadingTip tip : readingTips) {
+            System.out.println(tip.toString() + "\n");
+        }
+        
+        this.searchReadingTips();
     }
 }
