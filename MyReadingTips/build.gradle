@@ -82,11 +82,11 @@ dependencies {
 
     // https://mvnrepository.com/artifact/org.hibernate.javax.persistence/hibernate-jpa-2.1-api
     compile group: 'org.hibernate.javax.persistence', name: 'hibernate-jpa-2.1-api', version: '1.0.2.Final'
-<<<<<<< HEAD
+
   
-=======
+
     compile group:'org.xerial', name:'sqlite-jdbc', version:'3.8.11.2'
->>>>>>> c7f657861d5e25656e31fb2c83d8c49b260a5d29
+
 
     // Use cucumber
     testCompile 'info.cukes:cucumber-java:1.2.5'
