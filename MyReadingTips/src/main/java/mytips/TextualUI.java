@@ -104,7 +104,7 @@ public class TextualUI {
 
         switch (action) {
             case 1:
-                this.listReadingTips();
+                this.printReadingTips();
                 break;
             case 2:
                 this.start();
@@ -236,13 +236,8 @@ public class TextualUI {
         return io.nextLine();
     }
 
-    private void listReadingTips() {
-        ArrayList<ReadingTip> readingTips = tipManager.getReadingTips();
-
-        for (ReadingTip tip : readingTips) {
-            io.print(tip.toString() + "\n");
-        }
-
+    private void printReadingTips() {
+        tipManager.printReadingTips();
         this.searchReadingTips();
     }
 }

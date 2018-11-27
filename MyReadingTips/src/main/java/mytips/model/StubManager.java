@@ -5,30 +5,26 @@
  */
 package mytips.model;
 
-import java.util.*;
+import java.util.ArrayList;
 import mytips.IO;
 
 /**
  *
  * @author vseppane
  */
-public class ReadingTipManager implements TipManager {
+public class StubManager implements TipManager {
 
     private ArrayList<ReadingTip> readingTips;
     private IO io;
 
-    public ReadingTipManager(IO io) {
-        //Haetaanko lukuvinkit tässä kohtaa tietokannasta?
-
-        readingTips = new ArrayList<>();
+    public StubManager(ArrayList<ReadingTip> readingTips, IO io) {
+        this.readingTips = readingTips;
         this.io = io;
     }
 
     @Override
     public void addReadingTip(ReadingTip readingTip) {
-        //to do: lukuvinkin lisäys tietokantaan
-
-        this.readingTips.add(readingTip);
+        readingTips.add(readingTip);
     }
 
     @Override
@@ -42,4 +38,5 @@ public class ReadingTipManager implements TipManager {
             io.print(tip.toString() + "\n");
         }
     }
+
 }

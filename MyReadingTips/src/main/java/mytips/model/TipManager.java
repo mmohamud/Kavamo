@@ -17,4 +17,5 @@ public interface TipManager {
 
     ArrayList<ReadingTip> getReadingTips();
     
+    void printReadingTips();
 }
