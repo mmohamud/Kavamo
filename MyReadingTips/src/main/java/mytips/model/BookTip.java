@@ -18,12 +18,21 @@ import javax.persistence.*;
 @Table(name = "BookTip")
 
 public class BookTip extends ReadingTip {
+    private String isbn;
 
     public BookTip(int id, String author, String title,
-            String summary, String comment) {
-        super(id, author, title, summary, comment, "book");
+            String summary, String comment, String isbn) {
+        super(id, author, title, summary, comment);
+        this.isbn = isbn;
     }
 
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
 
     public void print() {
         System.out.println("Kirjan nimi: " + super.getTitle());
