@@ -53,6 +53,9 @@ dependencies {
 
 }
 
+tasks.withType(Checkstyle) {
+    exclude '**/Stepdefs.java'
+}
 
 run {
     standardInput = System.in

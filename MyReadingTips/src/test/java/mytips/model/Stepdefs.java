@@ -11,12 +11,12 @@ import static org.junit.Assert.*;
 
 public class Stepdefs {
 
-    List<String> inputStrings = new ArrayList<>();
-    List<Integer> inputInts = new ArrayList<>();
-    ArrayList<ReadingTip> readingTips = new ArrayList<>();
-    StubIO io;
-    TextualUI ui;
-    StubManager manager;
+    private List<String> inputStrings = new ArrayList<>();
+    private List<Integer> inputInts = new ArrayList<>();
+    private ArrayList<ReadingTip> readingTips = new ArrayList<>();
+    private StubIO io;
+    private TextualUI ui;
+    private StubManager manager;
 
     @Given("^commands hallinnoi lukuvinkkejä, lisää lukuvinkki ja kirja are selected$")
     public void commands_hallinnoi_lukuvinkkejä_lisää_lukuvinkki_ja_kirja_are_selected() throws Throwable {
@@ -25,8 +25,10 @@ public class Stepdefs {
         inputInts.add(1);
     }
 
-    @When("^valid isbn \"([^\"]*)\", author \"([^\"]*)\", title \"([^\"]*)\", comment \"([^\"]*)\", summary \"([^\"]*)\" are given$")
-    public void valid_isbn_author_title_comment_summary_are_given(String isbn, String author, String title, String comment, String summary) throws Throwable {
+    @When("^valid isbn \"([^\"]*)\", author \"([^\"]*)\", "
+        + "title \"([^\"]*)\", comment \"([^\"]*)\", summary \"([^\"]*)\" are given$")
+    public void valid_isbn_author_title_comment_summary_are_given(
+            String isbn, String author, String title, String comment, String summary) throws Throwable {
         inputStrings.add("");
         inputStrings.add(isbn);
         inputStrings.add(author);
