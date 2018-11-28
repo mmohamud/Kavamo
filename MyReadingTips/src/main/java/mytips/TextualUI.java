@@ -7,7 +7,7 @@ package mytips;
 
 import mytips.model.BookTip;
 import java.util.*;
-import mytips.model.ReadingTip;
+//import mytips.model.ReadingTip;
 import mytips.model.TipManager;
 
 /**
@@ -124,7 +124,8 @@ public class TextualUI {
         int action = 0;
         try {
             action = io.nextInt();
-            io.nextLine(); //Ilman tätä tulee kummallinen bugi seuraavassa metodissa 
+            io.nextLine(); 
+            //Ilman tätä tulee kummallinen bugi seuraavassa metodissa 
         } catch (java.util.InputMismatchException e) {
             io.nextLine();
         }
@@ -185,7 +186,8 @@ public class TextualUI {
 
             try {
                 action = io.nextInt();
-                io.nextLine(); //Ilman tätä tulee kummallinen bugi seuraavassa metodissa 
+                io.nextLine(); 
+                //Ilman tätä tulee kummallinen bugi seuraavassa metodissa 
             } catch (java.util.InputMismatchException e) {
                 io.nextLine();
             }
@@ -200,8 +202,9 @@ public class TextualUI {
                     preCourses.add(preCourse);
                     break;
                 case 3:
-                    String relatedCourse = 
-                            this.addString("Lisää aiheeseen liittyvä kurssi: ");
+                    String relatedCourse  
+                            = this.addString(
+                                "Lisää aiheeseen liittyvä kurssi: ");
                     relatedCourses.add(relatedCourse);
                     break;
                 case 4:
@@ -209,7 +212,7 @@ public class TextualUI {
                     BookTip bookTip
                             = new BookTip(1, author, title, summary, comment, isbn);
                     tipManager.addBookTip(bookTip);
-                    
+
                     //Palaa aloitusvalikkoon
                     this.start();
                     break;

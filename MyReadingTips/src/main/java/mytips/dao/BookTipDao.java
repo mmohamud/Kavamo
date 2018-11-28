@@ -12,18 +12,21 @@ import mytips.model.BookTip;
 
 public class BookTipDao implements Dao {
 
-    Database db;
+    private Database db;
 
     public BookTipDao(Database db) {
         this.db = db;
     }
 
 // Mallista AiheDao korvattu "Aihe" sanalla "BookTip" ja "nimi" sanalla "author"
+// Katsotaan, löytyykö booktip nimen ja id:n yhdistelmällä tai ID:llä
     @Override
-    public Object findOne(Object key) throws SQLException { // Katsotaan, löytyykö booktip nimen ja id:n yhdistelmällä tai ID:llä
+    public Object findOne(Object key) throws SQLException { 
         BookTip bookTip = (BookTip) key;
         Connection conn = db.getConnection();
-        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM BookTip WHERE (LOWER(title) = LOWER(?) AND id = ?) OR id = ?");
+        PreparedStatement stmt 
+                = conn.prepareStatement("SELECT * FROM BookTip WHERE "
+                + "(LOWER(title) = LOWER(?) AND id = ?) OR id = ?");
         stmt.setString(1, bookTip.getTitle());
 //        stmt.setInt(2, etsittavaAihe.getKurssiId());
         stmt.setInt(2, bookTip.getId());
@@ -42,10 +45,12 @@ public class BookTipDao implements Dao {
         String isbn = rs.getString("isbn");
 // "Palauttaa" tietokannasta oikeasti vain id:n ja authorin
 
-        BookTip returnBookTip = new BookTip(id, author, title, summary, comment, isbn);
+        BookTip returnBookTip 
+                = new BookTip(id, author, title, summary, comment, isbn);
 
 
-//        lisattavaAihe.setKysymykset(new KysymysDao(db).findAllByAiheId(id));  // Alkuperäisessä oli tämä
+// Alkuperäisessä oli tämä
+// lisattavaAihe.setKysymykset(new KysymysDao(db).findAllByAiheId(id));  
         stmt.close();
         rs.close();
         conn.close();
@@ -68,7 +73,8 @@ public class BookTipDao implements Dao {
             String comment = rs.getString("comment");
 
             String isbn = rs.getString("isbn");
-            BookTip returnBookTip = new BookTip(id, author, title, summary, comment, isbn);
+            BookTip returnBookTip 
+                    = new BookTip(id, author, title, summary, comment, isbn);
             bookTips.add(returnBookTip);
 
         }
@@ -85,7 +91,9 @@ public class BookTipDao implements Dao {
         }
         
         try (Connection conn = db.getConnection()) {
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO BookTip (id, author, title, summary, comment, isbn)");
+            PreparedStatement stmt 
+                    = conn.prepareStatement("INSERT INTO BookTip " 
+                    + "(id, author, title, summary, comment, isbn)");
             stmt.setInt(1, bookTip.getId());
             stmt.setString(2, bookTip.getAuthor());
             stmt.setString(3, bookTip.getTitle());
@@ -105,7 +113,8 @@ public class BookTipDao implements Dao {
         BookTip bookTip = (BookTip) findOne(key);
         
         Connection conn = db.getConnection();
-        PreparedStatement stmt = conn.prepareStatement("DELETE FROM BookTip WHERE id = ?");
+        PreparedStatement stmt  
+                = conn.prepareStatement("DELETE FROM BookTip WHERE id = ?");
         
         stmt.setInt(1, bookTip.getId());
         stmt.executeUpdate();

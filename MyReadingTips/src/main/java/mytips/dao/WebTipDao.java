@@ -17,7 +17,7 @@ import mytips.model.WebTip;
  */
 public class WebTipDao implements Dao {
 
-    Database db;
+    private Database db;
 
     public WebTipDao(Database db) {
         this.db = db;
@@ -26,7 +26,8 @@ public class WebTipDao implements Dao {
     public Object findOne(Object key) throws SQLException {
         WebTip webTip = (WebTip) key;
         Connection conn = db.getConnection();
-        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM WebTip WHERE id = ?");
+        PreparedStatement stmt 
+                = conn.prepareStatement("SELECT * FROM WebTip WHERE id = ?");
         stmt.setInt(1, webTip.getId());
 
         ResultSet rs = stmt.executeQuery();
@@ -62,7 +63,8 @@ public class WebTipDao implements Dao {
             String summary = rs.getString("summary");
             String comment = rs.getString("comment");
 
-            WebTip returnWebTip = new WebTip(id, author, title, summary, comment);
+            WebTip returnWebTip 
+                    = new WebTip(id, author, title, summary, comment);
             webTips.add(returnWebTip);
         }
         return webTips;
@@ -76,8 +78,10 @@ public class WebTipDao implements Dao {
             return webTip;
         }
         
-        try(Connection conn = db.getConnection()) {
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO WebTip (id, author, title, summmary, comment, type)");
+        try (Connection conn = db.getConnection()) {
+            PreparedStatement stmt 
+                    = conn.prepareStatement("INSERT INTO WebTip " 
+                    + "(id, author, title, summmary, comment, type)");
             stmt.setInt(1, webTip.getId());
             stmt.setString(2, webTip.getAuthor());
             stmt.setString(3, webTip.getTitle());
@@ -95,7 +99,8 @@ public class WebTipDao implements Dao {
         WebTip webTip = (WebTip) findOne(key);
         
         Connection conn = db.getConnection();
-        PreparedStatement stmt = conn.prepareStatement("DELETE FROM WebTip WHERE id = ?");
+        PreparedStatement stmt 
+                = conn.prepareStatement("DELETE FROM WebTip WHERE id = ?");
         stmt.setInt(1, webTip.getId());
         
         stmt.executeUpdate();
