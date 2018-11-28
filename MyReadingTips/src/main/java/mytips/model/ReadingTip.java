@@ -10,19 +10,17 @@ public abstract class ReadingTip {
     private String comment;
     private int id;
     private Date readingDate;
-    private String type;
     //private ArrayList<String> tags;
     //private ArrayList<String> prerequisiteCourses;
     //private ArrayList<String> relatedCourses;
 
     public ReadingTip(int id, String author, String title, 
-            String summary, String comment, String type) {
+            String summary, String comment) {
         this.id = id;
         this.author = author;
         this.title = title;
         this.summary = summary;
         this.comment = comment;
-        this.type = type;
     }
 
     public void setId(int id) {
@@ -72,10 +70,6 @@ public abstract class ReadingTip {
 
     public Date getReadingDate() {
         return this.readingDate;
-    }
-
-    public String getReadingTipType() {
-        return this.type;
     }
 
     // void setRelatedCourses(List<String> course);
