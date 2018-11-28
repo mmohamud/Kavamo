@@ -3,19 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mytips.model;
-
-import java.util.ArrayList;
+package mytips;
 
 /**
  *
  * @author vseppane
  */
-public interface TipManager {
-
-    void addReadingTip(ReadingTip readingTip);
-
-    ArrayList<ReadingTip> getReadingTips();
-    
-    void printReadingTips();
+public interface IO {
+    int nextInt();
+    String nextLine();
+    void print(String s);
 }

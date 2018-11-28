@@ -66,8 +66,9 @@ public class Main extends Application {
 //            System.out.println("Yhteyden muodostaminen epäonnistui.");
 //        }
     
-        ReadingTipManager readingTipManager = new ReadingTipManager();
-        TextualUI ui = new TextualUI(readingTipManager);
+        ConsoleIO io = new ConsoleIO();
+        ReadingTipManager readingTipManager = new ReadingTipManager(io);
+        TextualUI ui = new TextualUI(readingTipManager, io);
         ui.start();
         System.out.println("Lopetetaan");
         
