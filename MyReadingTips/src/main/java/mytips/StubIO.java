@@ -13,11 +13,11 @@ import java.util.*;
  */
 public class StubIO implements IO {
     
-    List<String> stringInputs;
-    List<Integer> intInputs;
-    int nextInt;
-    int nextString;
-    ArrayList<String> outputs;
+    private List<String> stringInputs;
+    private List<Integer> intInputs;
+    private int nextInt;
+    private int nextString;
+    private ArrayList<String> outputs;
 
     public StubIO(List<String> stringInputs, List<Integer> intInputs) {
         this.stringInputs = stringInputs;

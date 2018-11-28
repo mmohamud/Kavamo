@@ -25,7 +25,7 @@ public class BookTipDao implements Dao {
         BookTip bookTip = (BookTip) key;
         Connection conn = db.getConnection();
         PreparedStatement stmt 
-                = conn.prepareStatement("SELECT * FROM BookTip WHERE"
+                = conn.prepareStatement("SELECT * FROM BookTip WHERE "
                 + "(LOWER(title) = LOWER(?) AND id = ?) OR id = ?");
         stmt.setString(1, bookTip.getTitle());
 //        stmt.setInt(2, etsittavaAihe.getKurssiId());
@@ -92,7 +92,7 @@ public class BookTipDao implements Dao {
         
         try (Connection conn = db.getConnection()) {
             PreparedStatement stmt 
-                    = conn.prepareStatement("INSERT INTO BookTip" 
+                    = conn.prepareStatement("INSERT INTO BookTip " 
                     + "(id, author, title, summary, comment, isbn)");
             stmt.setInt(1, bookTip.getId());
             stmt.setString(2, bookTip.getAuthor());

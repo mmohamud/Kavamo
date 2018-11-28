@@ -80,7 +80,7 @@ public class WebTipDao {
         
         try (Connection conn = db.getConnection()) {
             PreparedStatement stmt 
-                    = conn.prepareStatement("INSERT INTO WebTip" 
+                    = conn.prepareStatement("INSERT INTO WebTip " 
                     + "(id, author, title, summmary, comment, type)");
             stmt.setInt(1, webTip.getId());
             stmt.setString(2, webTip.getAuthor());
