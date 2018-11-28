@@ -27,6 +27,7 @@ public class Stepdefs {
 
     @When("^valid isbn \"([^\"]*)\", author \"([^\"]*)\", title \"([^\"]*)\", comment \"([^\"]*)\", summary \"([^\"]*)\" are given$")
     public void valid_isbn_author_title_comment_summary_are_given(String isbn, String author, String title, String comment, String summary) throws Throwable {
+        inputStrings.add("");
         inputStrings.add(isbn);
         inputStrings.add(author);
         inputStrings.add(title);
@@ -37,6 +38,8 @@ public class Stepdefs {
     @When("^command valmis is selected$")
     public void command_valmis_is_selected() throws Throwable {
         inputInts.add(4);
+        inputStrings.add("");
+        inputInts.add(3);
         
         io = new StubIO(inputStrings, inputInts);
         manager = new StubManager(readingTips, io);

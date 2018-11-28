@@ -15,8 +15,8 @@ public class StubIO implements IO {
     
     List<String> stringInputs;
     List<Integer> intInputs;
-    int nextInt = 0;
-    int nextString = 0;
+    int nextInt;
+    int nextString;
     ArrayList<String> outputs;
 
     public StubIO(List<String> stringInputs, List<Integer> intInputs) {
@@ -27,16 +27,12 @@ public class StubIO implements IO {
     
     @Override
     public int nextInt() {
-        int next = intInputs.get(nextInt);
-        nextInt++;
-        return next;
+        return intInputs.get(nextInt++);
     }
 
     @Override
     public String nextLine() {
-        String next = stringInputs.get(nextString);
-        nextString++;
-        return next;
+        return stringInputs.get(nextString++);
     }
 
     @Override
