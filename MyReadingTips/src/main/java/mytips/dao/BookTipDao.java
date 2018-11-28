@@ -39,8 +39,9 @@ public class BookTipDao implements Dao {
         String title = rs.getString("title");
         String summary = rs.getString("summary");
         String comment = rs.getString("comment");
+        String isbn = rs.getString("isbn");
 // "Palauttaa" tietokannasta oikeasti vain id:n ja authorin
-        BookTip lisattavaBookTip = new BookTip(id, author, title, summary, comment);
+        BookTip lisattavaBookTip = new BookTip(id, author, title, summary, comment, isbn);
 
 //        lisattavaAihe.setKysymykset(new KysymysDao(db).findAllByAiheId(id));  // Alkuperäisessä oli tämä
         stmt.close();
@@ -63,7 +64,8 @@ public class BookTipDao implements Dao {
             String title = rs.getString("title");
             String summary = rs.getString("summary");
             String comment = rs.getString("comment");
-            BookTip lisattavaBookTip = new BookTip(id, author, title, summary, comment);
+            String isbn = rs.getString("isbn");
+            BookTip lisattavaBookTip = new BookTip(id, author, title, summary, comment, isbn);
             bookTips.add(lisattavaBookTip);
         }
         return bookTips;
@@ -85,7 +87,7 @@ public class BookTipDao implements Dao {
             stmt.setString(3, bookTip.getTitle());
             stmt.setString(4, bookTip.getSummary());
             stmt.setString(5, bookTip.getComment());
-            stmt.setString(6, "book");
+            stmt.setString(6, bookTip.getIsbn());
             stmt.executeUpdate();
         }
         return findOne(bookTip);
