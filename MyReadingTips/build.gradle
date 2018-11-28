@@ -3,19 +3,6 @@
  * available at https://docs.gradle.org/3.4.1/userguide/tutorial_java_projects.html
  */
 
- // This block was only created for javafx
-
-// buildscript {
-//    dependencies {
-//        classpath group: 'de.dynamicfiles.projects.gradle.plugins', name: 'javafx-gradle-plugin', version: '8.8.2'
-//    }
-//    repositories {
-//        mavenLocal()
-//        mavenCentral()
-//        jcenter()
-//    }
-// }
-
 apply plugin: 'java'
 
 repositories {
@@ -32,7 +19,6 @@ apply plugin: 'checkstyle'
 startScripts {
        classpath += files('src/dist/resource')
 }
-
 
 // Netbeansissa ajo vaatii tämän?? ei - Miksi ei?
 jar {
@@ -60,10 +46,6 @@ dependencies {
 
 // https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc
     compile group: 'org.xerial', name: 'sqlite-jdbc', version: '3.21.0.1'
-
-// Tämä ehkä turha, Kaataa buildin jos mukana.
-// https://mvnrepository.com/artifact/org.hibernate.dialect/sqlite-dialect
-//    compile group: 'org.hibernate.dialect', name: 'sqlite-dialect', version: '0.1.0'
 
     // Use cucumber
     testCompile 'info.cukes:cucumber-java:1.2.5'
