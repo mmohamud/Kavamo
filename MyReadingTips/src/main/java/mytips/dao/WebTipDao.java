@@ -26,8 +26,11 @@ public class WebTipDao implements Dao {
     public Object findOne(Object key) throws SQLException {
         WebTip webTip = (WebTip) key;
         Connection conn = db.getConnection();
-        PreparedStatement stmt 
-                = conn.prepareStatement("SELECT * FROM WebTip WHERE id = ?");
+
+        PreparedStatement stmt = conn.prepareStatement(
+            "SELECT * FROM WebTip WHERE id = ?"
+        );
+
         stmt.setInt(1, webTip.getId());
 
         ResultSet rs = stmt.executeQuery();
@@ -79,9 +82,11 @@ public class WebTipDao implements Dao {
         }
         
         try (Connection conn = db.getConnection()) {
-            PreparedStatement stmt 
-                    = conn.prepareStatement("INSERT INTO WebTip " 
-                    + "(id, author, title, summmary, comment, type)");
+            PreparedStatement stmt = conn.prepareStatement(
+                "INSERT INTO WebTip " 
+                + "(id, author, title, summmary, comment, type)"
+            );
+
             stmt.setInt(1, webTip.getId());
             stmt.setString(2, webTip.getAuthor());
             stmt.setString(3, webTip.getTitle());
@@ -99,8 +104,10 @@ public class WebTipDao implements Dao {
         WebTip webTip = (WebTip) findOne(key);
         
         Connection conn = db.getConnection();
-        PreparedStatement stmt 
-                = conn.prepareStatement("DELETE FROM WebTip WHERE id = ?");
+        PreparedStatement stmt = conn.prepareStatement(
+            "DELETE FROM WebTip WHERE id = ?"
+        );
+        
         stmt.setInt(1, webTip.getId());
         
         stmt.executeUpdate();

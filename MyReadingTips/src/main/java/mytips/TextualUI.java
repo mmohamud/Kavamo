@@ -202,15 +202,16 @@ public class TextualUI {
                     preCourses.add(preCourse);
                     break;
                 case 3:
-                    String relatedCourse  
-                            = this.addString(
-                                "Lisää aiheeseen liittyvä kurssi: ");
+                    String relatedCourse = this.addString(
+                        "Lisää aiheeseen liittyvä kurssi: "
+                    );
                     relatedCourses.add(relatedCourse);
                     break;
                 case 4:
                     //Luodaan uusi kirjalukuvinkki
-                    BookTip bookTip
-                            = new BookTip(1, author, title, summary, comment, isbn);
+                    BookTip bookTip = new BookTip(
+                        1, author, title, summary, comment, isbn
+                    );
                     tipManager.addBookTip(bookTip);
 
                     //Palaa aloitusvalikkoon

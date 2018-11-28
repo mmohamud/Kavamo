@@ -1,0 +1,12 @@
+/* Create BookTip table: */
+
+CREATE TABLE BookTip (
+  id integer PRIMARY KEY,
+  author varchar(40),
+  title varchar(40),
+  summary varchar(200),
+  comment varchar(100),
+  isbn varchar(20)
+);
+
+1|0-13-049307-4William Stallings|Computer organization and architecture|Designing for performance|Liittyy kurssiin Tito|

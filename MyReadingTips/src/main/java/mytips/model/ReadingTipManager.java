@@ -7,11 +7,11 @@ package mytips.model;
 
 import java.sql.SQLException;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+//import java.util.logging.Level;
+//import java.util.logging.Logger;
 import mytips.IO;
 import mytips.dao.BookTipDao;
-import mytips.dao.Dao;
+//import mytips.dao.Dao;
 import mytips.dao.WebTipDao;
 import mytips.database.Database;
 
