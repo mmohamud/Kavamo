@@ -11,10 +11,20 @@ package mytips.model;
  */
 
 public class WebTip extends ReadingTip {
+    private String url;
 
     public WebTip(int id, String author, String title, 
             String summary, String comment) {
-        super(id, author, title, summary, comment, "web");
+        super(id, author, title, summary, comment);
+        this.url = url;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
 }

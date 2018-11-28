@@ -32,6 +32,10 @@ apply plugin: 'application'
 
 apply plugin: 'checkstyle'
 
+startScripts {
+       classpath += files('src/dist/resource')
+}
+
 jfx {
     // minimal requirement for jfxJar-task
     verbose = true
@@ -64,6 +68,7 @@ jfx {
 jar {
     manifest {
         attributes 'Main-Class': 'mytips.Main'
+	//attributes 'Main-Class' : 'mytips.controller.ManageBookTip'
     }
 }
 
@@ -71,13 +76,17 @@ jar {
 dependencies {
     // This dependency is found on compile classpath of this component and consumers.
     compile 'com.google.guava:guava:20.0'
-
+    compile 'org.hibernate:hibernate-core:4.3.6.Final'
     // Use JUnit test framework
     testCompile 'junit:junit:4.12'
 
     // https://mvnrepository.com/artifact/org.hibernate.javax.persistence/hibernate-jpa-2.1-api
     compile group: 'org.hibernate.javax.persistence', name: 'hibernate-jpa-2.1-api', version: '1.0.2.Final'
+
+  
+
     compile group:'org.xerial', name:'sqlite-jdbc', version:'3.8.11.2'
+
 
     // Use cucumber
     testCompile 'info.cukes:cucumber-java:1.2.5'
