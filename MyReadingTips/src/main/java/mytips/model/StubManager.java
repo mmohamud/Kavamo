@@ -23,11 +23,6 @@ public class StubManager implements TipManager {
     }
 
     @Override
-    public void addReadingTip(ReadingTip readingTip) {
-        readingTips.add(readingTip);
-    }
-
-    @Override
     public ArrayList<ReadingTip> getReadingTips() {
         return readingTips;
     }
@@ -37,6 +32,16 @@ public class StubManager implements TipManager {
         for (ReadingTip tip : readingTips) {
             io.print(tip.toString() + "\n");
         }
+    }
+
+    @Override
+    public void addBookTip(BookTip readingTip) {
+        readingTips.add(readingTip);
+    }
+
+    @Override
+    public void addWebTip(WebTip readingTip) {
+        readingTips.add(readingTip);
     }
 
 }

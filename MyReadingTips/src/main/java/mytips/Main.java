@@ -19,7 +19,6 @@ import java.sql.*;
 // import static spark.Spark.*;
 // import spark.template.thymeleaf.ThymeleafTemplateEngine;
 // import spark.Spark;
-
 public class Main extends Application {
 
 // This method is not yet in use - was originally cerated for javafx & graphical interphase purposes
@@ -34,21 +33,20 @@ public class Main extends Application {
                 System.out.println("Hello World!");
             }
         });
-        
+
         StackPane root = new StackPane();
         root.getChildren().add(btn);
-        
+
         Scene scene = new Scene(root, 300, 250);
-        
+
         primaryStage.setTitle("Hello World!");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
-    
+
     /**
      * @param args the command line arguments
      */
-
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         //launch(args);
 
@@ -56,8 +54,6 @@ public class Main extends Application {
 //        Connection connection = DriverManager.getConnection("jdbc:sqlite:readingtips.db");
 //        PreparedStatement statement = connection.prepareStatement("SELECT 1");
 //        ResultSet resultSet = statement.executeQuery();
-
-        Database db = new Database("jdbc:sqlite:readingtips.db");
 //        BookTipDao kysymys = new KysymysDao(db);
 
 //        if (resultSet.next()) {
@@ -65,16 +61,13 @@ public class Main extends Application {
 //        } else {
 //            System.out.println("Yhteyden muodostaminen epäonnistui.");
 //        }
-    
+        Database db = new Database("jdbc:sqlite:readingtips.db");
         ConsoleIO io = new ConsoleIO();
-        ReadingTipManager readingTipManager = new ReadingTipManager(io);
+        ReadingTipManager readingTipManager = new ReadingTipManager(io, db);
         TextualUI ui = new TextualUI(readingTipManager, io);
         ui.start();
         System.out.println("Lopetetaan");
-        
+
     }
 
-    
-    
 }
-

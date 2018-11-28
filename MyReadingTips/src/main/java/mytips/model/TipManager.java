@@ -13,7 +13,9 @@ import java.util.ArrayList;
  */
 public interface TipManager {
 
-    void addReadingTip(ReadingTip readingTip);
+    void addBookTip(BookTip readingTip);
+    
+    void addWebTip(WebTip readingTip);
 
     ArrayList<ReadingTip> getReadingTips();
     

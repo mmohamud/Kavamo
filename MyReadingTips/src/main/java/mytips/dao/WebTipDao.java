@@ -15,7 +15,7 @@ import mytips.model.WebTip;
  *
  * @author mmohamud
  */
-public class WebTipDao {
+public class WebTipDao implements Dao {
 
     Database db;
 

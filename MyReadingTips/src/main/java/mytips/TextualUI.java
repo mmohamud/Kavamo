@@ -16,12 +16,10 @@ import mytips.model.TipManager;
  */
 public class TextualUI {
 
-    private ArrayList<BookTip> books;
     private TipManager tipManager;
     private IO io;
 
     public TextualUI(TipManager tipManager, IO io) {
-        this.books = new ArrayList<>();
         this.tipManager = tipManager;
         this.io = io;
         io.print("\nTervetuloa lukuvinkkisovellukseen!");
@@ -210,11 +208,8 @@ public class TextualUI {
                     //Luodaan uusi kirjalukuvinkki
                     BookTip bookTip
                             = new BookTip(1, author, title, summary, comment, isbn);
-                    books.add(bookTip);
-                    io.print("\n");
-                    io.print("Kirja tallennettu!");
-                    books.get(books.size() - 1).print();
-
+                    tipManager.addBookTip(bookTip);
+                    
                     //Palaa aloitusvalikkoon
                     this.start();
                     break;
