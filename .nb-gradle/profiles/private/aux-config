@@ -5,11 +5,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
       <group>
-        <file>file:/home/mmohamud/Ohtu/Kavamo/MyReadingTips/src/main/java/mytips/model/WebTip.java</file>
         <file>file:/home/mmohamud/Ohtu/Kavamo/MyReadingTips/src/main/java/mytips/TextualUI.java</file>
         <file>file:/home/mmohamud/Ohtu/Kavamo/MyReadingTips/src/main/java/mytips/model/TipManager.java</file>
-        <file>file:/home/mmohamud/Ohtu/Kavamo/MyReadingTips/src/main/java/mytips/dao/Dao.java</file>
-        <file>file:/home/mmohamud/Ohtu/Kavamo/MyReadingTips/src/main/java/mytips/dao/InMemoryWebTipDao.java</file>
         <file>file:/home/mmohamud/Ohtu/Kavamo/MyReadingTips/src/main/java/mytips/dao/BookTipDao.java</file>
         <file>file:/home/mmohamud/Ohtu/Kavamo/MyReadingTips/src/main/java/mytips/dao/WebTipDao.java</file>
         <file>file:/home/mmohamud/Ohtu/Kavamo/MyReadingTips/src/main/java/mytips/model/ReadingTipManager.java</file>
@@ -18,11 +15,10 @@
     <editor-bookmarks lastBookmarkId="0" xmlns="http://www.netbeans.org/ns/editor-bookmarks/2"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
       <group>
-        <file>file:/home/mmohamud/Ohtu/Kavamo/MyReadingTips/src/main/java/mytips/TextualUI.java</file>
-        <file>file:/home/mmohamud/Ohtu/Kavamo/MyReadingTips/src/main/java/mytips/model/TipManager.java</file>
-        <file>file:/home/mmohamud/Ohtu/Kavamo/MyReadingTips/src/main/java/mytips/dao/BookTipDao.java</file>
-        <file>file:/home/mmohamud/Ohtu/Kavamo/MyReadingTips/src/main/java/mytips/dao/WebTipDao.java</file>
-        <file>file:/home/mmohamud/Ohtu/Kavamo/MyReadingTips/src/main/java/mytips/model/ReadingTipManager.java</file>
+        <file>file:/home/mmohamud/Ohtu/Kavamo/src/main/java/mytips/TextualUI.java</file>
+        <file>file:/home/mmohamud/Ohtu/Kavamo/src/main/java/mytips/model/WebTip.java</file>
+        <file>file:/home/mmohamud/Ohtu/Kavamo/src/main/java/mytips/Main.java</file>
+        <file>file:/home/mmohamud/Ohtu/Kavamo/src/main/java/mytips/model/BookTip.java</file>
       </group>
     </open-files>
   </auxiliary>

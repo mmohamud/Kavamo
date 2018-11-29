@@ -33,12 +33,15 @@ public class BookTip extends ReadingTip {
     public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
-
-    public void print() {
-        System.out.println("Kirjan nimi: " + super.getTitle());
-        System.out.println("Kirjoittaja: " + super.getAuthor());
-        System.out.println("Tiivistelmä: " + super.getSummary());
-        System.out.println("Kommentti: " + super.getComment());
+    
+    @Override
+    public String toString() {
+        return "\nKirjoittaja: " + getAuthor()
+                + "\nOtsikko: " + getTitle()
+                + "\nISBN: " + getIsbn()
+                + "\nKuvaus: " + getSummary()
+                + "\nKommentti: " + getComment()
+                ;
     }
 }
 

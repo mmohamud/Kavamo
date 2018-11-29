@@ -27,4 +27,13 @@ public class WebTip extends ReadingTip {
         this.url = url;
     }
 
+    @Override
+    public String toString() {
+        return "\nOtsikko : " + getTitle()
+                + "\nurl : " + getUrl()
+                + "\nKommentti: " + getComment()
+                ;
+    }
+
+    
 }
