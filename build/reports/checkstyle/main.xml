@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="5.9">
+<file name="/home/mmohamud/Ohtu/Kavamo/MyReadingTips/src/main/java/mytips/ConsoleIO.java">
+</file>
+<file name="/home/mmohamud/Ohtu/Kavamo/MyReadingTips/src/main/java/mytips/IO.java">
+</file>
+<file name="/home/mmohamud/Ohtu/Kavamo/MyReadingTips/src/main/java/mytips/Main.java">
+</file>
+<file name="/home/mmohamud/Ohtu/Kavamo/MyReadingTips/src/main/java/mytips/StubIO.java">
+</file>
+<file name="/home/mmohamud/Ohtu/Kavamo/MyReadingTips/src/main/java/mytips/TextualUI.java">
+</file>
+<file name="/home/mmohamud/Ohtu/Kavamo/MyReadingTips/src/main/java/mytips/dao/BookTipDao.java">
+</file>
+<file name="/home/mmohamud/Ohtu/Kavamo/MyReadingTips/src/main/java/mytips/dao/Dao.java">
+</file>
+<file name="/home/mmohamud/Ohtu/Kavamo/MyReadingTips/src/main/java/mytips/dao/InMemoryBookTipDao.java">
+<error line="19" column="24" severity="error" message="Variable &apos;bookTips&apos; must be private and have accessor methods." source="com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck"/>
+<error line="23" severity="error" message="Line is longer than 80 characters (found 135)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="28" severity="error" message="Line is longer than 80 characters (found 135)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="40" severity="error" message="Line is longer than 80 characters (found 135)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+</file>
+<file name="/home/mmohamud/Ohtu/Kavamo/MyReadingTips/src/main/java/mytips/dao/InMemoryWebTipDao.java">
+<error line="11" column="8" severity="error" message="Unused import - mytips.model.BookTip." source="com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck"/>
+<error line="20" column="23" severity="error" message="Variable &apos;webTips&apos; must be private and have accessor methods." source="com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck"/>
+<error line="24" severity="error" message="Line is longer than 80 characters (found 135)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="29" severity="error" message="Line is longer than 80 characters (found 135)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="41" severity="error" message="Line is longer than 80 characters (found 135)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+</file>
+<file name="/home/mmohamud/Ohtu/Kavamo/MyReadingTips/src/main/java/mytips/dao/WebTipDao.java">
+<error line="50" severity="error" message="Line is longer than 80 characters (found 83)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+</file>
+<file name="/home/mmohamud/Ohtu/Kavamo/MyReadingTips/src/main/java/mytips/database/Database.java">
+</file>
+<file name="/home/mmohamud/Ohtu/Kavamo/MyReadingTips/src/main/java/mytips/model/BookTip.java">
+</file>
+<file name="/home/mmohamud/Ohtu/Kavamo/MyReadingTips/src/main/java/mytips/model/PrerequisiteCourses.java">
+</file>
+<file name="/home/mmohamud/Ohtu/Kavamo/MyReadingTips/src/main/java/mytips/model/ReadingTip.java">
+</file>
+<file name="/home/mmohamud/Ohtu/Kavamo/MyReadingTips/src/main/java/mytips/model/ReadingTipManager.java">
+<error line="13" column="8" severity="error" message="Unused import - mytips.dao.BookTipDao." source="com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck"/>
+<error line="16" column="8" severity="error" message="Unused import - mytips.dao.WebTipDao." source="com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck"/>
+<error line="17" column="8" severity="error" message="Unused import - mytips.database.Database." source="com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck"/>
+</file>
+<file name="/home/mmohamud/Ohtu/Kavamo/MyReadingTips/src/main/java/mytips/model/RelatedCourses.java">
+</file>
+<file name="/home/mmohamud/Ohtu/Kavamo/MyReadingTips/src/main/java/mytips/model/RelatedTags.java">
+</file>
+<file name="/home/mmohamud/Ohtu/Kavamo/MyReadingTips/src/main/java/mytips/model/TipManager.java">
+</file>
+<file name="/home/mmohamud/Ohtu/Kavamo/MyReadingTips/src/main/java/mytips/model/WebTip.java">
+</file>
+</checkstyle>
