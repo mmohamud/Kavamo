@@ -43,7 +43,6 @@ public class ReadingTipManager implements TipManager {
         try {
             List bookTips = bookTipDao.findAll();
             List webTips = webTipDao.findAll();
-            System.out.println(webTips.size() + "fvaeegfjwefj");
             for (Object readingTip : bookTips) {
                 readingTips.add(readingTip);
             }

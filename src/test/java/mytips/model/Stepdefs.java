@@ -61,4 +61,31 @@ public class Stepdefs {
         }
         assertTrue(io.getPrints().contains(expectedOutput));
     }
+    
+   @Given("^commands hallinnoi lukuvinkkejä, lisää lukuvinkki ja Video tai blogipostaus are selected$")
+    public void commands_hallinnoi_lukuvinkkejä_lisää_lukuvinkki_ja_Video_tai_blogipostaus_are_selected() throws Throwable {
+        inputInts.add(1);
+        inputInts.add(1);
+        inputInts.add(2);
+    }
+    
+    @When("^valid url \"([^\"]*)\", author \"([^\"]*)\", "
+            + "title \"([^\"]*)\", summary \"([^\"]*)\", comment \"([^\"]*)\" are given$")
+    public void url(
+            String url, String author, String title, String summary, String comment) throws Throwable {
+        inputStrings.add("");
+        inputStrings.add(url);
+        inputStrings.add(author);
+        inputStrings.add(title);
+        inputStrings.add(comment);
+        inputStrings.add(summary);
+    }
+    
+    @Then("^the webtip is saved and the system prints \"([^\"]*)\"$")
+    public void the_webtip_is_saved_and_the_system_prints(String expectedOutput) throws Throwable {
+        for (String print : io.getPrints()) {
+            System.out.println("print: " + print);
+        }
+        assertTrue(io.getPrints().contains(expectedOutput));
+    }
 }
