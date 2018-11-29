@@ -9,6 +9,7 @@ import mytips.model.BookTip;
 import java.util.*;
 //import mytips.model.ReadingTip;
 import mytips.model.TipManager;
+import mytips.model.WebTip;
 
 /**
  *
@@ -135,7 +136,7 @@ public class TextualUI {
                 this.addBook();
                 break;
             case 2:
-                this.addUrlTip();
+                this.addWeb();
                 break;
             case 3:
                 this.addPodcast();
@@ -223,8 +224,25 @@ public class TextualUI {
         }
     }
 
-    private void addUrlTip() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    private void addWeb() {
+        io.print("\nLisää uusi weblukuvinkki\n"
+        + "Anna web-osoite");
+        String url = io.nextLine();
+        
+        io.print("\nAnna kirjoittaja");
+        String author = io.nextLine();
+        
+        io.print("\nAnna otsikko");
+        String title = io.nextLine();
+        
+        io.print("\nLisää tiivistelmä");
+        String summary = io.nextLine();
+        
+        io.print("\nLisää kommentti");
+        String comment = io.nextLine();
+        
+        WebTip webTip = new WebTip(-1, author, title, summary, comment, url);
+        tipManager.addWebTip(webTip);
     }
 
     private void addPodcast() {

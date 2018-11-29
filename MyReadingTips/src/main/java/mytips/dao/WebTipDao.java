@@ -28,7 +28,8 @@ public class WebTipDao implements Dao {
         Connection conn = db.getConnection();
 
         PreparedStatement stmt = conn.prepareStatement(
-            "SELECT * FROM WebTip WHERE id = ?"
+            "SELECT * FROM WebTip WHERE "
+            + "id = ?"
         );
 
         stmt.setInt(1, webTip.getId());
@@ -44,8 +45,9 @@ public class WebTipDao implements Dao {
         String title = rs.getString("title");
         String summary = rs.getString("summary");
         String comment = rs.getString("comment");
-
-        WebTip returnWebTip = new WebTip(id, author, title, summary, comment);
+        String url = rs.getString("url");
+        
+        WebTip returnWebTip = new WebTip(id, author, title, summary, comment, url);
 
         stmt.close();
         rs.close();
@@ -53,6 +55,7 @@ public class WebTipDao implements Dao {
         return returnWebTip;
     }
 
+    @Override
     public List findAll() throws SQLException {
         List webTips = new ArrayList<>();
         Connection conn = db.getConnection();
@@ -65,14 +68,16 @@ public class WebTipDao implements Dao {
             String title = rs.getString("title");
             String summary = rs.getString("summary");
             String comment = rs.getString("comment");
+            String url = rs.getString("url");
 
             WebTip returnWebTip 
-                    = new WebTip(id, author, title, summary, comment);
+                    = new WebTip(id, author, title, summary, comment, url);
             webTips.add(returnWebTip);
         }
         return webTips;
     }
 
+    @Override
     public Object saveOrUpdate(Object object) throws SQLException {
         WebTip webTip = (WebTip) object;
         
@@ -84,19 +89,21 @@ public class WebTipDao implements Dao {
         try (Connection conn = db.getConnection()) {
             PreparedStatement stmt = conn.prepareStatement(
                 "INSERT INTO WebTip " 
-                + "(id, author, title, summmary, comment, type)"
+                + "(author, title, summary, comment, url) "
+                + "VALUES (?, ?, ?, ?, ?)"
             );
 
-            stmt.setInt(1, webTip.getId());
-            stmt.setString(2, webTip.getAuthor());
-            stmt.setString(3, webTip.getTitle());
-            stmt.setString(4, webTip.getSummary());
-            stmt.setString(5, webTip.getComment());
-            stmt.setString(6, "web");            
+            stmt.setString(1, webTip.getAuthor());
+            stmt.setString(2, webTip.getTitle());
+            stmt.setString(3, webTip.getSummary());
+            stmt.setString(4, webTip.getComment());
+            stmt.setString(5, webTip.getUrl());      
+            stmt.executeUpdate();
         }
         return findOne(webTip);
     }
     
+    @Override
     public void delete(Object key) throws SQLException {
         if (findOne(key) == null) {
             return;

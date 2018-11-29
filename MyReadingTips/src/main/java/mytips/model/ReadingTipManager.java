@@ -61,12 +61,14 @@ public class ReadingTipManager implements TipManager {
     }
 
     @Override
-    public void addWebTip(WebTip readingTip) {
+    public void addWebTip(WebTip webTip) {
         try {
-            webTipDao.saveOrUpdate(readingTip);
+            webTipDao.saveOrUpdate(webTip);
+            io.print("Weblukuvinkki tallennettu");
         } catch (SQLException ex) {
-            io.print("Lukuvinkin talletus ei onnistunut");
+            System.out.println("ex: " + ex);
+            io.print("\nWeblukuvinkin talletus ei onnistunut");
         }
-        this.readingTips.add(readingTip);
+        this.readingTips.add(webTip);
     }
 }
