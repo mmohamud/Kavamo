@@ -53,6 +53,13 @@ dependencies {
 
 }
 
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled true
+    }
+}
+
 tasks.withType(Checkstyle) {
     exclude '**/Stepdefs.java'
 }
