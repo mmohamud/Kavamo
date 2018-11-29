@@ -16,16 +16,18 @@ import mytips.model.BookTip;
  */
 public class InMemoryBookTipDao implements Dao {
 
-    ArrayList<BookTip> bookTips = new ArrayList<>();
+    private ArrayList<BookTip> bookTips = new ArrayList<>();
 
     @Override
     public Object findOne(Object key) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public List findAll() throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
@@ -37,7 +39,8 @@ public class InMemoryBookTipDao implements Dao {
 
     @Override
     public void delete(Object key) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
 }
