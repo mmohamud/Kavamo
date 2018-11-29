@@ -1,9 +1,9 @@
-/MyReadingTips/.nb-gradle/
+.nb-gradle/
 .classpath
 .project
 .settings/
 .DS_Store
-MyReadingTips/bin/
+bin/
 .gradle
-MyReadingTips/build/
+build/
 .vscode
