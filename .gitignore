@@ -7,3 +7,6 @@ MyReadingTips/bin/
 .gradle
 MyReadingTips/build/
 .vscode
+.nb-gradle/
+bin/
+build/
