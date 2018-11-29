@@ -8,7 +8,7 @@ package mytips.dao;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import mytips.model.BookTip;
+//import mytips.model.BookTip;
 import mytips.model.WebTip;
 
 /**
@@ -17,16 +17,18 @@ import mytips.model.WebTip;
  */
 public class InMemoryWebTipDao implements Dao {
 
-    ArrayList<WebTip> webTips = new ArrayList<>();
+    private ArrayList<WebTip> webTips = new ArrayList<>();
 
     @Override
     public Object findOne(Object key) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public List findAll() throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
@@ -38,6 +40,7 @@ public class InMemoryWebTipDao implements Dao {
 
     @Override
     public void delete(Object key) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }
