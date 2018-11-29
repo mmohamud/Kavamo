@@ -1,2 +1,4 @@
 language: java
-script: gradle build
+script:
+  - ./gradlew check
+  - ./gradlew jacocoTestReport
