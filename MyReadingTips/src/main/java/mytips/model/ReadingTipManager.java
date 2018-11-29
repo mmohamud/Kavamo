@@ -11,6 +11,7 @@ import java.util.*;
 //import java.util.logging.Logger;
 import mytips.IO;
 import mytips.dao.BookTipDao;
+import mytips.dao.Dao;
 //import mytips.dao.Dao;
 import mytips.dao.WebTipDao;
 import mytips.database.Database;
@@ -23,12 +24,14 @@ public class ReadingTipManager implements TipManager {
 
     private ArrayList<ReadingTip> readingTips;
     private IO io;
-    private Database db;
+    private Dao bookTipDao;
+    private Dao webTipDao;
 
-    public ReadingTipManager(IO io, Database db) {
-        //Haetaanko lukuvinkit tässä kohtaa tietokannasta?
+    public ReadingTipManager(IO io, Dao bookTipDao,
+            Dao webTipDao) {
 
-        this.db = db;
+        this.bookTipDao = bookTipDao;
+        this.webTipDao = webTipDao;
         readingTips = new ArrayList<>();
         this.io = io;
     }
@@ -47,9 +50,8 @@ public class ReadingTipManager implements TipManager {
 
     @Override
     public void addBookTip(BookTip readingTip) {
-        BookTipDao readingTipDao = new BookTipDao(db);
         try {
-            readingTipDao.saveOrUpdate(readingTip);
+            bookTipDao.saveOrUpdate(readingTip);
             io.print("Kirja tallennettu!");
         } catch (SQLException ex) {
             System.out.println("ex: " + ex);
@@ -60,9 +62,8 @@ public class ReadingTipManager implements TipManager {
 
     @Override
     public void addWebTip(WebTip readingTip) {
-        WebTipDao readingTipDao = new WebTipDao(db);
         try {
-            readingTipDao.saveOrUpdate(readingTip);
+            webTipDao.saveOrUpdate(readingTip);
         } catch (SQLException ex) {
             io.print("Lukuvinkin talletus ei onnistunut");
         }

@@ -14,6 +14,8 @@ import mytips.model.ReadingTipManager;
 import mytips.database.Database;
 //import mytips.dao.BookTipDao;
 import java.sql.*;
+import mytips.dao.BookTipDao;
+import mytips.dao.WebTipDao;
 
 // import spark.ModelAndView;
 // import static spark.Spark.*;
@@ -48,26 +50,28 @@ public class Main extends Application {
     /**
      * @param args the command line arguments
      */
-
-    public static void main(String[] args) 
-                throws SQLException, ClassNotFoundException {
+    public static void main(String[] args)
+            throws SQLException, ClassNotFoundException {
         //launch(args);
 
 // Seuraavat toiminnot ovat nyt Database.javassa
 //        Connection connection = 
-                //DriverManager.getConnection("jdbc:sqlite:readingtips.db");
+        //DriverManager.getConnection("jdbc:sqlite:readingtips.db");
 //        PreparedStatement statement = connection.prepareStatement("SELECT 1");
 //        ResultSet resultSet = statement.executeQuery();
 //        BookTipDao kysymys = new KysymysDao(db);
-
 //        if (resultSet.next()) {
 //            System.out.println("Hei tietokantamaailma!");
 //        } else {
 //            System.out.println("Yhteyden muodostaminen epäonnistui.");
 //        }
         Database db = new Database("jdbc:sqlite:readingtips.db");
+        BookTipDao bookTipDao = new BookTipDao(db);
+        WebTipDao webTipDao = new WebTipDao(db);
+        
         ConsoleIO io = new ConsoleIO();
-        ReadingTipManager readingTipManager = new ReadingTipManager(io, db);
+        ReadingTipManager readingTipManager = 
+                new ReadingTipManager(io, bookTipDao, webTipDao);
         TextualUI ui = new TextualUI(readingTipManager, io);
         ui.start();
         System.out.println("Lopetetaan");

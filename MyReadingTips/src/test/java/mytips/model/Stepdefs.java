@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import mytips.StubIO;
 import mytips.TextualUI;
+import mytips.dao.InMemoryBookTipDao;
+import mytips.dao.InMemoryWebTipDao;
 import static org.junit.Assert.*;
 
 public class Stepdefs {
@@ -16,7 +18,9 @@ public class Stepdefs {
     private ArrayList<ReadingTip> readingTips = new ArrayList<>();
     private StubIO io;
     private TextualUI ui;
-    private StubManager manager;
+    private ReadingTipManager manager;
+    private InMemoryBookTipDao bookTipDao = new InMemoryBookTipDao();
+    private InMemoryWebTipDao webTipDao = new InMemoryWebTipDao();
 
     @Given("^commands hallinnoi lukuvinkkejä, lisää lukuvinkki ja kirja are selected$")
     public void commands_hallinnoi_lukuvinkkejä_lisää_lukuvinkki_ja_kirja_are_selected() throws Throwable {
@@ -26,7 +30,7 @@ public class Stepdefs {
     }
 
     @When("^valid isbn \"([^\"]*)\", author \"([^\"]*)\", "
-        + "title \"([^\"]*)\", comment \"([^\"]*)\", summary \"([^\"]*)\" are given$")
+            + "title \"([^\"]*)\", comment \"([^\"]*)\", summary \"([^\"]*)\" are given$")
     public void valid_isbn_author_title_comment_summary_are_given(
             String isbn, String author, String title, String comment, String summary) throws Throwable {
         inputStrings.add("");
@@ -42,15 +46,19 @@ public class Stepdefs {
         inputInts.add(4);
         inputStrings.add("");
         inputInts.add(3);
-        
+
         io = new StubIO(inputStrings, inputInts);
-        manager = new StubManager(readingTips, io);
+
+        manager = new ReadingTipManager(io, bookTipDao, webTipDao);
         ui = new TextualUI(manager, io);
         ui.start();
     }
 
     @Then("^the booktip is saved and the system prints \"([^\"]*)\"$")
     public void the_booktip_is_saved_and_the_system_prints(String expectedOutput) throws Throwable {
+        for (String print : io.getPrints()) {
+            System.out.println("print: " + print);
+        }
         assertTrue(io.getPrints().contains(expectedOutput));
     }
 }
