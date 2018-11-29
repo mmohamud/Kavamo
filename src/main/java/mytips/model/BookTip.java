@@ -40,8 +40,7 @@ public class BookTip extends ReadingTip {
                 + "\nOtsikko: " + getTitle()
                 + "\nISBN: " + getIsbn()
                 + "\nKuvaus: " + getSummary()
-                + "\nKommentti: " + getComment()
-                ;
+                + "\nKommentti: " + getComment();
     }
 }
 

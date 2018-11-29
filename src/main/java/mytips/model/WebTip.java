@@ -31,8 +31,7 @@ public class WebTip extends ReadingTip {
     public String toString() {
         return "\nOtsikko : " + getTitle()
                 + "\nurl : " + getUrl()
-                + "\nKommentti: " + getComment()
-                ;
+                + "\nKommentti: " + getComment();
     }
 
     

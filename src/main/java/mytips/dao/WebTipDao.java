@@ -47,7 +47,8 @@ public class WebTipDao implements Dao {
         String comment = rs.getString("comment");
         String url = rs.getString("url");
         
-        WebTip returnWebTip = new WebTip(id, author, title, summary, comment, url);
+        WebTip returnWebTip = new WebTip(id, author, title, 
+                summary, comment, url);
 
         stmt.close();
         rs.close();

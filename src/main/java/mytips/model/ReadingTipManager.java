@@ -52,7 +52,8 @@ public class ReadingTipManager implements TipManager {
             }
             
         } catch (SQLException ex) {
-            Logger.getLogger(ReadingTipManager.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ReadingTipManager.class.getName())
+                    .log(Level.SEVERE, null, ex);
         }
         return readingTips;
     }
