@@ -54,17 +54,6 @@ public class Main extends Application {
             throws SQLException, ClassNotFoundException {
         //launch(args);
 
-// Seuraavat toiminnot ovat nyt Database.javassa
-//        Connection connection = 
-        //DriverManager.getConnection("jdbc:sqlite:readingtips.db");
-//        PreparedStatement statement = connection.prepareStatement("SELECT 1");
-//        ResultSet resultSet = statement.executeQuery();
-//        BookTipDao kysymys = new KysymysDao(db);
-//        if (resultSet.next()) {
-//            System.out.println("Hei tietokantamaailma!");
-//        } else {
-//            System.out.println("Yhteyden muodostaminen epäonnistui.");
-//        }
         Database db = new Database("jdbc:sqlite:readingtips.db");
         BookTipDao bookTipDao = new BookTipDao(db);
         WebTipDao webTipDao = new WebTipDao(db);
@@ -76,6 +65,7 @@ public class Main extends Application {
         ui.start();
         System.out.println("Lopetetaan");
         
+        System.exit(0);
 
     }
 
