@@ -62,7 +62,7 @@ public class Stepdefs {
         assertTrue(io.getPrints().contains(expectedOutput));
     }
     
-   @Given("^commands hallinnoi lukuvinkkejä, lisää lukuvinkki ja Video tai blogipostaus are selected$")
+   /*@Given("^commands hallinnoi lukuvinkkejä, lisää lukuvinkki ja Video tai blogipostaus are selected$")
     public void commands_hallinnoi_lukuvinkkejä_lisää_lukuvinkki_ja_Video_tai_blogipostaus_are_selected() throws Throwable {
         inputInts.add(1);
         inputInts.add(1);
@@ -87,5 +87,5 @@ public class Stepdefs {
             System.out.println("print: " + print);
         }
         assertTrue(io.getPrints().contains(expectedOutput));
-    }
+    }*/
 }
