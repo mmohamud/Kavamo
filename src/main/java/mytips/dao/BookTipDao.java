@@ -25,12 +25,11 @@ public class BookTipDao implements Dao {
         BookTip bookTip = (BookTip) key;
         Connection conn = db.getConnection();
         PreparedStatement stmt = conn.prepareStatement(
-            "SELECT * FROM BookTip WHERE "
-            + "id = ?"
+            "SELECT * FROM BookTip WHERE id = ?"
         );
         stmt.setString(1, bookTip.getTitle());
 //        stmt.setInt(2, etsittavaAihe.getKurssiId());
-        stmt.setInt(2, bookTip.getId());
+        stmt.setInt(1, bookTip.getId());
 
         ResultSet rs = stmt.executeQuery();
         boolean hasOne = rs.next();
@@ -85,11 +84,6 @@ public class BookTipDao implements Dao {
     @Override
     public Object saveOrUpdate(Object object) throws SQLException {
         BookTip bookTip = (BookTip) object;
-        
-        BookTip compareTo = (BookTip) findOne(bookTip);
-        if (compareTo != null) {
-            return bookTip;
-        }
         
         try (Connection conn = db.getConnection()) {
             PreparedStatement stmt = conn.prepareStatement(

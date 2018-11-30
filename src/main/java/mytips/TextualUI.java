@@ -183,7 +183,8 @@ public class TextualUI {
             io.print("\n1 - Lisää tagi\n"
                     + "2 - Lisää esitietokurssi\n"
                     + "3 - Lisää aiheeseen liittyvä kurssi\n"
-                    + "4 - Valmis\n");
+                    + "4 - Valmis\n"
+                    + "5 - Lopeta\n");
 
             try {
                 action = io.nextInt();
@@ -214,7 +215,7 @@ public class TextualUI {
                         1, author, title, summary, comment, isbn
                     );
                     tipManager.addBookTip(bookTip);
-
+                case 5:
                     //Palaa aloitusvalikkoon
                     this.start();
                     break;
