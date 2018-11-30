@@ -6,7 +6,7 @@ Product backlog: https://docs.google.com/spreadsheets/d/15lDRqxfrTMXDCPrglwGqPN0
 
 Travis: https://travis-ci.org/mmohamud/Kavamo
 
-
+Codecov: https://codecov.io/gh/mmohamud/Kavamo
 
 Definition of done:
 - User story toteuttaa hyväksymäkriteerit ja Cucumberissa määritellyt hyväksymätestit menevät läpi.
@@ -19,22 +19,3 @@ Definition of done:
     - Nimeäminen englanniksi kuvaavilla nimillä
     - CamelCase-nimeäminen
     - CheckStyle
-
-
-# Käyttöohjeita
-
-1.
-javafx-gradle-plugin -tietoja löytyi mm. täältä
-https://github.com/FibreFoX/javafx-gradle-plugin/blob/newyear2018release/README.md
-
-2.
-./gradlew tasks näyttää gradle-komennot javafx:lle, erityisesti: jfxRun käynnistää ohjelman.
-HUOM: käynnistyy sekä tekstin tulostaminen että graafinen käyttöliittymä.
-Ohjelman voi lopettaa klikkaamalla grafiikkaikkuna oik. yläkulman ruksia.
-
-3.
-/libs -kansiossa oleva jar ei toimi.
-Sen sijaan build/jfx/app -kansiossa voi kirjoittaa: java -jar project-jfx.jar
-
-4.
-Kääntäminen onnistuu Netbeansissa, ajaminen ei.
