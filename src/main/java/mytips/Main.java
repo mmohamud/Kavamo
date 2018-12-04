@@ -60,7 +60,7 @@ public class Main extends Application {
         
         ConsoleIO io = new ConsoleIO();
         ReadingTipManager readingTipManager = 
-                new ReadingTipManager(io, bookTipDao, webTipDao);
+                new ReadingTipManager(bookTipDao, webTipDao);
         TextualUI ui = new TextualUI(readingTipManager, io);
         ui.start();
         System.out.println("Lopetetaan");

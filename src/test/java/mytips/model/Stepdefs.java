@@ -41,15 +41,15 @@ public class Stepdefs {
         inputStrings.add(summary);
     }
 
-    @When("^command valmis is selected$")
-    public void command_valmis_is_selected() throws Throwable {
+    @When("^commands valmis and lopeta are selected$")
+    public void commands_valmis_and_lopeta_are_selected() throws Throwable {
         inputInts.add(4);
         inputStrings.add("");
         inputInts.add(3);
 
         io = new StubIO(inputStrings, inputInts);
 
-        manager = new ReadingTipManager(io, bookTipDao, webTipDao);
+        manager = new ReadingTipManager(bookTipDao, webTipDao);
         ui = new TextualUI(manager, io);
         ui.start();
     }

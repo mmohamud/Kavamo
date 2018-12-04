@@ -22,23 +22,20 @@ import mytips.dao.Dao;
  *
  * @author vseppane
  */
-public class ReadingTipManager implements TipManager {
+public class ReadingTipManager {
 
     private List readingTips;
-    private IO io;
     private Dao bookTipDao;
     private Dao webTipDao;
 
-    public ReadingTipManager(IO io, Dao bookTipDao,
+    public ReadingTipManager(Dao bookTipDao,
             Dao webTipDao) {
 
         this.bookTipDao = bookTipDao;
         this.webTipDao = webTipDao;
         readingTips = new ArrayList<>();
-        this.io = io;
     }
 
-    @Override
     public List getReadingTips() {
         try {
             List bookTips = bookTipDao.findAll();
@@ -49,7 +46,7 @@ public class ReadingTipManager implements TipManager {
             for (Object webTip : webTips) {
                 readingTips.add(webTip);
             }
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(ReadingTipManager.class.getName())
                     .log(Level.SEVERE, null, ex);
@@ -57,35 +54,16 @@ public class ReadingTipManager implements TipManager {
         return readingTips;
     }
 
-    @Override
-    public void printReadingTips() {
-        for (Object tip : readingTips) {
-            io.print(tip.toString() + "\n");
-        }
+    public BookTip addBookTip(BookTip readingTip) throws SQLException {
+        BookTip newBook = (BookTip) bookTipDao.saveOrUpdate(readingTip);
+
+        return newBook;
     }
 
-    @Override
-    public void addBookTip(BookTip readingTip) {
-        try {
-            bookTipDao.saveOrUpdate(readingTip);
-            io.print("Kirja tallennettu!");
-        } catch (SQLException ex) {
-            System.out.println("ex: " + ex);
-            io.print("Lukuvinkin talletus ei onnistunut");
-        }
-        this.readingTips.add(readingTip);
-    }
-
-    @Override
-    public void addWebTip(WebTip webTip) {
-        try {
-            webTipDao.saveOrUpdate(webTip);
-            io.print("Weblukuvinkki tallennettu");
-        } catch (SQLException ex) {
-            System.out.println("ex: " + ex);
-            io.print("\nWeblukuvinkin talletus ei onnistunut");
-        }
-        this.readingTips.add(webTip);
+    public WebTip addWebTip(WebTip webTip) throws SQLException {
+        WebTip newTip = (WebTip)webTipDao.saveOrUpdate(webTip);
+        
+        return newTip;
     }
 
 }

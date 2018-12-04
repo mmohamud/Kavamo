@@ -5,10 +5,14 @@
  */
 package mytips;
 
+import java.sql.SQLException;
 import mytips.model.BookTip;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import mytips.model.ReadingTip;
 //import mytips.model.ReadingTip;
-import mytips.model.TipManager;
+import mytips.model.ReadingTipManager;
 import mytips.model.WebTip;
 
 /**
@@ -17,10 +21,10 @@ import mytips.model.WebTip;
  */
 public class TextualUI {
 
-    private TipManager tipManager;
+    private ReadingTipManager tipManager;
     private IO io;
 
-    public TextualUI(TipManager tipManager, IO io) {
+    public TextualUI(ReadingTipManager tipManager, IO io) {
         this.tipManager = tipManager;
         this.io = io;
         io.print("\nTervetuloa lukuvinkkisovellukseen!");
@@ -125,7 +129,7 @@ public class TextualUI {
         int action = 0;
         try {
             action = io.nextInt();
-            io.nextLine(); 
+            io.nextLine();
             //Ilman tätä tulee kummallinen bugi seuraavassa metodissa 
         } catch (java.util.InputMismatchException e) {
             io.nextLine();
@@ -175,6 +179,56 @@ public class TextualUI {
         io.print("\nLisää tiivistelmä: ");
         String summary = io.nextLine();
 
+        //Luodaan uusi kirjalukuvinkki
+        BookTip bookTip = new BookTip(
+                1, author, title, summary, comment, isbn
+        );
+        try {
+            BookTip newBook = tipManager.addBookTip(bookTip);
+            io.print(newBook.toString());
+            io.print("Lukuvinkki tallennettu!");
+        } catch (SQLException ex) {
+            System.out.println("ex: " + ex);
+            io.print("Lukuvinkin talletus ei onnistunut");
+        }
+
+        //Palataan alkuun
+        this.start();
+    }
+
+    private void addWeb() {
+        io.print("\nLisää uusi weblukuvinkki\n"
+                + "Anna web-osoite");
+        String url = io.nextLine();
+
+        io.print("\nAnna kirjoittaja");
+        String author = io.nextLine();
+
+        io.print("\nAnna otsikko");
+        String title = io.nextLine();
+
+        io.print("\nLisää tiivistelmä");
+        String summary = io.nextLine();
+
+        io.print("\nLisää kommentti");
+        String comment = io.nextLine();
+
+        WebTip webTip = new WebTip(-1, author, title, summary, comment, url);
+        try {
+            WebTip newTip = tipManager.addWebTip(webTip);
+            io.print(newTip.toString());
+            io.print("Lukuvinkki tallennettu!");
+        } catch (SQLException ex) {
+            System.out.println("ex: " + ex);
+            io.print("Lukuvinkin talletus ei onnistunut");
+        }
+
+        //Palataan alkuun
+        this.start();
+    }
+
+    private void additionalInfo(ReadingTip readingTip) {
+
         int action = 0;
         ArrayList<String> tags = new ArrayList<>();
         ArrayList<String> preCourses = new ArrayList<>();
@@ -188,7 +242,7 @@ public class TextualUI {
 
             try {
                 action = io.nextInt();
-                io.nextLine(); 
+                io.nextLine();
                 //Ilman tätä tulee kummallinen bugi seuraavassa metodissa 
             } catch (java.util.InputMismatchException e) {
                 io.nextLine();
@@ -205,16 +259,12 @@ public class TextualUI {
                     break;
                 case 3:
                     String relatedCourse = this.addString(
-                        "Lisää aiheeseen liittyvä kurssi: "
+                            "Lisää aiheeseen liittyvä kurssi: "
                     );
                     relatedCourses.add(relatedCourse);
                     break;
                 case 4:
-                    //Luodaan uusi kirjalukuvinkki
-                    BookTip bookTip = new BookTip(
-                        1, author, title, summary, comment, isbn
-                    );
-                    tipManager.addBookTip(bookTip);
+                //todo: Päivitetään lukuvinkki
                 case 5:
                     //Palaa aloitusvalikkoon
                     this.start();
@@ -223,27 +273,6 @@ public class TextualUI {
                     break;
             }
         }
-    }
-
-    private void addWeb() {
-        io.print("\nLisää uusi weblukuvinkki\n"
-        + "Anna web-osoite");
-        String url = io.nextLine();
-        
-        io.print("\nAnna kirjoittaja");
-        String author = io.nextLine();
-        
-        io.print("\nAnna otsikko");
-        String title = io.nextLine();
-        
-        io.print("\nLisää tiivistelmä");
-        String summary = io.nextLine();
-        
-        io.print("\nLisää kommentti");
-        String comment = io.nextLine();
-        
-        WebTip webTip = new WebTip(-1, author, title, summary, comment, url);
-        tipManager.addWebTip(webTip);
     }
 
     private void addPodcast() {
@@ -257,7 +286,7 @@ public class TextualUI {
 
     private void printReadingTips() {
         tipManager.getReadingTips();
-        tipManager.printReadingTips();
+
         this.searchReadingTips();
     }
 }
