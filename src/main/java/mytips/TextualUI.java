@@ -96,11 +96,13 @@ public class TextualUI {
         io.print("\nLukuvinkkien selaus\n\n"
                 + "Mitä haluat tehdä?\n"
                 + "1 - Listaa kaikki lukuvinkit\n"
-                + "2 - Palaa alkuun\n");
+                + "2 - Näytä yhden lukuvinkin tarkat tiedot\n"
+                + "3 - Palaa alkuun\n");
 
         int action = 0;
         try {
             action = io.nextInt();
+            //io.nextLine();
         } catch (java.util.InputMismatchException e) {
             io.nextLine();
         }
@@ -110,6 +112,9 @@ public class TextualUI {
                 this.printReadingTips();
                 break;
             case 2:
+                this.showReadingTip();
+                break;
+            case 3:
                 this.start();
                 break;
             default:
@@ -181,7 +186,7 @@ public class TextualUI {
 
         //Luodaan uusi kirjalukuvinkki
         BookTip bookTip = new BookTip(
-                1, author, title, summary, comment, isbn
+                1, author, title, summary, comment, isbn, "book"
         );
         try {
             BookTip newBook = tipManager.addBookTip(bookTip);
@@ -213,7 +218,8 @@ public class TextualUI {
         io.print("\nLisää kommentti");
         String comment = io.nextLine();
 
-        WebTip webTip = new WebTip(-1, author, title, summary, comment, url);
+        WebTip webTip = new WebTip(-1, author, title, summary, comment, url,
+                "web");
         try {
             WebTip newTip = tipManager.addWebTip(webTip);
             io.print(newTip.toString());
@@ -285,7 +291,27 @@ public class TextualUI {
     }
 
     private void printReadingTips() {
-        tipManager.getReadingTips();
+        ArrayList<ReadingTip> readingTips = tipManager.getReadingTips();
+        for (ReadingTip tip : readingTips) {
+            io.print("id:\t" + tip.getId());
+            io.print("kirjoittaja:\t" + tip.getAuthor());
+            io.print("otsikko:\t" + tip.getTitle());
+            io.print("tyyppi:\t" + tip.getType());
+        }
+
+        this.searchReadingTips();
+    }
+
+    private void showReadingTip() {
+        io.print("\nAnna lukuvinkin id: ");
+        int id = io.nextInt();
+
+        ReadingTip tip = tipManager.getReadingTip(id);
+        if (tip == null) {
+            io.print("Lukuvinkkiä ei löytynyt antamallasi id:llä");
+        } else {
+            io.print(tip.toString());
+        }
 
         this.searchReadingTips();
     }

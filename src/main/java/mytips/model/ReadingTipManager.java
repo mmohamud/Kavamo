@@ -24,7 +24,7 @@ import mytips.dao.Dao;
  */
 public class ReadingTipManager {
 
-    private List readingTips;
+    private ArrayList<ReadingTip> readingTips;
     private Dao bookTipDao;
     private Dao webTipDao;
 
@@ -36,14 +36,16 @@ public class ReadingTipManager {
         readingTips = new ArrayList<>();
     }
 
-    public List getReadingTips() {
+    public ArrayList<ReadingTip> getReadingTips() {
         try {
-            List bookTips = bookTipDao.findAll();
-            List webTips = webTipDao.findAll();
-            for (Object readingTip : bookTips) {
+            ArrayList<ReadingTip> bookTips = 
+                    (ArrayList<ReadingTip>)bookTipDao.findAll();
+            ArrayList<ReadingTip> webTips = 
+                    (ArrayList<ReadingTip>)webTipDao.findAll();
+            for (ReadingTip readingTip : bookTips) {
                 readingTips.add(readingTip);
             }
-            for (Object webTip : webTips) {
+            for (ReadingTip webTip : webTips) {
                 readingTips.add(webTip);
             }
 
@@ -51,6 +53,8 @@ public class ReadingTipManager {
             Logger.getLogger(ReadingTipManager.class.getName())
                     .log(Level.SEVERE, null, ex);
         }
+        Collections.sort(readingTips, (o1, o2) -> o1.getTitle()
+                .compareTo(o2.getTitle()));
         return readingTips;
     }
 
@@ -61,9 +65,23 @@ public class ReadingTipManager {
     }
 
     public WebTip addWebTip(WebTip webTip) throws SQLException {
-        WebTip newTip = (WebTip)webTipDao.saveOrUpdate(webTip);
-        
+        WebTip newTip = (WebTip) webTipDao.saveOrUpdate(webTip);
+
         return newTip;
+    }
+
+    public ReadingTip getReadingTip(int id) {
+        ReadingTip foundBook = null;
+        ReadingTip foundWeb = null;
+        try {
+            foundBook = (ReadingTip) bookTipDao.findOne(id);
+            foundWeb = (ReadingTip) bookTipDao.findOne(id);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        if (foundBook != null) return foundBook;
+        if (foundWeb != null) return foundWeb;
+        return null;
     }
 
 }

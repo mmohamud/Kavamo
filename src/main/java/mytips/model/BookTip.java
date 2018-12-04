@@ -21,8 +21,8 @@ public class BookTip extends ReadingTip {
     private String isbn;
 
     public BookTip(int id, String author, String title,
-            String summary, String comment, String isbn) {
-        super(id, author, title, summary, comment);
+            String summary, String comment, String isbn, String type) {
+        super(id, author, title, summary, comment, type);
         this.isbn = isbn;
     }
 

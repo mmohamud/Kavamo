@@ -14,8 +14,8 @@ public class WebTip extends ReadingTip {
     private String url;
 
     public WebTip(int id, String author, String title, 
-            String summary, String comment, String url) {
-        super(id, author, title, summary, comment);
+            String summary, String comment, String url, String type) {
+        super(id, author, title, summary, comment, type);
         this.url = url;
     }
 
