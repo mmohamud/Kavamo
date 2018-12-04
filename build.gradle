@@ -12,8 +12,6 @@ repositories {
     jcenter()
 }
 
-// apply plugin: 'javafx-gradle-plugin'
-
 apply plugin: 'application'
 apply plugin: 'checkstyle'
 
@@ -25,22 +23,16 @@ startScripts {
 jar {
     manifest {
         attributes 'Main-Class': 'mytips.Main'
-	//attributes 'Main-Class' : 'mytips.controller.ManageBookTip'
+	// attributes 'Main-Class' : 'mytips.controller.ManageBookTip'
     }
 }
 
 dependencies {
-    // This dependency is found on compile classpath of this component and consumers.
+// This dependency is found on compile classpath of this component and consumers.
     compile 'com.google.guava:guava:20.0'
 
-// Vanha versio oli
-//    compile 'org.hibernate:hibernate-core:4.3.6.Final'
-
-    // Use JUnit test framework
+// Use JUnit test framework
     testCompile 'junit:junit:4.12'
-
-// Vanha versio oli
-//    compile group:'org.xerial', name:'sqlite-jdbc', version:'3.8.11.2'
 
 // https://mvnrepository.com/artifact/org.hibernate/hibernate-core
     compile 'org.hibernate:hibernate-core:5.2.16.Final'
@@ -48,7 +40,7 @@ dependencies {
 // https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc
     compile group: 'org.xerial', name: 'sqlite-jdbc', version: '3.21.0.1'
 
-    // Use cucumber
+// Use cucumber
     testCompile 'info.cukes:cucumber-java:1.2.5'
     testCompile 'info.cukes:cucumber-junit:1.2.5'
 
@@ -77,4 +69,3 @@ test {
     systemProperties System.getProperties()
     systemProperties['user.dir'] = workingDir
 }
-
