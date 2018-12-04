@@ -110,7 +110,7 @@ public class WebTipDao implements Dao {
             WebTip returnWebTip
                     = new WebTip(id, author, title, summary,
                             comment, url, type);
-            webTips.add(returnWebTip);
+            webTips.add(returnWebTip);    
         }
         return webTips;
     }

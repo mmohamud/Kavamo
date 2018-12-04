@@ -44,7 +44,8 @@ public class BookTipTest {
    @Test
     public void webTipinTalletus() throws SQLException {
         WebTip webTip = 
-                new WebTip(1, "test1", "test1", "test1", "test1", "test1", "testi1");
+                new WebTip(1, "test1", "test1", "test1", 
+                        "test1", "test1", "testi1");
         WebTip luotu = 
                 (WebTip) webTipDao.saveOrUpdate(webTip);
     
@@ -55,7 +56,8 @@ public class BookTipTest {
     public void bookTipinTalletus() throws SQLException {
 
         BookTip bookTip = 
-                new BookTip(1, "test1", "test1", "test1", "test1", "test1", "testi1");
+                new BookTip(1, "test1", "test1", "test1", 
+                        "test1", "test1", "testi1");
         BookTip luotu = 
                 (BookTip) bookTipDao.saveOrUpdate(bookTip);
     

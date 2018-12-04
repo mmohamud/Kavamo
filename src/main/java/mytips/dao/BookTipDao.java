@@ -134,7 +134,7 @@ public class BookTipDao implements Dao {
             stmt.setString(5, bookTip.getIsbn());
             stmt.executeUpdate();
         }
-        return findOneByValues(bookTip);
+        return findOneByValues(bookTip); 
     }
 
     @Override
