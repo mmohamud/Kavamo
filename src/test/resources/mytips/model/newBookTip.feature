@@ -6,3 +6,4 @@ Feature: User can create a new book reading tip
     And command valmis is selected
     Then  the booktip is saved and the system prints "Kirja tallennettu!"
 
+
