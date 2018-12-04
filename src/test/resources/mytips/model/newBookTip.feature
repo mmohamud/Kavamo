@@ -6,3 +6,4 @@ Feature: User can create a new book reading tip
     And commands valmis and lopeta are selected
     Then  the booktip is saved and the system prints "Lukuvinkki tallennettu!"
 
+
