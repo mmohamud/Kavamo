@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package mytips.model;
 
 import java.sql.SQLException;
@@ -11,17 +7,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 //import java.util.logging.Level;
 //import java.util.logging.Logger;
-//import mytips.IO;  // KO poisti koska checkstyle herjaa "unused import"
-//import mytips.dao.BookTipDao;
 import mytips.dao.Dao;
-//import mytips.dao.Dao;
+//import mytips.dao.BookTipDao;
 // import mytips.dao.WebTipDao;
 // import mytips.database.Database;
 
-/**
- *
- * @author vseppane
- */
 public class ReadingTipManager {
 
     private ArrayList<ReadingTip> readingTips;
