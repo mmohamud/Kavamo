@@ -5,7 +5,6 @@
  */
 package mytips.model;
 
-
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,14 +32,15 @@ public class BookTipTest {
         try {
             db = new Database("jdbc:sqlite:readingtipsTest.db");
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(BookTipTest.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BookTipTest.class.getName()).log(Level.SEVERE, 
+                    null, ex);
         }
         bookTipDao = new BookTipDao(db);
         webTipDao = new WebTipDao(db);
 
-        
+
     }
-    
+
    @Test
     public void webTipinTalletus() throws SQLException {
         WebTip webTip = 
@@ -62,5 +62,18 @@ public class BookTipTest {
                 (BookTip) bookTipDao.saveOrUpdate(bookTip);
     
         assertEquals(bookTip.getAuthor(), luotu.getAuthor());
-    }   
+    }
+
+    @Test
+    public void bookTipinSetISBN() throws SQLException {
+// jos tuota isbn-setteriä ei tarvita, myös testin voi poistaa
+        BookTip bookTip = 
+                new BookTip(1, "test1", "test2", "test3", 
+                        "test4", "test5", "testi6");
+        BookTip luotu = 
+                (BookTip) bookTipDao.saveOrUpdate(bookTip);
+        bookTip.setIsbn("isbntest");
+        
+        assertEquals(bookTip.getIsbn(), "isbntest");
+    }  
 }

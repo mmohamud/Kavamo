@@ -5,11 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-// import java.util.ArrayList;
 import java.util.List;
 import mytips.database.*;
 import mytips.model.BookTip;
-// import mytips.model.ReadingTip; // KO poisti koska "unused import"
 
 public class BookTipDao implements Dao {
 
@@ -45,19 +43,17 @@ public class BookTipDao implements Dao {
         String comment = rs.getString("comment");
         String isbn = rs.getString("isbn");
         String type = rs.getString("type");
-// "Palauttaa" tietokannasta oikeasti vain id:n ja authorin
 
         BookTip returnBookTip
                 = new BookTip(id, author, title, summary, comment, isbn, type);
-
-// Alkuperäisessä oli tämä
-// lisattavaAihe.setKysymykset(new KysymysDao(db).findAllByAiheId(id));  
+  
         stmt.close();
         rs.close();
         conn.close();
 
         return returnBookTip;
     }
+
         public Object findOneByValues(Object key) throws SQLException { 
         BookTip bookTip = (BookTip) key;
         Connection conn = db.getConnection();

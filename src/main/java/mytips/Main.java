@@ -21,13 +21,13 @@ public class Main {
         Database db = new Database("jdbc:sqlite:readingtips.db");
         BookTipDao bookTipDao = new BookTipDao(db);
         WebTipDao webTipDao = new WebTipDao(db);
-        
+
         ConsoleIO io = new ConsoleIO();
         ReadingTipManager readingTipManager = 
                 new ReadingTipManager(bookTipDao, webTipDao);
         TextualUI ui = new TextualUI(readingTipManager, io);
         ui.start();
-        
+
         System.out.println("Lopetetaan");
         System.exit(0);
 
