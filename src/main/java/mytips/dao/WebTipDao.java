@@ -57,6 +57,40 @@ public class WebTipDao implements Dao {
         return returnWebTip;
     }
 
+    public Object findOneByValues(Object key) throws SQLException {
+        WebTip webTip = (WebTip) key;
+        Connection conn = db.getConnection();
+
+        PreparedStatement stmt = conn.prepareStatement(
+                "SELECT * FROM WebTip WHERE "
+                + "title = ? and author = ?"
+        );
+
+        stmt.setString(1, webTip.getTitle());
+        stmt.setString(2, webTip.getAuthor());
+
+        ResultSet rs = stmt.executeQuery();
+        boolean hasOne = rs.next();
+        if (!hasOne) {
+            return null;
+        }
+
+        int id = rs.getInt("id");
+        String author = rs.getString("author");
+        String title = rs.getString("title");
+        String summary = rs.getString("summary");
+        String comment = rs.getString("comment");
+        String url = rs.getString("url");
+        String type = rs.getString("type");
+
+        WebTip returnWebTip = new WebTip(id, author, title,
+                summary, comment, url, type);
+
+        stmt.close();
+        rs.close();
+        conn.close();
+        return returnWebTip;
+    }
     @Override
     public List findAll() throws SQLException {
         List webTips = new ArrayList<>();
@@ -94,7 +128,7 @@ public class WebTipDao implements Dao {
             PreparedStatement stmt = conn.prepareStatement(
                     "INSERT INTO WebTip "
                     + "(author, title, summary, comment, url) "
-                    + "VALUES (?, ?, ?, ?, ?)"
+                    + "VALUES (?, ?, ?, ?, ?, ?)"
             );
 
             stmt.setString(1, webTip.getAuthor());
@@ -102,9 +136,10 @@ public class WebTipDao implements Dao {
             stmt.setString(3, webTip.getSummary());
             stmt.setString(4, webTip.getComment());
             stmt.setString(5, webTip.getUrl());
+            stmt.setString(5, webTip.getType());
             stmt.executeUpdate();
         }
-        return findOne(webTip);
+        return findOneByValues(webTip);
     }
 
     @Override

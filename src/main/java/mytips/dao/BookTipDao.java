@@ -28,7 +28,7 @@ public class BookTipDao implements Dao {
         PreparedStatement stmt = conn.prepareStatement(
                 "SELECT * FROM BookTip WHERE id = ?"
         );
-        stmt.setString(1, bookTip.getTitle());
+//        stmt.setString(1, bookTip.getTitle());
 //        stmt.setInt(2, etsittavaAihe.getKurssiId());
         stmt.setInt(1, bookTip.getId());
 
@@ -52,6 +52,38 @@ public class BookTipDao implements Dao {
 
 // Alkuperäisessä oli tämä
 // lisattavaAihe.setKysymykset(new KysymysDao(db).findAllByAiheId(id));  
+        stmt.close();
+        rs.close();
+        conn.close();
+
+        return returnBookTip;
+    }
+        public Object findOneByValues(Object key) throws SQLException { 
+        BookTip bookTip = (BookTip) key;
+        Connection conn = db.getConnection();
+        PreparedStatement stmt = conn.prepareStatement(
+            "SELECT * FROM BookTip WHERE title = ? and author = ?"
+        );
+        stmt.setString(1, bookTip.getTitle());
+        stmt.setString(2, bookTip.getAuthor());
+
+        ResultSet rs = stmt.executeQuery();
+        boolean hasOne = rs.next();
+        if (!hasOne) {
+            return null;
+        }
+
+        int id = rs.getInt("id");
+        String author = rs.getString("author");
+        String title = rs.getString("title");
+        String summary = rs.getString("summary");
+        String comment = rs.getString("comment");
+        String isbn = rs.getString("isbn");
+        String type = rs.getString("type");
+
+        BookTip returnBookTip 
+                = new BookTip(id, author, title, summary, comment, isbn, type);
+
         stmt.close();
         rs.close();
         conn.close();
@@ -102,7 +134,7 @@ public class BookTipDao implements Dao {
             stmt.setString(5, bookTip.getIsbn());
             stmt.executeUpdate();
         }
-        return findOne(bookTip);
+        return findOneByValues(bookTip);
     }
 
     @Override

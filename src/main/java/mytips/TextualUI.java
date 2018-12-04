@@ -260,7 +260,8 @@ public class TextualUI {
                     tags.add(tag);
                     break;
                 case 2:
-                    String preCourse = this.addString("Lisää esitietokurssi: ");
+                    String preCourse = 
+                            this.addString("Lisää esitietokurssi: ");
                     preCourses.add(preCourse);
                     break;
                 case 3:
