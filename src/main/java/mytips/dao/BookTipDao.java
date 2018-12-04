@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import mytips.database.*;
 import mytips.model.BookTip;
-import mytips.model.ReadingTip;
+// import mytips.model.ReadingTip; // KO poisti koska "unused import"
 
 public class BookTipDao implements Dao {
 
@@ -76,7 +76,7 @@ public class BookTipDao implements Dao {
             String type = rs.getString("type");
 
             BookTip returnBookTip
-                    = new BookTip(id, author, title, summary, comment, isbn, type);
+                = new BookTip(id, author, title, summary, comment, isbn, type);
 
             bookTips.add(returnBookTip);
 

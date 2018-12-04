@@ -11,7 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 //import java.util.logging.Level;
 //import java.util.logging.Logger;
-import mytips.IO;
+//import mytips.IO;  // KO poisti koska checkstyle herjaa "unused import"
 //import mytips.dao.BookTipDao;
 import mytips.dao.Dao;
 //import mytips.dao.Dao;
@@ -39,9 +39,9 @@ public class ReadingTipManager {
     public ArrayList<ReadingTip> getReadingTips() {
         try {
             ArrayList<ReadingTip> bookTips = 
-                    (ArrayList<ReadingTip>)bookTipDao.findAll();
+                    (ArrayList<ReadingTip>) bookTipDao.findAll();
             ArrayList<ReadingTip> webTips = 
-                    (ArrayList<ReadingTip>)webTipDao.findAll();
+                    (ArrayList<ReadingTip>) webTipDao.findAll();
             for (ReadingTip readingTip : bookTips) {
                 readingTips.add(readingTip);
             }
@@ -79,8 +79,12 @@ public class ReadingTipManager {
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-        if (foundBook != null) return foundBook;
-        if (foundWeb != null) return foundWeb;
+        if (foundBook != null) {
+            return foundBook;
+        }
+        if (foundWeb != null) {
+            return foundWeb;
+        }
         return null;
     }
 

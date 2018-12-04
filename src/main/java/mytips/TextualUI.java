@@ -8,8 +8,8 @@ package mytips;
 import java.sql.SQLException;
 import mytips.model.BookTip;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+// import java.util.logging.Level;  // KO poisti koska "unused import"
+// import java.util.logging.Logger; // KO poisti koska "unused import"
 import mytips.model.ReadingTip;
 //import mytips.model.ReadingTip;
 import mytips.model.ReadingTipManager;
