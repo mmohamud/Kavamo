@@ -115,10 +115,10 @@ public class Stepdefs {
         for (String print : io.getPrints()) {
             System.out.println("p: " + print);
         }
-        //assertTrue(io.getPrints().contains(arg1));
-        //assertTrue(io.getPrints().contains(arg2));
-        //assertTrue(io.getPrints().contains(arg3));
-        //assertTrue(io.getPrints().contains(arg4));
+        assertTrue(io.getPrints().contains("kirjoittaja:\t" + arg1));
+        assertTrue(io.getPrints().contains("kirjoittaja:\t" + arg2));
+        assertTrue(io.getPrints().contains("kirjoittaja:\t" + arg3));
+        assertTrue(io.getPrints().contains("kirjoittaja:\t" + arg4));
     }
 
 }
