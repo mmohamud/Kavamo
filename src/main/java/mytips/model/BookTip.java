@@ -36,11 +36,12 @@ public class BookTip extends ReadingTip {
 
     @Override
     public String toString() {
-        return "\nKirjoittaja: " + getAuthor()
-                + "\nOtsikko: " + getTitle()
-                + "\nISBN: " + getIsbn()
-                + "\nKuvaus: " + getSummary()
-                + "\nKommentti: " + getComment();
+        return "\nId:\t\t" + getId()
+                + "\nKirjoittaja:\t" + getAuthor()
+                + "\nOtsikko:\t" + getTitle()
+                + "\nISBN:\t\t" + getIsbn()
+                + "\nKuvaus:\t\t" + getSummary()
+                + "\nKommentti:\t" + getComment();
     }
 }
 

@@ -190,8 +190,9 @@ public class TextualUI {
         );
         try {
             BookTip newBook = tipManager.addBookTip(bookTip);
-            io.print(newBook.toString());
             io.print("Lukuvinkki tallennettu!");
+            io.print("");
+            io.print(newBook.toString());
         } catch (SQLException ex) {
             System.out.println("ex: " + ex);
             io.print("Lukuvinkin talletus ei onnistunut");
@@ -222,8 +223,9 @@ public class TextualUI {
                 "web");
         try {
             WebTip newTip = tipManager.addWebTip(webTip);
-            io.print(newTip.toString());
             io.print("Lukuvinkki tallennettu!");
+            io.print("");
+            io.print(newTip.toString());
         } catch (SQLException ex) {
             System.out.println("ex: " + ex);
             io.print("Lukuvinkin talletus ei onnistunut");
@@ -294,10 +296,11 @@ public class TextualUI {
     private void printReadingTips() {
         ArrayList<ReadingTip> readingTips = tipManager.getReadingTips();
         for (ReadingTip tip : readingTips) {
-            io.print("id:\t" + tip.getId());
+            io.print("id:\t\t" + tip.getId());
             io.print("kirjoittaja:\t" + tip.getAuthor());
             io.print("otsikko:\t" + tip.getTitle());
-            io.print("tyyppi:\t" + tip.getType());
+            io.print("tyyppi:\t\t" + tip.getType());
+            io.print("");
         }
 
         this.searchReadingTips();
