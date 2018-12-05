@@ -8,7 +8,6 @@ import java.util.List;
 import mytips.StubIO;
 import mytips.TextualUI;
 import mytips.dao.InMemoryReadingTipDao;
-import mytips.dao.InMemoryWebTipDao;
 import static org.junit.Assert.*;
 
 public class Stepdefs {
@@ -19,8 +18,8 @@ public class Stepdefs {
     private StubIO io;
     private TextualUI ui;
     private ReadingTipManager manager;
-    private InMemoryReadingTipDao bookTipDao = new InMemoryReadingTipDao();
-    private InMemoryWebTipDao webTipDao = new InMemoryWebTipDao();
+    private InMemoryReadingTipDao readingTipDao = new InMemoryReadingTipDao();
+
 
     @Given("^commands hallinnoi lukuvinkkejä, lisää lukuvinkki ja kirja are selected$")
     public void commands_hallinnoi_lukuvinkkejä_lisää_lukuvinkki_ja_kirja_are_selected() throws Throwable {
@@ -47,7 +46,7 @@ public class Stepdefs {
 
         io = new StubIO(inputStrings, inputInts);
 
-        manager = new ReadingTipManager(bookTipDao, webTipDao);
+        manager = new ReadingTipManager(readingTipDao);
         ui = new TextualUI(manager, io);
         ui.start();
     }
