@@ -304,19 +304,26 @@ public class TextualUI {
     }
 
     private void showReadingTip() throws SQLException {
+        int id;
         io.print("\nAnna lukuvinkin id: ");
-        int id = io.nextInt();
+        try {
+            id = io.nextInt();
+            io.nextLine();
+            //Ilman tätä tulee kummallinen bugi seuraavassa metodissa 
+            ReadingTip tip = tipManager.getReadingTip(id);
+            if (tip == null) {
+                io.print("Lukuvinkkiä ei löytynyt antamallasi id:llä");
+            } else {
+                //io.print(tip.toString());
+                io.print("id:\t\t" + tip.getId());
+                io.print("kirjoittaja:\t" + tip.getAuthor());
+                io.print("otsikko:\t" + tip.getTitle());
+                io.print("tyyppi:\t\t" + tip.getType());
+                io.print("");
+            }
 
-        ReadingTip tip = tipManager.getReadingTip(id);
-        if (tip == null) {
-            io.print("Lukuvinkkiä ei löytynyt antamallasi id:llä");
-        } else {
-            //io.print(tip.toString());
-            io.print("id:\t\t" + tip.getId());
-            io.print("kirjoittaja:\t" + tip.getAuthor());
-            io.print("otsikko:\t" + tip.getTitle());
-            io.print("tyyppi:\t\t" + tip.getType());
-            io.print("");
+        } catch (java.util.InputMismatchException e) {
+            io.nextLine();
         }
 
         this.searchReadingTips();
