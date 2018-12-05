@@ -45,8 +45,8 @@ public class StubIO implements IO {
     }
 
     @Override
-    public void printTipFormat
-        (String s, String id, String author, String title, String type) {
+    public void printTipFormat(
+            String s, String id, String author, String title, String type) {
         outputs.add(id + " " + author + " " + title + " " + type);
     }
 }
