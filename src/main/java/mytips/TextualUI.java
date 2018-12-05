@@ -8,10 +8,7 @@ package mytips;
 import java.sql.SQLException;
 import mytips.model.BookTip;
 import java.util.*;
-// import java.util.logging.Level;  // KO poisti koska "unused import"
-// import java.util.logging.Logger; // KO poisti koska "unused import"
 import mytips.model.ReadingTip;
-//import mytips.model.ReadingTip;
 import mytips.model.ReadingTipManager;
 import mytips.model.WebTip;
 
@@ -30,7 +27,7 @@ public class TextualUI {
         io.print("\nTervetuloa lukuvinkkisovellukseen!");
     }
 
-    public void start() {
+    public void start() throws SQLException {
         io.print("\nMitä haluat tehdä?\n"
                 + "1 - Hallinnoi lukuvinkkejä\n"
                 + "2 - Selaa lukuvinkkejä\n"
@@ -58,7 +55,7 @@ public class TextualUI {
         }
     }
 
-    private void manageReadingTips() {
+    private void manageReadingTips() throws SQLException {
         io.print("\nLukuvinkkien hallinnointi\n\n"
                 + "Mitä haluat tehdä?\n"
                 + "1 - Lisää lukuvinkki\n"
@@ -92,7 +89,7 @@ public class TextualUI {
         }
     }
 
-    private void searchReadingTips() {
+    private void searchReadingTips() throws SQLException {
         io.print("\nLukuvinkkien selaus\n\n"
                 + "Mitä haluat tehdä?\n"
                 + "1 - Listaa kaikki lukuvinkit\n"
@@ -123,7 +120,7 @@ public class TextualUI {
         }
     }
 
-    private void addReadingTip() {
+    private void addReadingTip() throws SQLException {
         io.print("\nLukuvinkin lisäys\n\n"
                 + "Minkä lukuvinkin haluat lisätä?\n"
                 + "1 - Kirja\n"
@@ -167,7 +164,7 @@ public class TextualUI {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    private void addBook() {
+    private void addBook() throws SQLException {
         io.print("\nLisää uusi kirjalukuvinkki\n"
                 + "Anna ISBN: ");
         String isbn = io.nextLine();
@@ -202,7 +199,7 @@ public class TextualUI {
         this.start();
     }
 
-    private void addWeb() {
+    private void addWeb() throws SQLException {
         io.print("\nLisää uusi weblukuvinkki\n"
                 + "Anna web-osoite");
         String url = io.nextLine();
@@ -235,7 +232,7 @@ public class TextualUI {
         this.start();
     }
 
-    private void additionalInfo(ReadingTip readingTip) {
+    private void additionalInfo(ReadingTip readingTip) throws SQLException {
 
         int action = 0;
         ArrayList<String> tags = new ArrayList<>();
@@ -293,7 +290,7 @@ public class TextualUI {
         return io.nextLine();
     }
 
-    private void printReadingTips() {
+    private void printReadingTips() throws SQLException {
         ArrayList<ReadingTip> readingTips = tipManager.getReadingTips();
         for (ReadingTip tip : readingTips) {
             io.print("id:\t\t" + tip.getId());
@@ -306,7 +303,7 @@ public class TextualUI {
         this.searchReadingTips();
     }
 
-    private void showReadingTip() {
+    private void showReadingTip() throws SQLException {
         io.print("\nAnna lukuvinkin id: ");
         int id = io.nextInt();
 

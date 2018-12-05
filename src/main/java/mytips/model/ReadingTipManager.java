@@ -60,15 +60,11 @@ public class ReadingTipManager {
         return newTip;
     }
 
-    public ReadingTip getReadingTip(int id) {
+    public ReadingTip getReadingTip(int id) throws SQLException {
         ReadingTip foundBook = null;
         ReadingTip foundWeb = null;
-        try {
-            foundBook = (ReadingTip) bookTipDao.findOne(id);
-            foundWeb = (ReadingTip) bookTipDao.findOne(id);
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
+        foundBook = (ReadingTip) bookTipDao.findOneById(id);
+        foundWeb = (ReadingTip) bookTipDao.findOneById(id);
         if (foundBook != null) {
             return foundBook;
         }

@@ -5,9 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+// import java.util.ArrayList;
 import java.util.List;
 import mytips.database.*;
 import mytips.model.BookTip;
+import mytips.model.ReadingTip;
+// import mytips.model.ReadingTip; // KO poisti koska "unused import"
 
 public class BookTipDao implements Dao {
 
@@ -26,8 +29,6 @@ public class BookTipDao implements Dao {
         PreparedStatement stmt = conn.prepareStatement(
                 "SELECT * FROM BookTip WHERE id = ?"
         );
-//        stmt.setString(1, bookTip.getTitle());
-//        stmt.setInt(2, etsittavaAihe.getKurssiId());
         stmt.setInt(1, bookTip.getId());
 
         ResultSet rs = stmt.executeQuery();
@@ -46,15 +47,45 @@ public class BookTipDao implements Dao {
 
         BookTip returnBookTip
                 = new BookTip(id, author, title, summary, comment, isbn, type);
-  
+
         stmt.close();
         rs.close();
         conn.close();
 
         return returnBookTip;
     }
+    @Override
+    public Object findOneById(int key) throws SQLException { 
+        Connection conn = db.getConnection();
+        PreparedStatement stmt = conn.prepareStatement(
+            "SELECT * FROM BookTip WHERE id = ?"
+        );
+        stmt.setInt(1, key);
 
-        public Object findOneByValues(Object key) throws SQLException { 
+        ResultSet rs = stmt.executeQuery();
+        boolean hasOne = rs.next();
+        if (!hasOne) {
+            return null;
+        }
+
+        int id = rs.getInt("id");
+        String author = rs.getString("author");
+        String title = rs.getString("title");
+        String summary = rs.getString("summary");
+        String comment = rs.getString("comment");
+        String isbn = rs.getString("isbn");
+        String type = rs.getString("type");
+
+        BookTip returnBookTip 
+                = new BookTip(id, author, title, summary, comment, isbn, type);
+
+        stmt.close();
+        rs.close();
+        conn.close();
+
+        return returnBookTip;
+    }
+    public Object findOneByValues(Object key) throws SQLException { 
         BookTip bookTip = (BookTip) key;
         Connection conn = db.getConnection();
         PreparedStatement stmt = conn.prepareStatement(
@@ -77,7 +108,7 @@ public class BookTipDao implements Dao {
         String isbn = rs.getString("isbn");
         String type = rs.getString("type");
 
-        BookTip returnBookTip 
+        ReadingTip returnBookTip 
                 = new BookTip(id, author, title, summary, comment, isbn, type);
 
         stmt.close();
@@ -151,4 +182,5 @@ public class BookTipDao implements Dao {
         stmt.close();
         conn.close();
     }
+
 }

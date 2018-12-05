@@ -43,4 +43,9 @@ public class InMemoryBookTipDao implements Dao {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    @Override
+    public Object findOneById(int key) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
