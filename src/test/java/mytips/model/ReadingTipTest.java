@@ -70,10 +70,9 @@ public class ReadingTipTest {
         ReadingTip bookTip = 
                 new ReadingTip("Author", "Title", "Summary", 
                         "Comment", "book");
-        ReadingTip luotu = 
-                (ReadingTip) readingTipDao.saveOrUpdate(bookTip);
         bookTip.setIsbn("isbntest");
-        
+        ReadingTip luotu = 
+                (ReadingTip) readingTipDao.saveOrUpdate(bookTip);  
         assertEquals(bookTip.getIsbn(), "isbntest");
     }  
     
