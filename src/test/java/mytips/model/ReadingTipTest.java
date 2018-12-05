@@ -85,6 +85,6 @@ public class ReadingTipTest {
         webTip.setUrl("url-osoite");
         ReadingTip luotu = 
                 (ReadingTip) readingTipDao.saveOrUpdate(webTip);
-        assertEquals(luotu.getUrl(), "url-osoite");
+        assertEquals(webTip.getUrl(), "url-osoite");
     }
 }
