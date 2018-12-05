@@ -311,7 +311,12 @@ public class TextualUI {
         if (tip == null) {
             io.print("Lukuvinkkiä ei löytynyt antamallasi id:llä");
         } else {
-            io.print(tip.toString());
+            //io.print(tip.toString());
+            io.print("id:\t\t" + tip.getId());
+            io.print("kirjoittaja:\t" + tip.getAuthor());
+            io.print("otsikko:\t" + tip.getTitle());
+            io.print("tyyppi:\t\t" + tip.getType());
+            io.print("");
         }
 
         this.searchReadingTips();
