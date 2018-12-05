@@ -18,6 +18,11 @@ public class InMemoryBookTipDao implements Dao {
 
     private ArrayList<BookTip> bookTips = new ArrayList<>();
 
+    public InMemoryBookTipDao() {
+        bookTips.add(new BookTip(20, "Robert Martin", "Clean Code: A Handbook of Agile Software Craftsmanship", "", "", "978-0132350884", "kirja"));
+        bookTips.add(new BookTip(21, "Margaret Atwood", "Orjattaresi", "", "Margaret Atwoodin Orjattaresi on vavahduttava dystopia lähitulevaisuuden Yhdysvalloista, jossa vanhatestamentilliset fundamentalistit ovat ottaneet vallan. Yli 30 vuotta ensijulkaisunsa jälkeen romaanin teemat vapaudesta ja naisten oikeuksista ovat nyt ajankohtaisempia kuin koskaan. Margaret Atwood on kanadalainen kirjailija, joka on pitkän uransa aikana kirjoittanut yli 40 teosta ja saanut useita merkittäviä kirjallisuuspalkintoja.", "9780770422639", "kirja"));
+    }
+
     @Override
     public Object findOne(Object key) throws SQLException {
         //To change body of generated methods, choose Tools | Templates.
@@ -26,8 +31,7 @@ public class InMemoryBookTipDao implements Dao {
 
     @Override
     public List findAll() throws SQLException {
-        //To change body of generated methods, choose Tools | Templates.
-        throw new UnsupportedOperationException("Not supported yet.");
+        return bookTips;
     }
 
     @Override

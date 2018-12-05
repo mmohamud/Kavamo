@@ -19,6 +19,11 @@ public class InMemoryWebTipDao implements Dao {
 
     private ArrayList<WebTip> webTips = new ArrayList<>();
 
+    public InMemoryWebTipDao() {
+        webTips.add(new WebTip(10, "Nicola Apicella", "Consistency models", "", "", "https://dev.to/napicellatwit/consistency-models-52l", "blogpost"));
+        webTips.add(new WebTip(11, "", "Merge sort algorithm", "", "Hyvä selitys merge sortin toiminnasta esimerkin avulla", "https://www.youtube.com/watch?v=TzeBrDU-JaY", "video"));
+    }
+    
     @Override
     public Object findOne(Object key) throws SQLException {
         //To change body of generated methods, choose Tools | Templates.
@@ -27,8 +32,7 @@ public class InMemoryWebTipDao implements Dao {
 
     @Override
     public List findAll() throws SQLException {
-        //To change body of generated methods, choose Tools | Templates.
-        throw new UnsupportedOperationException("Not supported yet.");
+        return webTips;
     }
 
     @Override

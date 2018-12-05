@@ -183,7 +183,7 @@ public class TextualUI {
 
         //Luodaan uusi kirjalukuvinkki
         BookTip bookTip = new BookTip(
-                1, author, title, summary, comment, isbn, "book"
+                1, author, title, summary, comment, isbn, "kirja"
         );
         try {
             BookTip newBook = tipManager.addBookTip(bookTip);
@@ -216,8 +216,11 @@ public class TextualUI {
         io.print("\nLisää kommentti");
         String comment = io.nextLine();
 
+        io.print("\nAnna lukuvinkin tyyppi (video tai blogipostaus)");
+        String type = io.nextLine();
+        
         WebTip webTip = new WebTip(-1, author, title, summary, comment, url,
-                "web");
+                type);
         try {
             WebTip newTip = tipManager.addWebTip(webTip);
             io.print("Lukuvinkki tallennettu!");
@@ -232,70 +235,74 @@ public class TextualUI {
         this.start();
     }
 
-    private void additionalInfo(ReadingTip readingTip) throws SQLException {
-
-        int action = 0;
-        ArrayList<String> tags = new ArrayList<>();
-        ArrayList<String> preCourses = new ArrayList<>();
-        ArrayList<String> relatedCourses = new ArrayList<>();
-        while (action != 4) {
-            io.print("\n1 - Lisää tagi\n"
-                    + "2 - Lisää esitietokurssi\n"
-                    + "3 - Lisää aiheeseen liittyvä kurssi\n"
-                    + "4 - Valmis\n"
-                    + "5 - Lopeta\n");
-
-            try {
-                action = io.nextInt();
-                io.nextLine();
-                //Ilman tätä tulee kummallinen bugi seuraavassa metodissa 
-            } catch (java.util.InputMismatchException e) {
-                io.nextLine();
-            }
-
-            switch (action) {
-                case 1:
-                    String tag = this.addString("Lisää tagi: ");
-                    tags.add(tag);
-                    break;
-                case 2:
-                    String preCourse = 
-                            this.addString("Lisää esitietokurssi: ");
-                    preCourses.add(preCourse);
-                    break;
-                case 3:
-                    String relatedCourse = this.addString(
-                            "Lisää aiheeseen liittyvä kurssi: "
-                    );
-                    relatedCourses.add(relatedCourse);
-                    break;
-                case 4:
-                //todo: Päivitetään lukuvinkki
-                case 5:
-                    //Palaa aloitusvalikkoon
-                    this.start();
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
+// Ei ole käytössä vielä
+    
+//    private void additionalInfo(ReadingTip readingTip) {
+//
+//        int action = 0;
+//        ArrayList<String> tags = new ArrayList<>();
+//        ArrayList<String> preCourses = new ArrayList<>();
+//        ArrayList<String> relatedCourses = new ArrayList<>();
+//        while (action != 4) {
+//            io.print("\n1 - Lisää tagi\n"
+//                    + "2 - Lisää esitietokurssi\n"
+//                    + "3 - Lisää aiheeseen liittyvä kurssi\n"
+//                    + "4 - Valmis\n"
+//                    + "5 - Lopeta\n");
+//
+//            try {
+//                action = io.nextInt();
+//                io.nextLine();
+//                //Ilman tätä tulee kummallinen bugi seuraavassa metodissa 
+//            } catch (java.util.InputMismatchException e) {
+//                io.nextLine();
+//            }
+//
+//            switch (action) {
+//                case 1:
+//                    String tag = this.addString("Lisää tagi: ");
+//                    tags.add(tag);
+//                    break;
+//                case 2:
+//                    String preCourse = 
+//                            this.addString("Lisää esitietokurssi: ");
+//                    preCourses.add(preCourse);
+//                    break;
+//                case 3:
+//                    String relatedCourse = this.addString(
+//                            "Lisää aiheeseen liittyvä kurssi: "
+//                    );
+//                    relatedCourses.add(relatedCourse);
+//                    break;
+//                case 4:
+//                //todo: Päivitetään lukuvinkki
+//                case 5:
+//                    //Palaa aloitusvalikkoon
+//                    this.start();
+//                    break;
+//                default:
+//                    break;
+//            }
+//        }
+//    }
 
     private void addPodcast() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    private String addString(String headline) {
-        io.print(headline);
-        return io.nextLine();
-    }
+// Ei ole käytössä vielä    
+    
+//    private String addString(String headline) {
+//        io.print(headline);
+//        return io.nextLine();
+//    }
 
     private void printReadingTips() throws SQLException {
         ArrayList<ReadingTip> readingTips = tipManager.getReadingTips();
         for (ReadingTip tip : readingTips) {
             io.print("id:\t\t" + tip.getId());
             io.print("kirjoittaja:\t" + tip.getAuthor());
-            io.print("otsikko:\t" + tip.getTitle());
+            io.print("otsikko:\t\t" + tip.getTitle());
             io.print("tyyppi:\t\t" + tip.getType());
             io.print("");
         }
