@@ -32,5 +32,10 @@ public class ConsoleIO implements IO {
     public void print(String s) {
         System.out.println(s);
     }
+
+    @Override
+    public void printTipFormat(String s, String id, String author, String title, String type) {
+        System.out.format(s, id, author, title, type);
+    }
     
 }

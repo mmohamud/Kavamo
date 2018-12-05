@@ -157,4 +157,41 @@ public class ReadingTipDao implements Dao {
         stmt.close();
         conn.close();
     }
+
+    @Override
+    public Object findOneById(int key) throws SQLException {
+        Connection conn = db.getConnection();
+        PreparedStatement stmt = conn.prepareStatement(
+                "SELECT * FROM ReadingTip WHERE id = ?"
+        );
+//        stmt.setString(1, bookTip.getTitle());
+//        stmt.setInt(2, etsittavaAihe.getKurssiId());
+        stmt.setInt(1, key);
+
+        ResultSet rs = stmt.executeQuery();
+        boolean hasOne = rs.next();
+        if (!hasOne) {
+            return null;
+        }
+
+        int id = rs.getInt("id");
+        String author = rs.getString("author");
+        String title = rs.getString("title");
+        String summary = rs.getString("summary");
+        String comment = rs.getString("comment");
+        String isbn = rs.getString("isbn");
+        String type = rs.getString("type");
+        String url = rs.getString("url");
+        ReadingTip returnReadingTip
+                = new ReadingTip(author, title, summary, comment, type);
+  
+        returnReadingTip.setIsbn(isbn);
+        returnReadingTip.setUrl(url);
+        stmt.close();
+        rs.close();
+        conn.close();
+
+        return returnReadingTip;
+    }
+
 }

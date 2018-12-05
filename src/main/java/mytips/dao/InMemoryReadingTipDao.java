@@ -18,6 +18,13 @@ public class InMemoryReadingTipDao implements Dao {
 
     private ArrayList<ReadingTip> readingTips = new ArrayList<>();
 
+    public InMemoryReadingTipDao() {
+        readingTips.add(new ReadingTip("Robert Martin", "Clean Code: A Handbook of Agile Software Craftsmanship", "", "","book"));
+        readingTips.add(new ReadingTip("Margaret Atwood", "Orjattaresi", "", "Margaret Atwoodin Orjattaresi on vavahduttava dystopia lähitulevaisuuden Yhdysvalloista, jossa vanhatestamentilliset fundamentalistit ovat ottaneet vallan. Yli 30 vuotta ensijulkaisunsa jälkeen romaanin teemat vapaudesta ja naisten oikeuksista ovat nyt ajankohtaisempia kuin koskaan. Margaret Atwood on kanadalainen kirjailija, joka on pitkän uransa aikana kirjoittanut yli 40 teosta ja saanut useita merkittäviä kirjallisuuspalkintoja.", "book"));
+        readingTips.add(new ReadingTip("Nicola Apicella", "Consistency models", "", "", "web"));
+        readingTips.add(new ReadingTip("", "Merge sort algorithm", "", "Hyvä selitys merge sortin toiminnasta esimerkin avulla", "web"));
+    }
+
     @Override
     public Object findOne(Object key) throws SQLException {
         //To change body of generated methods, choose Tools | Templates.
@@ -26,8 +33,7 @@ public class InMemoryReadingTipDao implements Dao {
 
     @Override
     public List findAll() throws SQLException {
-        //To change body of generated methods, choose Tools | Templates.
-        throw new UnsupportedOperationException("Not supported yet.");
+        return readingTips;
     }
 
     @Override
@@ -41,6 +47,11 @@ public class InMemoryReadingTipDao implements Dao {
     public void delete(Object key) throws SQLException {
         //To change body of generated methods, choose Tools | Templates.
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public Object findOneById(int key) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

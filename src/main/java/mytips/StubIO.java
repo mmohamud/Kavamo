@@ -43,4 +43,9 @@ public class StubIO implements IO {
     public ArrayList<String> getPrints() {
         return outputs;
     }
+
+    @Override
+    public void printTipFormat(String s, String id, String author, String title, String type) {
+        outputs.add(id + " " + author + " " + title + " " + type);
+    }
 }

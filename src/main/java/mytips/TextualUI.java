@@ -1,22 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package mytips;
 
 import java.sql.SQLException;
 import java.util.*;
-// import java.util.logging.Level;  // KO poisti koska "unused import"
-// import java.util.logging.Logger; // KO poisti koska "unused import"
 import mytips.model.ReadingTip;
 import mytips.model.ReadingTipManager;
 
 
-/**
- *
- * @author vseppane
- */
 public class TextualUI {
 
     private ReadingTipManager tipManager;
@@ -28,7 +18,7 @@ public class TextualUI {
         io.print("\nTervetuloa lukuvinkkisovellukseen!");
     }
 
-    public void start() {
+    public void start() throws SQLException {
         io.print("\nMitä haluat tehdä?\n"
                 + "1 - Hallinnoi lukuvinkkejä\n"
                 + "2 - Selaa lukuvinkkejä\n"
@@ -56,7 +46,7 @@ public class TextualUI {
         }
     }
 
-    private void manageReadingTips() {
+    private void manageReadingTips() throws SQLException {
         io.print("\nLukuvinkkien hallinnointi\n\n"
                 + "Mitä haluat tehdä?\n"
                 + "1 - Lisää lukuvinkki\n"
@@ -90,7 +80,7 @@ public class TextualUI {
         }
     }
 
-    private void searchReadingTips() {
+    private void searchReadingTips() throws SQLException {
         io.print("\nLukuvinkkien selaus\n\n"
                 + "Mitä haluat tehdä?\n"
                 + "1 - Listaa kaikki lukuvinkit\n"
@@ -121,7 +111,7 @@ public class TextualUI {
         }
     }
 
-    private void addReadingTip() {
+    private void addReadingTip() throws SQLException {
         io.print("\nLukuvinkin lisäys\n\n"
                 + "Minkä lukuvinkin haluat lisätä?\n"
                 + "1 - Kirja\n"
@@ -165,7 +155,7 @@ public class TextualUI {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    private void addBook() {
+    private void addBook() throws SQLException {
         io.print("\nLisää uusi kirjalukuvinkki\n"
                 + "Anna ISBN: ");
         String isbn = io.nextLine();
@@ -183,6 +173,7 @@ public class TextualUI {
         String summary = io.nextLine();
 
         //Luodaan uusi kirjalukuvinkki
+
         ReadingTip bookTip = new ReadingTip(
                 author, title, summary, comment, "book"
         );
@@ -204,7 +195,7 @@ public class TextualUI {
         this.start();
     }
 
-    private void addWeb() {
+    private void addWeb() throws SQLException {
         io.print("\nLisää uusi weblukuvinkki\n"
                 + "Anna web-osoite");
         String url = io.nextLine();
@@ -225,6 +216,7 @@ public class TextualUI {
                 "web");
         webTip.setIsbn(null);
         webTip.setUrl(url);
+
         try {
             ReadingTip newTip = tipManager.addReadingTip(webTip);
             io.print("Lukuvinkki tallennettu!");
@@ -239,71 +231,79 @@ public class TextualUI {
         this.start();
     }
 
-    private void additionalInfo(ReadingTip readingTip) {
-
-        int action = 0;
-        ArrayList<String> tags = new ArrayList<>();
-        ArrayList<String> preCourses = new ArrayList<>();
-        ArrayList<String> relatedCourses = new ArrayList<>();
-        while (action != 4) {
-            io.print("\n1 - Lisää tagi\n"
-                    + "2 - Lisää esitietokurssi\n"
-                    + "3 - Lisää aiheeseen liittyvä kurssi\n"
-                    + "4 - Valmis\n"
-                    + "5 - Lopeta\n");
-
-            try {
-                action = io.nextInt();
-                io.nextLine();
-                //Ilman tätä tulee kummallinen bugi seuraavassa metodissa 
-            } catch (java.util.InputMismatchException e) {
-                io.nextLine();
-            }
-
-            switch (action) {
-                case 1:
-                    String tag = this.addString("Lisää tagi: ");
-                    tags.add(tag);
-                    break;
-                case 2:
-                    String preCourse = 
-                            this.addString("Lisää esitietokurssi: ");
-                    preCourses.add(preCourse);
-                    break;
-                case 3:
-                    String relatedCourse = this.addString(
-                            "Lisää aiheeseen liittyvä kurssi: "
-                    );
-                    relatedCourses.add(relatedCourse);
-                    break;
-                case 4:
-                //todo: Päivitetään lukuvinkki
-                case 5:
-                    //Palaa aloitusvalikkoon
-                    this.start();
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
+// Ei ole käytössä vielä
+    
+//    private void additionalInfo(ReadingTip readingTip) {
+//
+//        int action = 0;
+//        ArrayList<String> tags = new ArrayList<>();
+//        ArrayList<String> preCourses = new ArrayList<>();
+//        ArrayList<String> relatedCourses = new ArrayList<>();
+//        while (action != 4) {
+//            io.print("\n1 - Lisää tagi\n"
+//                    + "2 - Lisää esitietokurssi\n"
+//                    + "3 - Lisää aiheeseen liittyvä kurssi\n"
+//                    + "4 - Valmis\n"
+//                    + "5 - Lopeta\n");
+//
+//            try {
+//                action = io.nextInt();
+//                io.nextLine();
+//                //Ilman tätä tulee kummallinen bugi seuraavassa metodissa 
+//            } catch (java.util.InputMismatchException e) {
+//                io.nextLine();
+//            }
+//
+//            switch (action) {
+//                case 1:
+//                    String tag = this.addString("Lisää tagi: ");
+//                    tags.add(tag);
+//                    break;
+//                case 2:
+//                    String preCourse = 
+//                            this.addString("Lisää esitietokurssi: ");
+//                    preCourses.add(preCourse);
+//                    break;
+//                case 3:
+//                    String relatedCourse = this.addString(
+//                            "Lisää aiheeseen liittyvä kurssi: "
+//                    );
+//                    relatedCourses.add(relatedCourse);
+//                    break;
+//                case 4:
+//                //todo: Päivitetään lukuvinkki
+//                case 5:
+//                    //Palaa aloitusvalikkoon
+//                    this.start();
+//                    break;
+//                default:
+//                    break;
+//            }
+//        }
+//    }
 
     private void addPodcast() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    private String addString(String headline) {
-        io.print(headline);
-        return io.nextLine();
-    }
+// Ei ole käytössä vielä    
+    
+//    private String addString(String headline) {
+//        io.print(headline);
+//        return io.nextLine();
+//    }
 
-    private void printReadingTips() {
+    private void printReadingTips() throws SQLException {
         ArrayList<ReadingTip> readingTips = tipManager.getReadingTips();
+        
+        String format = "%5s %20s %40s %10s";
+        io.printTipFormat(format, "ID", "KIRJOITTAJA", "OTSIKKO", "TYYPPI");
+        io.print("");
+        io.print("-----------------------------------------------------------"
+                + "-------------------");
         for (ReadingTip tip : readingTips) {
-            io.print("id:\t\t" + tip.getId());
-            io.print("kirjoittaja:\t" + tip.getAuthor());
-            io.print("otsikko:\t" + tip.getTitle());
-            io.print("tyyppi:\t\t" + tip.getType());
+            io.printTipFormat(format, "" + tip.getId(), tip.getAuthor(),
+                    tip.getTitle(), tip.getType());
             io.print("");
             //io.print(tip.toString());
         }
@@ -311,15 +311,27 @@ public class TextualUI {
         this.searchReadingTips();
     }
 
-    private void showReadingTip() {
+    private void showReadingTip() throws SQLException {
+        int id;
         io.print("\nAnna lukuvinkin id: ");
-        int id = io.nextInt();
+        try {
+            id = io.nextInt();
+            io.nextLine();
+            //Ilman tätä tulee kummallinen bugi seuraavassa metodissa 
+            ReadingTip tip = tipManager.getReadingTip(id);
+            if (tip == null) {
+                io.print("Lukuvinkkiä ei löytynyt antamallasi id:llä");
+            } else {
+                //io.print(tip.toString());
+                io.print("id:\t\t" + tip.getId());
+                io.print("kirjoittaja:\t" + tip.getAuthor());
+                io.print("otsikko:\t" + tip.getTitle());
+                io.print("tyyppi:\t\t" + tip.getType());
+                io.print("");
+            }
 
-        ReadingTip tip = tipManager.getReadingTip(id);
-        if (tip == null) {
-            io.print("Lukuvinkkiä ei löytynyt antamallasi id:llä");
-        } else {
-            io.print(tip.toString());
+        } catch (java.util.InputMismatchException e) {
+            io.nextLine();
         }
 
         this.searchReadingTips();
