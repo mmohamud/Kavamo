@@ -291,11 +291,15 @@ public class TextualUI {
 
     private void printReadingTips() throws SQLException {
         ArrayList<ReadingTip> readingTips = tipManager.getReadingTips();
+        
+        String format = "%5s %20s %40s %10s";
+        io.printTipFormat(format, "ID", "KIRJOITTAJA", "OTSIKKO", "TYYPPI");
+        io.print("");
+        io.print("-----------------------------------------------------------"
+                + "-------------------");
         for (ReadingTip tip : readingTips) {
-            io.print("id:\t\t" + tip.getId());
-            io.print("kirjoittaja:\t" + tip.getAuthor());
-            io.print("otsikko:\t\t" + tip.getTitle());
-            io.print("tyyppi:\t\t" + tip.getType());
+            io.printTipFormat(format, "" + tip.getId(), tip.getAuthor(),
+                    tip.getTitle(), tip.getType());
             io.print("");
         }
 

@@ -109,16 +109,12 @@ public class Stepdefs {
         ui = new TextualUI(manager, io);
         ui.start();
     }
-
+    
     @Then("^the system prints \"([^\"]*)\" and \"([^\"]*)\" and \"([^\"]*)\" and \"([^\"]*)\"$")
     public void the_system_prints_and_and_and(String arg1, String arg2, String arg3, String arg4) throws Throwable {
-        for (String print : io.getPrints()) {
-            System.out.println("p: " + print);
-        }
-        assertTrue(io.getPrints().contains("kirjoittaja:\t" + arg1));
-        assertTrue(io.getPrints().contains("kirjoittaja:\t" + arg2));
-        assertTrue(io.getPrints().contains("kirjoittaja:\t" + arg3));
-        assertTrue(io.getPrints().contains("kirjoittaja:\t" + arg4));
+        assertTrue(io.getPrints().contains(arg1));
+        assertTrue(io.getPrints().contains(arg2));
+        assertTrue(io.getPrints().contains(arg3));
+        assertTrue(io.getPrints().contains(arg4));
     }
-
 }
