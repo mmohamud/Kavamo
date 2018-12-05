@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package mytips;
 
 import java.sql.SQLException;
@@ -12,10 +8,6 @@ import mytips.model.ReadingTip;
 import mytips.model.ReadingTipManager;
 import mytips.model.WebTip;
 
-/**
- *
- * @author vseppane
- */
 public class TextualUI {
 
     private ReadingTipManager tipManager;

@@ -10,7 +10,7 @@ public class Database {
 
     public Database(String databaseAddress) throws ClassNotFoundException {
         this.databaseAddress = databaseAddress;
-        System.out.println("Database syntyy nyt täällä");
+//        System.out.println("Database syntyy nyt täällä");
     }
 
     public static Connection getConnection() throws SQLException {
