@@ -55,6 +55,8 @@ jacocoTestReport {
 
 tasks.withType(Checkstyle) {
     exclude '**/Stepdefs.java'
+    exclude '**/InMemoryBookTipDao.java'
+    exclude '**/InMemoryWebTipDao.java'
 }
 
 run {
