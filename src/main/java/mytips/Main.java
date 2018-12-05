@@ -5,8 +5,7 @@ import java.util.*;   // ei käytössä, checkstyle ei kuitenkaan herjaa
 import mytips.model.ReadingTipManager;
 import mytips.database.Database;
 import java.sql.*;
-import mytips.dao.BookTipDao;
-import mytips.dao.WebTipDao;
+import mytips.dao.ReadingTipDao;
 
 public class Main {
 
@@ -19,12 +18,11 @@ public class Main {
             throws SQLException, ClassNotFoundException {
 
         Database db = new Database("jdbc:sqlite:readingtips.db");
-        BookTipDao bookTipDao = new BookTipDao(db);
-        WebTipDao webTipDao = new WebTipDao(db);
+        ReadingTipDao readingTipDao = new ReadingTipDao(db);
 
         ConsoleIO io = new ConsoleIO();
         ReadingTipManager readingTipManager = 
-                new ReadingTipManager(bookTipDao, webTipDao);
+                new ReadingTipManager(readingTipDao);
         TextualUI ui = new TextualUI(readingTipManager, io);
         ui.start();
 

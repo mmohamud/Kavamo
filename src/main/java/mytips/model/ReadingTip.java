@@ -3,7 +3,7 @@ package mytips.model;
 // import java.util.List;
 import java.util.Date;
 
-public abstract class ReadingTip {
+public class ReadingTip {
     private String title;
     private String author;
     private String summary;
@@ -11,11 +11,13 @@ public abstract class ReadingTip {
     private int id;
     private Date readingDate;
     private String type;
+    private String url;
+    private String isbn;
     //private ArrayList<String> tags;
     //private ArrayList<String> prerequisiteCourses;
     //private ArrayList<String> relatedCourses;
 
-    public ReadingTip(int id, String author, String title, 
+    public ReadingTip(String author, String title, 
             String summary, String comment, String type) {
         this.id = id;
         this.author = author;
@@ -74,8 +76,6 @@ public abstract class ReadingTip {
         return this.readingDate;
     }
 
-    // void setRelatedCourses(List<String> course);
-    // List<String> getRelatedCourses();
 
     public String getType() {
         return type;
@@ -84,6 +84,23 @@ public abstract class ReadingTip {
     public void setType(String type) {
         this.type = type;
     }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+    
     
     
 }

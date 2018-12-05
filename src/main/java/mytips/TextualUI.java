@@ -6,14 +6,13 @@
 package mytips;
 
 import java.sql.SQLException;
-import mytips.model.BookTip;
 import java.util.*;
 // import java.util.logging.Level;  // KO poisti koska "unused import"
 // import java.util.logging.Logger; // KO poisti koska "unused import"
 import mytips.model.ReadingTip;
-//import mytips.model.ReadingTip;
+import mytips.model.ReadingTip;
 import mytips.model.ReadingTipManager;
-import mytips.model.WebTip;
+
 
 /**
  *
@@ -185,11 +184,15 @@ public class TextualUI {
         String summary = io.nextLine();
 
         //Luodaan uusi kirjalukuvinkki
-        BookTip bookTip = new BookTip(
-                1, author, title, summary, comment, isbn, "book"
+        ReadingTip bookTip = new ReadingTip(
+                author, title, summary, comment, "book"
         );
+        
+        bookTip.setIsbn(isbn);
+        bookTip.setUrl(null);
+        
         try {
-            BookTip newBook = tipManager.addBookTip(bookTip);
+            ReadingTip newBook = tipManager.addReadingTip(bookTip);
             io.print("Lukuvinkki tallennettu!");
             io.print("");
             io.print(newBook.toString());
@@ -219,10 +222,12 @@ public class TextualUI {
         io.print("\nLisää kommentti");
         String comment = io.nextLine();
 
-        WebTip webTip = new WebTip(-1, author, title, summary, comment, url,
+        ReadingTip webTip = new ReadingTip(author, title, summary, comment,
                 "web");
+        webTip.setIsbn(null);
+        webTip.setUrl(url);
         try {
-            WebTip newTip = tipManager.addWebTip(webTip);
+            ReadingTip newTip = tipManager.addReadingTip(webTip);
             io.print("Lukuvinkki tallennettu!");
             io.print("");
             io.print(newTip.toString());
@@ -301,6 +306,7 @@ public class TextualUI {
             io.print("otsikko:\t" + tip.getTitle());
             io.print("tyyppi:\t\t" + tip.getType());
             io.print("");
+            //io.print(tip.toString());
         }
 
         this.searchReadingTips();

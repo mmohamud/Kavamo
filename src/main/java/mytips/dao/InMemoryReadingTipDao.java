@@ -8,16 +8,15 @@ package mytips.dao;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-//import mytips.model.BookTip;
-import mytips.model.WebTip;
+import mytips.model.ReadingTip;
 
 /**
  *
  * @author vseppane
  */
-public class InMemoryWebTipDao implements Dao {
+public class InMemoryReadingTipDao implements Dao {
 
-    private ArrayList<WebTip> webTips = new ArrayList<>();
+    private ArrayList<ReadingTip> readingTips = new ArrayList<>();
 
     @Override
     public Object findOne(Object key) throws SQLException {
@@ -33,9 +32,9 @@ public class InMemoryWebTipDao implements Dao {
 
     @Override
     public Object saveOrUpdate(Object object) throws SQLException {
-        WebTip webTip = (WebTip) object;
-        webTips.add(webTip);
-        return webTip;
+        ReadingTip readingTip = (ReadingTip) object;
+        readingTips.add(readingTip);
+        return readingTip;
     }
 
     @Override
@@ -43,4 +42,5 @@ public class InMemoryWebTipDao implements Dao {
         //To change body of generated methods, choose Tools | Templates.
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
 }

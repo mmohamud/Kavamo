@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import mytips.StubIO;
 import mytips.TextualUI;
-import mytips.dao.InMemoryBookTipDao;
+import mytips.dao.InMemoryReadingTipDao;
 import mytips.dao.InMemoryWebTipDao;
 import static org.junit.Assert.*;
 
@@ -19,7 +19,7 @@ public class Stepdefs {
     private StubIO io;
     private TextualUI ui;
     private ReadingTipManager manager;
-    private InMemoryBookTipDao bookTipDao = new InMemoryBookTipDao();
+    private InMemoryReadingTipDao bookTipDao = new InMemoryReadingTipDao();
     private InMemoryWebTipDao webTipDao = new InMemoryWebTipDao();
 
     @Given("^commands hallinnoi lukuvinkkejä, lisää lukuvinkki ja kirja are selected$")

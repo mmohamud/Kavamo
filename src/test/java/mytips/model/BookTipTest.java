@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import mytips.ConsoleIO;
-import mytips.dao.BookTipDao;
+import mytips.dao.ReadingTipDao;
 import mytips.dao.WebTipDao;
 import mytips.database.Database;
 import static org.junit.Assert.assertEquals;
@@ -24,7 +24,7 @@ import org.junit.Before;
 public class BookTipTest {
     private Database db;
     private ConsoleIO io;
-    private BookTipDao bookTipDao;
+    private ReadingTipDao bookTipDao;
     private WebTipDao webTipDao;
 
    @Before
@@ -35,7 +35,7 @@ public class BookTipTest {
             Logger.getLogger(BookTipTest.class.getName()).log(Level.SEVERE, 
                     null, ex);
         }
-        bookTipDao = new BookTipDao(db);
+        bookTipDao = new ReadingTipDao(db);
         webTipDao = new WebTipDao(db);
 
 

@@ -15,65 +15,48 @@ import mytips.dao.Dao;
 public class ReadingTipManager {
 
     private ArrayList<ReadingTip> readingTips;
-    private Dao bookTipDao;
-    private Dao webTipDao;
+    private Dao readingTipDao;
 
-    public ReadingTipManager(Dao bookTipDao,
-            Dao webTipDao) {
+    public ReadingTipManager(Dao readingTipDao) {
 
-        this.bookTipDao = bookTipDao;
-        this.webTipDao = webTipDao;
+        this.readingTipDao = readingTipDao;
         readingTips = new ArrayList<>();
     }
 
     public ArrayList<ReadingTip> getReadingTips() {
         try {
-            ArrayList<ReadingTip> bookTips = 
-                    (ArrayList<ReadingTip>) bookTipDao.findAll();
-            ArrayList<ReadingTip> webTips = 
-                    (ArrayList<ReadingTip>) webTipDao.findAll();
-            for (ReadingTip readingTip : bookTips) {
+            ArrayList<ReadingTip> tips = 
+                    (ArrayList<ReadingTip>) readingTipDao.findAll();
+
+            for (ReadingTip readingTip : tips) {
                 readingTips.add(readingTip);
             }
-            for (ReadingTip webTip : webTips) {
-                readingTips.add(webTip);
-            }
-
+            
         } catch (SQLException ex) {
             Logger.getLogger(ReadingTipManager.class.getName())
                     .log(Level.SEVERE, null, ex);
         }
+        
         Collections.sort(readingTips, (o1, o2) -> o1.getTitle()
                 .compareTo(o2.getTitle()));
         return readingTips;
     }
 
-    public BookTip addBookTip(BookTip readingTip) throws SQLException {
-        BookTip newBook = (BookTip) bookTipDao.saveOrUpdate(readingTip);
-
-        return newBook;
-    }
-
-    public WebTip addWebTip(WebTip webTip) throws SQLException {
-        WebTip newTip = (WebTip) webTipDao.saveOrUpdate(webTip);
-
+    public ReadingTip addReadingTip(ReadingTip readingTip) throws SQLException {
+        ReadingTip newTip = (ReadingTip) readingTipDao.saveOrUpdate(readingTip);
         return newTip;
     }
 
+
     public ReadingTip getReadingTip(int id) {
-        ReadingTip foundBook = null;
-        ReadingTip foundWeb = null;
+        ReadingTip foundTip = null;
         try {
-            foundBook = (ReadingTip) bookTipDao.findOne(id);
-            foundWeb = (ReadingTip) bookTipDao.findOne(id);
+            foundTip = (ReadingTip) readingTipDao.findOne(id);
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-        if (foundBook != null) {
-            return foundBook;
-        }
-        if (foundWeb != null) {
-            return foundWeb;
+        if (foundTip != null) {
+            return foundTip;
         }
         return null;
     }
