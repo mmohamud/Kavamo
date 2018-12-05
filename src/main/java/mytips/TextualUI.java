@@ -10,7 +10,6 @@ import java.util.*;
 // import java.util.logging.Level;  // KO poisti koska "unused import"
 // import java.util.logging.Logger; // KO poisti koska "unused import"
 import mytips.model.ReadingTip;
-import mytips.model.ReadingTip;
 import mytips.model.ReadingTipManager;
 
 

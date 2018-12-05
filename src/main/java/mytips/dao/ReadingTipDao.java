@@ -96,7 +96,8 @@ public class ReadingTipDao implements Dao {
     public List findAll() throws SQLException {
         List readingTips = new ArrayList<>();
         Connection conn = db.getConnection();
-        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM ReadingTip");
+        PreparedStatement stmt = conn.prepareStatement(
+                "SELECT * FROM ReadingTip");
         ResultSet rs = stmt.executeQuery();
 
         while (rs.next()) {
