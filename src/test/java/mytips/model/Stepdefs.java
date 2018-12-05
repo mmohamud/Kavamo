@@ -41,10 +41,8 @@ public class Stepdefs {
         inputStrings.add(summary);
     }
 
-    @When("^commands valmis and lopeta are selected$")
-    public void commands_valmis_and_lopeta_are_selected() throws Throwable {
-        inputInts.add(4);
-        inputStrings.add("");
+    @When("^command lopeta is selected$")
+    public void command_lopeta_is_selected() throws Throwable {
         inputInts.add(3);
 
         io = new StubIO(inputStrings, inputInts);
