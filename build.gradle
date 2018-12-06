@@ -3,8 +3,12 @@
  * available at https://docs.gradle.org/3.4.1/userguide/tutorial_java_projects.html
  */
 
+plugins {
+  id 'com.github.johnrengelman.shadow' version '2.0.1'
+}
 apply plugin: 'java'
 apply plugin: 'jacoco'
+
 
 repositories {
     mavenLocal()
@@ -26,6 +30,8 @@ jar {
 	// attributes 'Main-Class' : 'mytips.controller.ManageBookTip'
     }
 }
+
+
 
 dependencies {
 // This dependency is found on compile classpath of this component and consumers.

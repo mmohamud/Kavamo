@@ -103,7 +103,7 @@ public class ReadingTip {
     @Override
     public String toString() {
         return "Otsikko: " + title + "\nKirjailija: " + author
-                + "\ntyyppi: " + type + "\nid: " + id;
+                + "\ntyyppi: " + type;
     }
 
 }

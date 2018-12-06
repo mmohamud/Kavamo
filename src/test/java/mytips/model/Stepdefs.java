@@ -115,4 +115,32 @@ public class Stepdefs {
         assertTrue(io.getPrints().contains(arg3));
         assertTrue(io.getPrints().contains(arg4));
     }
+
+    @Given("^commands selaa lukuvinkkejä and näytä yhden lukuvinkin tarkat tiedot are selected$")
+    public void commands_selaa_lukuvinkkejä_and_näytä_yhden_lukuvinkin_tarkat_tiedot_are_selected() throws Throwable {
+        inputInts.add(2);
+        inputInts.add(2);
+    }
+
+    @When("^valid id \"([^\"]*)\" is given and command palaa alkuun is selected$")
+    public void valid_id_is_given_and_command_palaa_alkuun_is_selected(String id) throws Throwable {
+        inputInts.add(Integer.parseInt(id));
+        inputStrings.add("");
+        inputInts.add(3);
+    }
+
+    @Then("^all the details from the readingtip are printed$")
+    public void all_the_details_from_the_readingtip_are_printed() throws Throwable {
+        assertTrue(io.getPrints().contains("Kirjoittaja:  Robert Martin "));
+        assertTrue(io.getPrints().contains("Otsikko:  Clean Code: A Handbook of Agile Software Craftsmanship "));
+        assertTrue(io.getPrints().contains("Tyyppi:  kirja "));
+        assertTrue(io.getPrints().contains("ISBN:  978-0-13-235088-4 "));
+        assertTrue(io.getPrints().contains("Tiivistelmä:  Even bad code can function. But if code  ")); 
+        assertTrue(io.getPrints().contains(" isn't clean, it can bring a development  ")); 
+        assertTrue(io.getPrints().contains(" organization to its knees. ")); 
+        assertTrue(io.getPrints().contains("Kommentti:  kiinnostava kirja hyvästä koodista ")); 
+        assertTrue(io.getPrints().contains("Status:  Ei luettu ")); 
+    }
+
+    
 }

@@ -19,3 +19,8 @@ Definition of done:
     - Nimeäminen englanniksi kuvaavilla nimillä
     - CamelCase-nimeäminen
     - CheckStyle
+
+## Jar:n luonti
+jar luodaan komennolla:
+
+    gradle shadowJar

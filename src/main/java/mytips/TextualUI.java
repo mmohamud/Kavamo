@@ -327,6 +327,7 @@ public class TextualUI {
 
         } catch (java.util.InputMismatchException e) {
             io.nextLine();
+            io.print("Id:n tulee olla kokonaisluku");
         }
 
         this.searchReadingTips();
@@ -345,8 +346,6 @@ public class TextualUI {
     }
 
     private void printTipDetails(ReadingTip tip) {
-
-
         String format = "%-10s \t\t %-15s";
 
         io.printFormat(format, "Id: ", "" + tip.getId());
