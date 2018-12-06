@@ -331,7 +331,7 @@ public class TextualUI {
     }
 
     private void printTipDetails(ReadingTip tip) {
-        String format = "%8s %20s";
+        String format = "%-8s \t\t %-15s";
         io.printFormat(format, "Id: ", "" + tip.getId());
         io.print("");
         if (!tip.getAuthor().isEmpty()) {
