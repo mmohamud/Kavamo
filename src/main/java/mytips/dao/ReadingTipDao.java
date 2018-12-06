@@ -101,6 +101,7 @@ public class ReadingTipDao implements Dao {
         ResultSet rs = stmt.executeQuery();
 
         while (rs.next()) {
+            int id = rs.getInt("id");
             String author = rs.getString("author");
             String title = rs.getString("title");
             String summary = rs.getString("summary");
@@ -110,7 +111,8 @@ public class ReadingTipDao implements Dao {
             String url = rs.getString("url");
             ReadingTip returnReadingTip
                 = new ReadingTip(author, title, summary, comment, type);
-            returnReadingTip.setUrl(url);           
+            returnReadingTip.setUrl(url);     
+            returnReadingTip.setId(id);
             readingTips.add(returnReadingTip);
         }
         return readingTips;
