@@ -8,3 +8,4 @@ bin/
 build/
 .vscode
 ?cache=shared
+readingtips.db

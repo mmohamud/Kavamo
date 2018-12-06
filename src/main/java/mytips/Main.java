@@ -18,6 +18,21 @@ public class Main {
             throws SQLException, ClassNotFoundException {
 
         Database db = new Database("jdbc:sqlite:readingtips.db");
+        Connection conn = db.getConnection();
+        String sql = "CREATE TABLE IF NOT EXISTS ReadingTip ("
+            + "id integer PRIMARY KEY,"
+            + "author varchar(40),"
+            + "title varchar(40),"
+            + "summary varchar(200),"
+            + "comment varchar(100),"
+            + "isbn varchar(20),"
+            + "url varchar(100),"
+            + "type varchar(20)"
+            + ");";
+        Statement statement = conn.createStatement();
+        statement.execute(sql);
+        statement.close();
+        conn.close();
         ReadingTipDao readingTipDao = new ReadingTipDao(db);
 
         ConsoleIO io = new ConsoleIO();
