@@ -46,6 +46,8 @@ public class ReadingTipTest {
             statement.execute(sql);
             String sql2 = "DELETE FROM ReadingTip";
             statement.execute(sql2);
+            statement.close();
+            c.close();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ReadingTipTest.class.getName()).log(Level.SEVERE, 
                     null, ex);
@@ -56,7 +58,7 @@ public class ReadingTipTest {
         readingTipDao = new ReadingTipDao(db);
     }
 
-   /*@Test
+   @Test
     public void webTipinTalletus() throws SQLException {
         ReadingTip webTip = 
                 new ReadingTip("Author", "Title", "Summary", 
@@ -78,7 +80,7 @@ public class ReadingTipTest {
                 (ReadingTip) readingTipDao.saveOrUpdate(bookTip);
     
         assertEquals(bookTip.getAuthor(), luotu.getAuthor());
-    }*/
+    }
 
     @Test
     public void bookTipinSetISBN() throws SQLException {
