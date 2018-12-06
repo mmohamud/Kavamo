@@ -36,7 +36,7 @@ public class ConsoleIO implements IO {
     @Override
     public void printFormat(
             String format, String... strings) {  
-        System.out.format(format, strings);
+        System.out.format(format, (Object[]) strings);
     }
     
 }

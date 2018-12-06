@@ -4,6 +4,7 @@ package mytips.model;
 import java.util.Date;
 
 public class ReadingTip {
+
     private String title = "";
     private String author = "";
     private String summary = "";
@@ -17,7 +18,7 @@ public class ReadingTip {
     //private ArrayList<String> prerequisiteCourses;
     //private ArrayList<String> relatedCourses;
 
-    public ReadingTip(String author, String title, 
+    public ReadingTip(String author, String title,
             String summary, String comment, String type) {
         this.id = id;
         this.author = author;
@@ -42,7 +43,7 @@ public class ReadingTip {
     public String getAuthor() {
         return author;
     }
-    
+
     public void setTitle(String title) {
         this.title = title;
     }
@@ -67,7 +68,6 @@ public class ReadingTip {
         return comment;
     }
 
-
     public void setReadingDate(Date date) {
         this.readingDate = date;
     }
@@ -75,7 +75,6 @@ public class ReadingTip {
     public Date getReadingDate() {
         return this.readingDate;
     }
-
 
     public String getType() {
         return type;
@@ -103,10 +102,8 @@ public class ReadingTip {
 
     @Override
     public String toString() {
-        return "Otsikko: " + title + "\nKirjailija: " + author 
+        return "Otsikko: " + title + "\nKirjailija: " + author
                 + "\ntyyppi: " + type + "\nid: " + id;
     }
-    
-    
-    
+
 }

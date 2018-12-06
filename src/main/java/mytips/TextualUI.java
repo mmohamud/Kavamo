@@ -2,6 +2,8 @@ package mytips;
 
 import java.sql.SQLException;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import mytips.model.ReadingTip;
 import mytips.model.ReadingTipManager;
 
@@ -172,7 +174,7 @@ public class TextualUI {
 
         //Luodaan uusi kirjalukuvinkki
         ReadingTip bookTip = new ReadingTip(
-                author, title, summary, comment, "kirja"
+                author, title, summary, comment, "Kirja"
         );
 
         bookTip.setIsbn(isbn);
@@ -330,8 +332,21 @@ public class TextualUI {
         this.searchReadingTips();
     }
 
+    public static List<String> splitString(String msg, int lineSize) {
+        List<String> res = new ArrayList<>();
+
+        Pattern p = Pattern.compile("\\b.{1," + (lineSize - 1) + "}\\b\\W?");
+        Matcher m = p.matcher(msg);
+
+        while (m.find()) {   // Debug
+            res.add(m.group());
+        }
+        return res;
+    }
+
     private void printTipDetails(ReadingTip tip) {
-        String format = "%8s %20s";
+
+        String format = "%-10s \t\t %-15s";
         io.printFormat(format, "Id: ", "" + tip.getId());
         io.print("");
         if (!tip.getAuthor().isEmpty()) {
@@ -350,12 +365,20 @@ public class TextualUI {
             io.printFormat(format, "ISBN: ", tip.getIsbn());
             io.print("");
         }
-        if (tip.getUrl()!=null) {
+        if (tip.getUrl() != null) {
             io.printFormat(format, "Url: ", tip.getUrl());
             io.print("");
         }
         if (!tip.getSummary().isEmpty()) {
-            io.printFormat(format, "Tiivistelmä: ", tip.getSummary());
+            String summary = tip.getSummary();
+            List<String> res = splitString(summary, 40);
+            io.printFormat(format, "Tiivistelmä: ", res.get(0));
+            io.print("");
+            for (int i = 1; i < res.size(); i++) {
+                io.printFormat(format, "", res.get(i));
+                io.print("");
+            }
+
             io.print("");
         }
         if (!tip.getComment().isEmpty()) {
@@ -363,10 +386,10 @@ public class TextualUI {
             io.print("");
         }
         if (tip.getReadingDate() != null) {
-            io.printFormat(format, "Luettu: ", tip.getAuthor());
+            io.printFormat(format, "Status : ", tip.getAuthor());
             io.print("");
         } else {
-            io.printFormat(format, "Ei luettu", "");
+            io.printFormat(format, "Status: ", "Ei luettu");
             io.print("");
         }
     }
