@@ -189,6 +189,7 @@ public class ReadingTipDao implements Dao {
   
         returnReadingTip.setIsbn(isbn);
         returnReadingTip.setUrl(url);
+        returnReadingTip.setId(id);
         stmt.close();
         rs.close();
         conn.close();

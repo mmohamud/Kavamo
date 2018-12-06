@@ -346,11 +346,11 @@ public class TextualUI {
             io.printFormat(format, "Tyyppi: ", tip.getType());
             io.print("");
         }
-        if (!tip.getIsbn().isEmpty()) {
+        if (tip.getIsbn() != null) {
             io.printFormat(format, "ISBN: ", tip.getIsbn());
             io.print("");
         }
-        if (!tip.getUrl().isEmpty()) {
+        if (tip.getUrl()!=null) {
             io.printFormat(format, "Url: ", tip.getUrl());
             io.print("");
         }

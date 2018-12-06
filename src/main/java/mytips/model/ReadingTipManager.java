@@ -44,7 +44,7 @@ public class ReadingTipManager {
     public ReadingTip getReadingTip(int id) {
         ReadingTip foundTip = null;
         try {
-            foundTip = (ReadingTip) readingTipDao.findOne(id);
+            foundTip = (ReadingTip) readingTipDao.findOneById(id);
         } catch (SQLException ex) {
             System.out.println(ex);
         }
@@ -53,5 +53,4 @@ public class ReadingTipManager {
         }
         return null;
     }
-
 }
