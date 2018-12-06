@@ -22,14 +22,14 @@ public class InMemoryReadingTipDao implements Dao {
         readingTips.add(new ReadingTip(
                 "Robert Martin", "Clean Code: A Handbook of Agile "
                 + "Software Craftsmanship", "", "", "kirja"));
-        readingTips.add(new ReadingTip("Margaret Atwood", "Orjattaresi", "",
+        readingTips.add(new ReadingTip("Margaret Atwood", "Orjattaresi", 
                 "Margaret Atwoodin Orjattaresi on vavahduttava dystopia "
                 + "lähitulevaisuuden Yhdysvalloista, jossa "
                 + "vanhatestamentilliset "
                 + "fundamentalistit ovat ottaneet vallan.Yli 30 vuotta "
                 + "ensijulkaisunsa jälkeen romaanin teemat vapaudesta ja "
                 + "naisten oikeuksista ovat nyt ajankohtaisempia kuin koskaan.",
-                "kirja"));
+                "", "kirja"));
         readingTips.add(new ReadingTip("Nicola Apicella",
                 "Consistency models", "", "", "blogpost"));
         readingTips.add(new ReadingTip("", "Merge sort algorithm", "",

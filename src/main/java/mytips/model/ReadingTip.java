@@ -4,15 +4,15 @@ package mytips.model;
 import java.util.Date;
 
 public class ReadingTip {
-    private String title;
-    private String author;
-    private String summary;
-    private String comment;
+    private String title = "";
+    private String author = "";
+    private String summary = "";
+    private String comment = "";
     private int id;
     private Date readingDate;
-    private String type;
-    private String url;
-    private String isbn;
+    private String type = "";
+    private String url = "";
+    private String isbn = "";
     //private ArrayList<String> tags;
     //private ArrayList<String> prerequisiteCourses;
     //private ArrayList<String> relatedCourses;

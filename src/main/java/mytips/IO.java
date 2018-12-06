@@ -13,6 +13,5 @@ public interface IO {
     int nextInt();
     String nextLine();
     void print(String s);
-    void printTipFormat(String s, String id, String author, String title,
-            String type);
+    void printFormat(String format, String... strings);
 }

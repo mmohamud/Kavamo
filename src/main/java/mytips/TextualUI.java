@@ -1,11 +1,9 @@
-
 package mytips;
 
 import java.sql.SQLException;
 import java.util.*;
 import mytips.model.ReadingTip;
 import mytips.model.ReadingTipManager;
-
 
 public class TextualUI {
 
@@ -173,14 +171,13 @@ public class TextualUI {
         String summary = io.nextLine();
 
         //Luodaan uusi kirjalukuvinkki
-
         ReadingTip bookTip = new ReadingTip(
                 author, title, summary, comment, "kirja"
         );
-        
+
         bookTip.setIsbn(isbn);
         bookTip.setUrl(null);
-        
+
         this.saveReadingTip(bookTip);
 
         //Palataan alkuun
@@ -206,7 +203,7 @@ public class TextualUI {
 
         io.print("\nAnna lukuvinkin tyyppi (esim. blogi)");
         String type = io.nextLine();
-        
+
         ReadingTip webTip = new ReadingTip(author, title, summary, comment,
                 type);
         webTip.setIsbn(null);
@@ -230,9 +227,8 @@ public class TextualUI {
             io.print("Lukuvinkin talletus ei onnistunut");
         }
     }
-    
+
 // Ei ole käytössä vielä
-    
 //    private void additionalInfo(ReadingTip readingTip) {
 //
 //        int action = 0;
@@ -281,28 +277,25 @@ public class TextualUI {
 //            }
 //        }
 //    }
-
     private void addPodcast() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
 // Ei ole käytössä vielä    
-    
 //    private String addString(String headline) {
 //        io.print(headline);
 //        return io.nextLine();
 //    }
-
     private void printReadingTips() throws SQLException {
         ArrayList<ReadingTip> readingTips = tipManager.getReadingTips();
-        
+
         String format = "%5s %20s %40s %10s";
-        io.printTipFormat(format, "ID", "KIRJOITTAJA", "OTSIKKO", "TYYPPI");
+        io.printFormat(format, "ID", "KIRJOITTAJA", "OTSIKKO", "TYYPPI");
         io.print("");
         io.print("-----------------------------------------------------------"
                 + "-------------------");
         for (ReadingTip tip : readingTips) {
-            io.printTipFormat(format, "" + tip.getId(), tip.getAuthor(),
+            io.printFormat(format, "" + tip.getId(), tip.getAuthor(),
                     tip.getTitle(), tip.getType());
             io.print("");
             //io.print(tip.toString());
@@ -316,24 +309,65 @@ public class TextualUI {
         io.print("\nAnna lukuvinkin id: ");
         try {
             id = io.nextInt();
-            io.nextLine();
+
             //Ilman tätä tulee kummallinen bugi seuraavassa metodissa 
+            io.nextLine();
+
             ReadingTip tip = tipManager.getReadingTip(id);
+
             if (tip == null) {
                 io.print("Lukuvinkkiä ei löytynyt antamallasi id:llä");
-            } else {
-                //io.print(tip.toString());
-                io.print("id:\t\t" + tip.getId());
-                io.print("kirjoittaja:\t" + tip.getAuthor());
-                io.print("otsikko:\t" + tip.getTitle());
-                io.print("tyyppi:\t\t" + tip.getType());
-                io.print("");
+                this.showReadingTip();
             }
+
+            this.printTipDetails(tip);
+            io.print("");
 
         } catch (java.util.InputMismatchException e) {
             io.nextLine();
         }
 
         this.searchReadingTips();
+    }
+
+    private void printTipDetails(ReadingTip tip) {
+        String format = "%8s %20s";
+        io.printFormat(format, "Id: ", "" + tip.getId());
+        io.print("");
+        if (!tip.getAuthor().isEmpty()) {
+            io.printFormat(format, "Kirjoittaja: ", tip.getAuthor());
+            io.print("");
+        }
+        if (!tip.getTitle().isEmpty()) {
+            io.printFormat(format, "Otsikko: ", tip.getTitle());
+            io.print("");
+        }
+        if (!tip.getType().isEmpty()) {
+            io.printFormat(format, "Tyyppi: ", tip.getType());
+            io.print("");
+        }
+        if (!tip.getIsbn().isEmpty()) {
+            io.printFormat(format, "ISBN: ", tip.getIsbn());
+            io.print("");
+        }
+        if (!tip.getUrl().isEmpty()) {
+            io.printFormat(format, "Url: ", tip.getUrl());
+            io.print("");
+        }
+        if (!tip.getSummary().isEmpty()) {
+            io.printFormat(format, "Tiivistelmä: ", tip.getSummary());
+            io.print("");
+        }
+        if (!tip.getComment().isEmpty()) {
+            io.printFormat(format, "Kommentti: ", tip.getComment());
+            io.print("");
+        }
+        if (tip.getReadingDate() != null) {
+            io.printFormat(format, "Luettu: ", tip.getAuthor());
+            io.print("");
+        } else {
+            io.printFormat(format, "Ei luettu", "");
+            io.print("");
+        }
     }
 }

@@ -12,7 +12,7 @@ import java.util.*;
  * @author vseppane
  */
 public class StubIO implements IO {
-    
+
     private List<String> stringInputs;
     private List<Integer> intInputs;
     private int nextInt;
@@ -24,7 +24,7 @@ public class StubIO implements IO {
         this.intInputs = intInputs;
         this.outputs = new ArrayList<>();
     }
-    
+
     @Override
     public int nextInt() {
         return intInputs.get(nextInt++);
@@ -39,14 +39,18 @@ public class StubIO implements IO {
     public void print(String s) {
         outputs.add(s);
     }
-    
+
     public ArrayList<String> getPrints() {
         return outputs;
     }
 
     @Override
-    public void printTipFormat(
-            String s, String id, String author, String title, String type) {
-        outputs.add(author + " " + title + " " + type);
+    public void printFormat(
+            String format, String... strings) {
+        String output = "";
+        for (String s : strings) {
+            output += s + " ";
+        }
+        outputs.add(output);
     }
 }
