@@ -289,7 +289,7 @@ public class TextualUI {
     private void printReadingTips() throws SQLException {
         ArrayList<ReadingTip> readingTips = tipManager.getReadingTips();
 
-        String format = "%5s %20s %40s %10s";
+        String format = "%-5s \t %-20s \t %-50s \t %-10s";
         io.printFormat(format, "ID", "KIRJOITTAJA", "OTSIKKO", "TYYPPI");
         io.print("");
         io.print("-----------------------------------------------------------"
@@ -331,7 +331,7 @@ public class TextualUI {
     }
 
     private void printTipDetails(ReadingTip tip) {
-        String format = "%-8s \t\t %-15s";
+        String format = "%-8s \t\t %-15s ";
         io.printFormat(format, "Id: ", "" + tip.getId());
         io.print("");
         if (!tip.getAuthor().isEmpty()) {
