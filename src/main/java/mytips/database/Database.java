@@ -13,10 +13,14 @@ public class Database {
 //        System.out.println("Database syntyy nyt täällä");
     }
 
-    public static Connection getConnection() throws SQLException {
+    public Connection getConnection() throws SQLException {
         String dbUrl = System.getenv("JDBC_DATABASE_URL");
         if (dbUrl != null && dbUrl.length() > 0) {
             return DriverManager.getConnection(dbUrl);
+        }
+
+        if (databaseAddress != null) {
+            return DriverManager.getConnection(databaseAddress);
         }
 
         return DriverManager.getConnection("jdbc:sqlite:readingtips.db");

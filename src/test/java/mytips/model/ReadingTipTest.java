@@ -6,6 +6,7 @@
 package mytips.model;
 
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import mytips.ConsoleIO;
@@ -13,31 +14,46 @@ import mytips.dao.ReadingTipDao;
 import mytips.database.Database;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
-import org.junit.Before;
-
+import org.junit.BeforeClass;
+import java.sql.Connection;
 
 /**
  *
  * @author Aino
  */
 public class ReadingTipTest {
-    private Database db;
+    private static Database db;
     private ConsoleIO io;
-    private ReadingTipDao readingTipDao;
+    private static ReadingTipDao readingTipDao;
 
 
-   @Before
-    public void setUp() {
+   @BeforeClass
+    public static void setUp() {
         try {
-            db = new Database("jdbc:sqlite:readingtipsTest.db");
+            db = new Database("jdbc:sqlite:?cache=shared");
+            Connection c = db.getConnection();
+            String sql = "CREATE TABLE IF NOT EXISTS ReadingTip ("
+                + "id integer PRIMARY KEY,"
+                + "author varchar(40),"
+                + "title varchar(40),"
+                + "summary varchar(200),"
+                + "comment varchar(100),"
+                + "isbn varchar(20),"
+                + "url varchar(100),"
+                + "type varchar(20)"
+                + ");";
+            Statement statement = c.createStatement();
+            statement.execute(sql);
+            String sql2 = "DELETE FROM ReadingTip";
+            statement.execute(sql2);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ReadingTipTest.class.getName()).log(Level.SEVERE, 
                     null, ex);
+        } catch (SQLException e) {
+            System.out.println("Tietokannan alustus epäonnistui");
+            System.out.println(e.getMessage());
         }
         readingTipDao = new ReadingTipDao(db);
-
-
-
     }
 
    /*@Test
@@ -46,9 +62,9 @@ public class ReadingTipTest {
                 new ReadingTip("Author", "Title", "Summary", 
                         "Comment", "web");
         webTip.setUrl("url-osoite");
+        
         ReadingTip luotu = 
-                (ReadingTip) readingTipDao.saveOrUpdate(webTip);
-    
+            (ReadingTip) readingTipDao.saveOrUpdate(webTip);
         assertEquals(webTip.getAuthor(), luotu.getAuthor());
     }   
 
@@ -66,7 +82,7 @@ public class ReadingTipTest {
 
     @Test
     public void bookTipinSetISBN() throws SQLException {
-// jos tuota isbn-setteriä ei tarvita, myös testin voi poistaa
+        // jos tuota isbn-setteriä ei tarvita, myös testin voi poistaa
         ReadingTip bookTip = 
                 new ReadingTip("Author", "Title", "Summary", 
                         "Comment", "book");
