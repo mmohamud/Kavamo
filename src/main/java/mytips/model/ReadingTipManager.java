@@ -20,18 +20,11 @@ public class ReadingTipManager {
     public ReadingTipManager(Dao readingTipDao) {
 
         this.readingTipDao = readingTipDao;
-        readingTips = new ArrayList<>();
     }
 
     public ArrayList<ReadingTip> getReadingTips() {
         try {
-            ArrayList<ReadingTip> tips = 
-                    (ArrayList<ReadingTip>) readingTipDao.findAll();
-
-            for (ReadingTip readingTip : tips) {
-                readingTips.add(readingTip);
-            }
-            
+            readingTips = (ArrayList<ReadingTip>) readingTipDao.findAll();
         } catch (SQLException ex) {
             Logger.getLogger(ReadingTipManager.class.getName())
                     .log(Level.SEVERE, null, ex);

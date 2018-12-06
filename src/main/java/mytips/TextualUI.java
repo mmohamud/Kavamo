@@ -175,21 +175,13 @@ public class TextualUI {
         //Luodaan uusi kirjalukuvinkki
 
         ReadingTip bookTip = new ReadingTip(
-                author, title, summary, comment, "book"
+                author, title, summary, comment, "kirja"
         );
         
         bookTip.setIsbn(isbn);
         bookTip.setUrl(null);
         
-        try {
-            ReadingTip newBook = tipManager.addReadingTip(bookTip);
-            io.print("Lukuvinkki tallennettu!");
-            io.print("");
-            io.print(newBook.toString());
-        } catch (SQLException ex) {
-            System.out.println("ex: " + ex);
-            io.print("Lukuvinkin talletus ei onnistunut");
-        }
+        this.saveReadingTip(bookTip);
 
         //Palataan alkuun
         this.start();
@@ -212,13 +204,24 @@ public class TextualUI {
         io.print("\nLisää kommentti");
         String comment = io.nextLine();
 
+        io.print("\nAnna lukuvinkin tyyppi (esim. blogi)");
+        String type = io.nextLine();
+        
         ReadingTip webTip = new ReadingTip(author, title, summary, comment,
-                "web");
+                type);
         webTip.setIsbn(null);
         webTip.setUrl(url);
 
+        this.saveReadingTip(webTip);
+
+        //Palataan alkuun
+        this.start();
+    }
+
+    private void saveReadingTip(ReadingTip tip) {
         try {
-            ReadingTip newTip = tipManager.addReadingTip(webTip);
+            ReadingTip newTip = tipManager.addReadingTip(tip);
+            io.print("");
             io.print("Lukuvinkki tallennettu!");
             io.print("");
             io.print(newTip.toString());
@@ -226,11 +229,8 @@ public class TextualUI {
             System.out.println("ex: " + ex);
             io.print("Lukuvinkin talletus ei onnistunut");
         }
-
-        //Palataan alkuun
-        this.start();
     }
-
+    
 // Ei ole käytössä vielä
     
 //    private void additionalInfo(ReadingTip readingTip) {
