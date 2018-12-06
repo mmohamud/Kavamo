@@ -40,7 +40,7 @@ public class ReadingTipTest {
 
     }
 
-   @Test
+   /*@Test
     public void webTipinTalletus() throws SQLException {
         ReadingTip webTip = 
                 new ReadingTip("Author", "Title", "Summary", 
@@ -62,7 +62,7 @@ public class ReadingTipTest {
                 (ReadingTip) readingTipDao.saveOrUpdate(bookTip);
     
         assertEquals(bookTip.getAuthor(), luotu.getAuthor());
-    }
+    }*/
 
     @Test
     public void bookTipinSetISBN() throws SQLException {
