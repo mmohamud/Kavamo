@@ -125,7 +125,9 @@ public class TextualUI {
     }
 
     private void modifyReadingTip() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        io.print("\nAnna muokattavan lukuvinkin id: ");
+        int id = io.nextInt();
+
     }
 
     private void removeReadingTip() {
@@ -284,16 +286,21 @@ public class TextualUI {
     }
 
     private void showReadingTip() throws SQLException {
-        io.print("\nAnna lukuvinkin id tai palaa alkuun valitsemalla q");
+        io.print("\nAnna lukuvinkin id tai palaa edelliseen "
+                + "valikkoon antamalla joku kirjain");
         int id = io.nextInt();
 
+        //Jos syöte ei ole kokonaisluku, io palauttaa -1
+        if (id == -1) {
+            this.searchReadingTips();
+            return;
+        }
         ReadingTip tip = tipManager.getReadingTip(id);
 
         if (tip == null) {
             io.print("Lukuvinkkiä ei löytynyt antamallasi id:llä");
             this.showReadingTip();
-        } else if (Integer.toString(id) == "q") {
-            this.start();
+            return;
         }
 
         this.printTipDetails(tip);
