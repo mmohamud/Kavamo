@@ -6,6 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import mytips.model.ReadingTip;
 import mytips.model.ReadingTipManager;
+import mytips.model.*;
 
 public class TextualUI {
 
@@ -18,7 +19,7 @@ public class TextualUI {
         io.print("\nTervetuloa lukuvinkkisovellukseen!");
     }
 
-    public void start() throws SQLException {
+    public void start() {
         io.print("\nMitä haluat tehdä?\n"
                 + "1 - Hallinnoi lukuvinkkejä\n"
                 + "2 - Selaa lukuvinkkejä\n"
@@ -41,7 +42,7 @@ public class TextualUI {
         }
     }
 
-    private void manageReadingTips() throws SQLException {
+    private void manageReadingTips() {
         io.print("\nLukuvinkkien hallinnointi\n\n"
                 + "Mitä haluat tehdä?\n"
                 + "1 - Lisää lukuvinkki\n"
@@ -70,7 +71,7 @@ public class TextualUI {
         }
     }
 
-    private void searchReadingTips() throws SQLException {
+    private void searchReadingTips() {
         io.print("\nLukuvinkkien selaus\n\n"
                 + "Mitä haluat tehdä?\n"
                 + "1 - Listaa kaikki lukuvinkit\n"
@@ -95,7 +96,7 @@ public class TextualUI {
         }
     }
 
-    private void addReadingTip() throws SQLException {
+    private void addReadingTip() {
         io.print("\nLukuvinkin lisäys\n\n"
                 + "Minkä lukuvinkin haluat lisätä?\n"
                 + "1 - Kirja\n"
@@ -125,16 +126,34 @@ public class TextualUI {
     }
 
     private void modifyReadingTip() {
-        io.print("\nAnna muokattavan lukuvinkin id: ");
+        io.print("\nAnna muokattavan lukuvinkin id tai palaa edelliseen "
+                + "valikkoon antamalla joku kirjain");
         int id = io.nextInt();
 
+        //Jos syöte ei ole kokonaisluku, io palauttaa -1
+        if (id == -1) {
+            this.manageReadingTips();
+            return;
+        }
+        ReadingTip tip = tipManager.getReadingTip(id);
+
+        if (tip == null) {
+            io.print("Lukuvinkkiä ei löytynyt antamallasi id:llä");
+            this.modifyReadingTip();
+            return;
+        }
+
+        this.printTipDetails(tip);
+        io.print("");
+
+        this.searchReadingTips();
     }
 
     private void removeReadingTip() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    private void addBook() throws SQLException {
+    private void addBook() {
         io.print("\nLisää uusi kirjalukuvinkki\n"
                 + "Anna ISBN: ");
         String isbn = io.nextLine();
@@ -165,7 +184,7 @@ public class TextualUI {
         this.start();
     }
 
-    private void addWeb() throws SQLException {
+    private void addWeb() {
         io.print("\nLisää uusi weblukuvinkki\n"
                 + "Anna web-osoite");
         String url = io.nextLine();
@@ -267,7 +286,7 @@ public class TextualUI {
 //        io.print(headline);
 //        return io.nextLine();
 //    }
-    private void printReadingTips() throws SQLException {
+    private void printReadingTips() {
         ArrayList<ReadingTip> readingTips = tipManager.getReadingTips();
 
         String format = "%-5s \t %-20s \t %-50s \t %-10s";
@@ -285,7 +304,7 @@ public class TextualUI {
         this.searchReadingTips();
     }
 
-    private void showReadingTip() throws SQLException {
+    private void showReadingTip() {
         io.print("\nAnna lukuvinkin id tai palaa edelliseen "
                 + "valikkoon antamalla joku kirjain");
         int id = io.nextInt();
@@ -323,16 +342,18 @@ public class TextualUI {
 
     private void printTipDetails(ReadingTip tip) {
         String format = "%-10s \t\t %-15s";
+        ArrayList<TipField> fields = new ArrayList<>();
+        fields.add(new TipAuthor(tip));
+        fields.add(new TipTitle(tip));
 
         io.printFormat(format, "Id: ", "" + tip.getId());
         io.print("");
-        if (!tip.getAuthor().isEmpty()) {
-            io.printFormat(format, "Kirjoittaja: ", tip.getAuthor());
-            io.print("");
-        }
-        if (!tip.getTitle().isEmpty()) {
-            io.printFormat(format, "Otsikko: ", tip.getTitle());
-            io.print("");
+
+        for (TipField f : fields) {
+            if (!f.isEmpty()) {
+                io.printFormat(format, f.getFieldPrint(), f.getField());
+                io.print("");
+            }
         }
         if (!tip.getType().isEmpty()) {
             io.printFormat(format, "Tyyppi: ", tip.getType());
