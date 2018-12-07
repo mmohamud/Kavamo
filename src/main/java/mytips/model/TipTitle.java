@@ -11,7 +11,7 @@ package mytips.model;
  */
 public class TipTitle implements TipField {
 
-    ReadingTip tip;
+    private ReadingTip tip;
     
     public TipTitle(ReadingTip tip) {
         this.tip = tip;
