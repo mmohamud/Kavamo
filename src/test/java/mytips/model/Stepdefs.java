@@ -29,7 +29,7 @@ public class Stepdefs {
     private StubIO io;
     private TextualUI ui;
     private ReadingTipManager manager;
-    private InMemoryReadingTipDao readingTipDao = new InMemoryReadingTipDao();
+    private ReadingTipDao readingTipDao;
     private Database db;
 
     @Given("^commands hallinnoi lukuvinkkejä, lisää lukuvinkki ja kirja are selected$")
@@ -54,63 +54,10 @@ public class Stepdefs {
     public void command_lopeta_is_selected() throws Throwable {
         inputInts.add(3);
 
-        try {
-            db = new Database("jdbc:sqlite:?cache=shared");
-            Connection c = db.getConnection();
-            String sql = "CREATE TABLE IF NOT EXISTS ReadingTip ("
-                + "id integer PRIMARY KEY,"
-                + "author varchar(40),"
-                + "title varchar(40),"
-                + "summary varchar(200),"
-                + "comment varchar(100),"
-                + "isbn varchar(20),"
-                + "url varchar(100),"
-                + "type varchar(20)"
-                + ");";
-            Statement statement = c.createStatement();
-            statement.execute(sql);
-            String sql2 = "DELETE FROM ReadingTip";
-            statement.execute(sql2);
-            statement.close();
-            c.close();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ReadingTipTest.class.getName()).log(Level.SEVERE, 
-                    null, ex);
-        } catch (SQLException e) {
-            System.out.println("Tietokannan alustus epäonnistui");
-            System.out.println(e.getMessage());
-        }
-        ReadingTipDao readingTipDao = new ReadingTipDao(db);
-    
-        ReadingTip bookTip = new ReadingTip("Robert Martin", 
-            "Clean Code: A Handbook of Agile Software Craftsmanship", 
-            "Even bad code can function. But if code isn't clean, "
-            + "it can bring a development organization to its knees.",
-            "kiinnostava kirja hyvästä koodista", "kirja");
-        bookTip.setIsbn("978-0-13-235088-4");
-        readingTipDao.saveOrUpdate(bookTip);
-    
-        bookTip = new ReadingTip("Margaret Atwood", "Orjattaresi", 
-            "Margaret Atwoodin Orjattaresi on vavahduttava dystopia "
-            + "lähitulevaisuuden Yhdysvalloista, jossa "
-            + "vanhatestamentilliset "
-            + "fundamentalistit ovat ottaneet vallan.Yli 30 vuotta "
-            + "ensijulkaisunsa jälkeen romaanin teemat vapaudesta ja "
-            + "naisten oikeuksista ovat nyt ajankohtaisempia kuin koskaan.",
-            "", "kirja");
-        readingTipDao.saveOrUpdate(bookTip);
-    
-        ReadingTip webTip = new ReadingTip("Nicola Apicella",
-            "Consistency models", "", "", "blogpost");
-        readingTipDao.saveOrUpdate(webTip);
-    
-        webTip = new ReadingTip("", "Merge sort algorithm", "",
-            "Hyvä selitys merge sortin toiminnasta esimerkin avulla", 
-            "video");
-        readingTipDao.saveOrUpdate(webTip);
-    
+        this.prepareDB();
+
         io = new StubIO(inputStrings, inputInts);
-    
+
         manager = new ReadingTipManager(readingTipDao);
         ui = new TextualUI(manager, io);
         ui.start();
@@ -165,63 +112,10 @@ public class Stepdefs {
         inputInts.add(3);
         inputInts.add(3);
 
-        try {
-            db = new Database("jdbc:sqlite:?cache=shared");
-            Connection c = db.getConnection();
-            String sql = "CREATE TABLE IF NOT EXISTS ReadingTip ("
-                + "id integer PRIMARY KEY,"
-                + "author varchar(40),"
-                + "title varchar(40),"
-                + "summary varchar(200),"
-                + "comment varchar(100),"
-                + "isbn varchar(20),"
-                + "url varchar(100),"
-                + "type varchar(20)"
-                + ");";
-            Statement statement = c.createStatement();
-            statement.execute(sql);
-            String sql2 = "DELETE FROM ReadingTip";
-            statement.execute(sql2);
-            statement.close();
-            c.close();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ReadingTipTest.class.getName()).log(Level.SEVERE, 
-                    null, ex);
-        } catch (SQLException e) {
-            System.out.println("Tietokannan alustus epäonnistui");
-            System.out.println(e.getMessage());
-        }
-        ReadingTipDao readingTipDao = new ReadingTipDao(db);
-    
-        ReadingTip bookTip = new ReadingTip("Robert Martin", 
-            "Clean Code: A Handbook of Agile Software Craftsmanship", 
-            "Even bad code can function. But if code isn't clean, "
-            + "it can bring a development organization to its knees.",
-            "kiinnostava kirja hyvästä koodista", "kirja");
-        bookTip.setIsbn("978-0-13-235088-4");
-        readingTipDao.saveOrUpdate(bookTip);
-    
-        bookTip = new ReadingTip("Margaret Atwood", "Orjattaresi", 
-            "Margaret Atwoodin Orjattaresi on vavahduttava dystopia "
-            + "lähitulevaisuuden Yhdysvalloista, jossa "
-            + "vanhatestamentilliset "
-            + "fundamentalistit ovat ottaneet vallan.Yli 30 vuotta "
-            + "ensijulkaisunsa jälkeen romaanin teemat vapaudesta ja "
-            + "naisten oikeuksista ovat nyt ajankohtaisempia kuin koskaan.",
-            "", "kirja");
-        readingTipDao.saveOrUpdate(bookTip);
-    
-        ReadingTip webTip = new ReadingTip("Nicola Apicella",
-            "Consistency models", "", "", "blogpost");
-        readingTipDao.saveOrUpdate(webTip);
-    
-        webTip = new ReadingTip("", "Merge sort algorithm", "",
-            "Hyvä selitys merge sortin toiminnasta esimerkin avulla", 
-            "video");
-        readingTipDao.saveOrUpdate(webTip);
-    
+        this.prepareDB();
+
         io = new StubIO(inputStrings, inputInts);
-    
+
         manager = new ReadingTipManager(readingTipDao);
         ui = new TextualUI(manager, io);
         ui.start();
@@ -253,12 +147,80 @@ public class Stepdefs {
         assertTrue(io.getPrints().contains("Otsikko:  Clean Code: A Handbook of Agile Software Craftsmanship "));
         assertTrue(io.getPrints().contains("Tyyppi:  kirja "));
         assertTrue(io.getPrints().contains("ISBN:  978-0-13-235088-4 "));
-        assertTrue(io.getPrints().contains("Tiivistelmä:  Even bad code can function. But if code  ")); 
-        assertTrue(io.getPrints().contains(" isn't clean, it can bring a development  ")); 
-        assertTrue(io.getPrints().contains(" organization to its knees. ")); 
-        assertTrue(io.getPrints().contains("Kommentti:  kiinnostava kirja hyvästä koodista ")); 
-        assertTrue(io.getPrints().contains("Status:  Ei luettu ")); 
+        assertTrue(io.getPrints().contains("Tiivistelmä:  Even bad code can function. But if code  "));
+        assertTrue(io.getPrints().contains(" isn't clean, it can bring a development  "));
+        assertTrue(io.getPrints().contains(" organization to its knees. "));
+        assertTrue(io.getPrints().contains("Kommentti:  kiinnostava kirja hyvästä koodista "));
+        assertTrue(io.getPrints().contains("Status:  Ei luettu "));
     }
 
-    
+    //Helper methods
+    private void prepareDB() {
+        try {
+            db = new Database("jdbc:sqlite:?cache=shared");
+            Connection c = db.getConnection();
+            String sql = "CREATE TABLE IF NOT EXISTS ReadingTip ("
+                    + "id integer PRIMARY KEY,"
+                    + "author varchar(40),"
+                    + "title varchar(40),"
+                    + "summary varchar(200),"
+                    + "comment varchar(100),"
+                    + "isbn varchar(20),"
+                    + "url varchar(100),"
+                    + "type varchar(20)"
+                    + ");";
+            Statement statement = c.createStatement();
+            statement.execute(sql);
+            String sql2 = "DELETE FROM ReadingTip";
+            statement.execute(sql2);
+            statement.close();
+            c.close();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ReadingTipTest.class.getName()).log(Level.SEVERE,
+                    null, ex);
+        } catch (SQLException e) {
+            System.out.println("Tietokannan alustus epäonnistui");
+            System.out.println(e.getMessage());
+        }
+        this.readingTipDao = new ReadingTipDao(db);
+
+        try {
+            this.addReadingTipsToDB();
+        } catch (SQLException ex) {
+            System.out.println("Lukuvinkkien lisäys testitietokantaan ei "
+                    + "onnistunut");
+            System.out.println("ex: " + ex.getMessage());
+        }
+    }
+
+    private void addReadingTipsToDB() throws SQLException {
+        ReadingTip bookTip1 = new ReadingTip("Robert Martin",
+                "Clean Code: A Handbook of Agile Software Craftsmanship",
+                "Even bad code can function. But if code isn't clean, "
+                + "it can bring a development organization to its knees.",
+                "kiinnostava kirja hyvästä koodista", "kirja");
+        bookTip1.setIsbn("978-0-13-235088-4");
+
+        ReadingTip bookTip2 = new ReadingTip("Margaret Atwood", "Orjattaresi",
+                "Margaret Atwoodin Orjattaresi on vavahduttava dystopia "
+                + "lähitulevaisuuden Yhdysvalloista, jossa "
+                + "vanhatestamentilliset "
+                + "fundamentalistit ovat ottaneet vallan.Yli 30 vuotta "
+                + "ensijulkaisunsa jälkeen romaanin teemat vapaudesta ja "
+                + "naisten oikeuksista ovat nyt ajankohtaisempia kuin koskaan.",
+                "", "kirja");
+
+        ReadingTip webTip1 = new ReadingTip("Nicola Apicella",
+                "Consistency models", "", "", "blogpost");
+
+        ReadingTip webTip2 = new ReadingTip("", "Merge sort algorithm", "",
+                "Hyvä selitys merge sortin toiminnasta esimerkin avulla",
+                "video");
+
+        readingTipDao.saveOrUpdate(bookTip1);
+        readingTipDao.saveOrUpdate(bookTip2);
+        readingTipDao.saveOrUpdate(webTip1);
+        readingTipDao.saveOrUpdate(webTip2);
+    }
+
 }
