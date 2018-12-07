@@ -43,7 +43,6 @@ public class Stepdefs {
             + "title \"([^\"]*)\", comment \"([^\"]*)\", summary \"([^\"]*)\" are given$")
     public void valid_isbn_author_title_comment_summary_are_given(
             String isbn, String author, String title, String comment, String summary) throws Throwable {
-        inputStrings.add("");
         inputStrings.add(isbn);
         inputStrings.add(author);
         inputStrings.add(title);
@@ -133,7 +132,6 @@ public class Stepdefs {
             + "title \"([^\"]*)\", summary \"([^\"]*)\", comment \"([^\"]*)\" are given$")
     public void url(
             String url, String author, String title, String summary, String comment) throws Throwable {
-        inputStrings.add("");
         inputStrings.add(url);
         inputStrings.add(author);
         inputStrings.add(title);
@@ -147,7 +145,6 @@ public class Stepdefs {
     public void valid_url_author_title_summary_comment_and_type_are_given(
             String url, String author, String title, String summary, String comment,
             String type) throws Throwable {
-        inputStrings.add("");
         inputStrings.add(url);
         inputStrings.add(author);
         inputStrings.add(title);
@@ -247,7 +244,6 @@ public class Stepdefs {
     @When("^valid id \"([^\"]*)\" is given and command palaa alkuun is selected$")
     public void valid_id_is_given_and_command_palaa_alkuun_is_selected(String id) throws Throwable {
         inputInts.add(Integer.parseInt(id));
-        inputStrings.add("");
         inputInts.add(3);
     }
 

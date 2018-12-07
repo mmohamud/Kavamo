@@ -24,12 +24,7 @@ public class TextualUI {
                 + "2 - Selaa lukuvinkkejä\n"
                 + "3 - Lopeta\n");
 
-        int action = 0;
-        try {
-            action = io.nextInt();
-        } catch (java.util.InputMismatchException e) {
-            io.nextLine();
-        }
+        int action = io.nextInt();
 
         switch (action) {
             case 1:
@@ -54,12 +49,7 @@ public class TextualUI {
                 + "3 - Poista lukuvinkki\n"
                 + "4 - Palaa alkuun\n");
 
-        int action = 0;
-        try {
-            action = io.nextInt();
-        } catch (java.util.InputMismatchException e) {
-            io.nextLine();
-        }
+        int action = io.nextInt();
 
         switch (action) {
             case 1:
@@ -87,13 +77,7 @@ public class TextualUI {
                 + "2 - Näytä yhden lukuvinkin tarkat tiedot\n"
                 + "3 - Palaa alkuun\n");
 
-        int action = 0;
-        try {
-            action = io.nextInt();
-            //io.nextLine();
-        } catch (java.util.InputMismatchException e) {
-            io.nextLine();
-        }
+        int action = io.nextInt();
 
         switch (action) {
             case 1:
@@ -119,14 +103,7 @@ public class TextualUI {
                 + "3 - Podcast\n"
                 + "4 - Palaa lukuvinkkien hallinnointivalikkoon\n");
 
-        int action = 0;
-        try {
-            action = io.nextInt();
-            io.nextLine();
-            //Ilman tätä tulee kummallinen bugi seuraavassa metodissa 
-        } catch (java.util.InputMismatchException e) {
-            io.nextLine();
-        }
+        int action = io.nextInt();
 
         switch (action) {
             case 1:
@@ -295,7 +272,7 @@ public class TextualUI {
         io.printFormat(format, "ID", "KIRJOITTAJA", "OTSIKKO", "TYYPPI");
         io.print("");
         io.print("-----------------------------------------------------------"
-                + "-------------------");
+                + "------------------------------------");
         for (ReadingTip tip : readingTips) {
             io.printFormat(format, "" + tip.getId(), tip.getAuthor(),
                     tip.getTitle(), tip.getType());
@@ -307,29 +284,20 @@ public class TextualUI {
     }
 
     private void showReadingTip() throws SQLException {
-        int id;
         io.print("\nAnna lukuvinkin id tai palaa alkuun valitsemalla q");
-        try {
-            id = io.nextInt();
-    
-            //Ilman tätä tulee kummallinen bugi seuraavassa metodissa 
-            io.nextLine();
+        int id = io.nextInt();
 
-            ReadingTip tip = tipManager.getReadingTip(id);
+        ReadingTip tip = tipManager.getReadingTip(id);
 
-            if (tip == null) {
-                io.print("Lukuvinkkiä ei löytynyt antamallasi id:llä");
-                this.showReadingTip();
-            } else if (Integer.toString(id) == "q") {
-               this.start();
-            }
-
-            this.printTipDetails(tip);
-            io.print("");
-
-        } catch (java.util.InputMismatchException e) {
-            io.nextLine();
+        if (tip == null) {
+            io.print("Lukuvinkkiä ei löytynyt antamallasi id:llä");
+            this.showReadingTip();
+        } else if (Integer.toString(id) == "q") {
+            this.start();
         }
+
+        this.printTipDetails(tip);
+        io.print("");
 
         this.searchReadingTips();
     }

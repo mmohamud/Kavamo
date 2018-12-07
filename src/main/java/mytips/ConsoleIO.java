@@ -12,15 +12,20 @@ import java.util.*;
  * @author vseppane
  */
 public class ConsoleIO implements IO {
+
     private Scanner sc;
 
     public ConsoleIO() {
         sc = new Scanner(System.in);
     }
-    
+
     @Override
     public int nextInt() {
-        return sc.nextInt();
+        try {
+            return Integer.parseInt(sc.nextLine());
+        } catch (NumberFormatException e) {
+            return -1;
+        }
     }
 
     @Override
@@ -35,8 +40,8 @@ public class ConsoleIO implements IO {
 
     @Override
     public void printFormat(
-            String format, String... strings) {  
+            String format, String... strings) {
         System.out.format(format, (Object[]) strings);
     }
-    
+
 }
