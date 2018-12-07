@@ -308,10 +308,10 @@ public class TextualUI {
 
     private void showReadingTip() throws SQLException {
         int id;
-        io.print("\nAnna lukuvinkin id: ");
+        io.print("\nAnna lukuvinkin id tai palaa alkuun valitsemalla q");
         try {
             id = io.nextInt();
-
+    
             //Ilman tätä tulee kummallinen bugi seuraavassa metodissa 
             io.nextLine();
 
@@ -320,6 +320,8 @@ public class TextualUI {
             if (tip == null) {
                 io.print("Lukuvinkkiä ei löytynyt antamallasi id:llä");
                 this.showReadingTip();
+            } else if (Integer.toString(id) == "q") {
+               this.start();
             }
 
             this.printTipDetails(tip);
@@ -327,7 +329,6 @@ public class TextualUI {
 
         } catch (java.util.InputMismatchException e) {
             io.nextLine();
-            io.print("Id:n tulee olla kokonaisluku");
         }
 
         this.searchReadingTips();
