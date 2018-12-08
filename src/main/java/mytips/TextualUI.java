@@ -76,7 +76,8 @@ public class TextualUI {
                 + "Mitä haluat tehdä?\n"
                 + "1 - Listaa kaikki lukuvinkit\n"
                 + "2 - Näytä yhden lukuvinkin tarkat tiedot\n"
-                + "3 - Palaa alkuun\n");
+                + "3 - Näytä hakuehdolla\n"
+                + "4 - Palaa alkuun\n");
 
         int action = io.nextInt();
 
@@ -88,6 +89,9 @@ public class TextualUI {
                 this.showReadingTip();
                 break;
             case 3:
+                this.conditionalSearch();
+                //break;
+            case 4:
                 this.start();
                 break;
             default:
@@ -147,6 +151,29 @@ public class TextualUI {
         io.print("");
 
         this.searchReadingTips();
+    }
+
+    private void conditionalSearch() {
+        ArrayList<ReadingTip> tips = new ArrayList();
+        String searchTip = "";
+        
+        io.print("\nLukuvinkin haku\n\n"
+                + "Anna jokin hekuteksti?\n");
+
+        searchTip = io.nextLine();
+        
+        tips = tipManager.getReadingTipBySearch(searchTip);
+        
+        if (tips == null) {
+            io.print("Lukuvinkkejä ei löytynyt antamallasi hakuehdolla");
+            this.showReadingTip();
+        }
+
+        for (int ind = 0; ind < tips.size(); ind++){
+            this.printTipDetails(tips.get(ind));
+        }
+        io.print("");
+
     }
 
     private void removeReadingTip() {

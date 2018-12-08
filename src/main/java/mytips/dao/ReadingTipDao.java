@@ -118,6 +118,41 @@ public class ReadingTipDao implements Dao {
         return readingTips;
     }
 
+    public ArrayList<ReadingTip> findBySearch(String key) throws SQLException { 
+        ArrayList readingTips = new ArrayList<>();
+        Connection conn = db.getConnection();
+        PreparedStatement stmt;
+        String search = "'" + "%" + key + "%" + "'";
+        String searchCond = "SELECT * FROM ReadingTip WHERE author like " + search +
+                    " or title like " + search +
+                    " or summary like " + search +
+                    " or comment like " + search +
+                    " or isbn like " + search +
+                    " or url like " + search +
+                    " or type like "  + search;
+        
+        stmt = conn.prepareStatement(searchCond);
+
+        ResultSet rs = stmt.executeQuery();
+
+        while (rs.next()) {
+            int id = rs.getInt("id");
+            String author = rs.getString("author");
+            String title = rs.getString("title");
+            String summary = rs.getString("summary");
+            String comment = rs.getString("comment");
+            String isbn = rs.getString("isbn");
+            String type = rs.getString("type");
+            String url = rs.getString("url");
+            ReadingTip returnReadingTip
+                = new ReadingTip(author, title, summary, comment, type);
+            returnReadingTip.setUrl(url);     
+            returnReadingTip.setId(id);
+            readingTips.add(returnReadingTip);
+        }
+        return readingTips;
+        
+    }
     @Override
     public Object saveOrUpdate(Object object) throws SQLException {
         ReadingTip tip = (ReadingTip) object;
