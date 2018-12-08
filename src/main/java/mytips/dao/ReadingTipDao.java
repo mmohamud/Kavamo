@@ -35,20 +35,9 @@ public class ReadingTipDao implements Dao {
         if (!hasOne) {
             return null;
         }
-
-        int id = rs.getInt("id");
-        String author = rs.getString("author");
-        String title = rs.getString("title");
-        String summary = rs.getString("summary");
-        String comment = rs.getString("comment");
-        String isbn = rs.getString("isbn");
-        String type = rs.getString("type");
-        String url = rs.getString("url");
-        ReadingTip returnReadingTip
-                = new ReadingTip(author, title, summary, comment, type);
-  
-        returnReadingTip.setIsbn(isbn);
-        returnReadingTip.setUrl(url);
+        //removing copypaste by private funktion
+        ReadingTip returnReadingTip = resultRowToTip(rs);
+        
         stmt.close();
         rs.close();
         conn.close();
@@ -71,20 +60,9 @@ public class ReadingTipDao implements Dao {
             return null;
         }
 
-        int id = rs.getInt("id");
-        String author = rs.getString("author");
-        String title = rs.getString("title");
-        String summary = rs.getString("summary");
-        String comment = rs.getString("comment");
-        String isbn = rs.getString("isbn");
-        String type = rs.getString("type");
-        String url = rs.getString("url");
-        
-        ReadingTip returnReadingTip 
-                = new ReadingTip(author, title, summary, comment, type);       
-        returnReadingTip.setIsbn(isbn);
-        returnReadingTip.setUrl(url);
-        
+         //removing copypaste by private funktion
+        ReadingTip returnReadingTip = resultRowToTip(rs);
+         
         stmt.close();
         rs.close();
         conn.close();
@@ -99,20 +77,11 @@ public class ReadingTipDao implements Dao {
         PreparedStatement stmt = conn.prepareStatement(
                 "SELECT * FROM ReadingTip");
         ResultSet rs = stmt.executeQuery();
+        ReadingTip returnReadingTip;
 
         while (rs.next()) {
-            int id = rs.getInt("id");
-            String author = rs.getString("author");
-            String title = rs.getString("title");
-            String summary = rs.getString("summary");
-            String comment = rs.getString("comment");
-            String isbn = rs.getString("isbn");
-            String type = rs.getString("type");
-            String url = rs.getString("url");
-            ReadingTip returnReadingTip
-                = new ReadingTip(author, title, summary, comment, type);
-            returnReadingTip.setUrl(url);     
-            returnReadingTip.setId(id);
+             returnReadingTip = resultRowToTip(rs);
+         //removing copypaste by private funktion
             readingTips.add(returnReadingTip);
         }
         return readingTips;
@@ -134,21 +103,13 @@ public class ReadingTipDao implements Dao {
         stmt = conn.prepareStatement(searchCond);
 
         ResultSet rs = stmt.executeQuery();
+        ReadingTip returnReadingTip;
 
         while (rs.next()) {
-            int id = rs.getInt("id");
-            String author = rs.getString("author");
-            String title = rs.getString("title");
-            String summary = rs.getString("summary");
-            String comment = rs.getString("comment");
-            String isbn = rs.getString("isbn");
-            String type = rs.getString("type");
-            String url = rs.getString("url");
-            ReadingTip returnReadingTip
-                = new ReadingTip(author, title, summary, comment, type);
-            returnReadingTip.setUrl(url);     
-            returnReadingTip.setId(id);
+            returnReadingTip = resultRowToTip(rs);
+         //removing copypaste by private funktion
             readingTips.add(returnReadingTip);
+            
         }
         return readingTips;
         
@@ -210,26 +171,23 @@ public class ReadingTipDao implements Dao {
         if (!hasOne) {
             return null;
         }
-
-        int id = rs.getInt("id");
-        String author = rs.getString("author");
-        String title = rs.getString("title");
-        String summary = rs.getString("summary");
-        String comment = rs.getString("comment");
-        String isbn = rs.getString("isbn");
-        String type = rs.getString("type");
-        String url = rs.getString("url");
-        ReadingTip returnReadingTip
-                = new ReadingTip(author, title, summary, comment, type);
-  
-        returnReadingTip.setIsbn(isbn);
-        returnReadingTip.setUrl(url);
-        returnReadingTip.setId(id);
+        //removing copypaste by private funktion
+        ReadingTip returnReadingTip = resultRowToTip(rs);
         stmt.close();
         rs.close();
         conn.close();
 
         return returnReadingTip;
+    }
+    
+    private ReadingTip resultRowToTip(ResultSet rs) throws SQLException {
+        ReadingTip tip = new ReadingTip(rs.getString("author"), rs.getString("title"), 
+           rs.getString("summary"), rs.getString("comment"), rs.getString("type"));
+        tip.setIsbn(rs.getString("isbn"));
+        tip.setUrl(rs.getString("url"));
+        tip.setId(rs.getInt("id"));
+        
+        return tip;
     }
 
 }
