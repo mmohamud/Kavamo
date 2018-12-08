@@ -158,13 +158,13 @@ public class TextualUI {
         String searchTip = "";
         
         io.print("\nLukuvinkin haku\n\n"
-                + "Anna jokin hekuteksti?\n");
+                + "Anna jokin hekuteksti\n");
 
         searchTip = io.nextLine();
         
         tips = tipManager.getReadingTipBySearch(searchTip);
         
-        if (tips == null) {
+        if (tips.size()== 0) {
             io.print("Lukuvinkkejä ei löytynyt antamallasi hakuehdolla");
             this.showReadingTip();
         }
