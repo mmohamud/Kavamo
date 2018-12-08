@@ -24,3 +24,4 @@ Definition of done:
 jar luodaan komennolla:
 
     gradle shadowJar
+
