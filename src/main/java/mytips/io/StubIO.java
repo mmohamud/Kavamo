@@ -45,8 +45,7 @@ public class StubIO implements IO {
     }
 
     @Override
-    public void printFormat(
-            String format, String... strings) {
+    public void printFormat(String format, String... strings) {
         String output = "";
         for (String s : strings) {
             output += s + " ";
