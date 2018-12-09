@@ -22,11 +22,11 @@ public class ReadingTipManager {
             readingTips = (ArrayList<ReadingTip>) readingTipDao.findAll();
         } catch (SQLException ex) {
             Logger.getLogger(ReadingTipManager.class.getName())
-                    .log(Level.SEVERE, null, ex);
+                .log(Level.SEVERE, null, ex);
         }
         
         Collections.sort(readingTips, (o1, o2) -> o1.getTitle()
-                .compareTo(o2.getTitle()));
+            .compareTo(o2.getTitle()));
         return readingTips;
     }
 
