@@ -17,8 +17,8 @@ public class ReadingTipDao implements Dao {
         this.db = db;
     }
 
-// Mallista AiheDao korvattu "Aihe" sanalla "BookTip" ja "nimi" sanalla "author"
-// Katsotaan, löytyykö booktip nimen ja id:n yhdistelmällä tai ID:llä
+    // Mallista AiheDao korvattu "Aihe" sanalla "BookTip" ja "nimi" sanalla "author"
+    // Katsotaan, löytyykö booktip nimen ja id:n yhdistelmällä tai ID:llä
     @Override
     public Object findOne(Object key) throws SQLException {
         ReadingTip readingTip = (ReadingTip) key;
@@ -26,8 +26,9 @@ public class ReadingTipDao implements Dao {
         PreparedStatement stmt = conn.prepareStatement(
                 "SELECT * FROM ReadingTip WHERE id = ?"
         );
-//        stmt.setString(1, bookTip.getTitle());
-//        stmt.setInt(2, etsittavaAihe.getKurssiId());
+
+        //stmt.setString(1, bookTip.getTitle());
+        //stmt.setInt(2, etsittavaAihe.getKurssiId());
         stmt.setInt(1, readingTip.getId());
 
         ResultSet rs = stmt.executeQuery();
@@ -201,8 +202,9 @@ public class ReadingTipDao implements Dao {
         PreparedStatement stmt = conn.prepareStatement(
                 "SELECT * FROM ReadingTip WHERE id = ?"
         );
-//        stmt.setString(1, bookTip.getTitle());
-//        stmt.setInt(2, etsittavaAihe.getKurssiId());
+        
+        //stmt.setString(1, bookTip.getTitle());
+        //stmt.setInt(2, etsittavaAihe.getKurssiId());
         stmt.setInt(1, key);
 
         ResultSet rs = stmt.executeQuery();

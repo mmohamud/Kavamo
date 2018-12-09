@@ -46,11 +46,11 @@ public class StubIO implements IO {
 
     @Override
     public void printFormat(
-            String format, String... strings) {
-        String output = "";
-        for (String s : strings) {
-            output += s + " ";
-        }
-        outputs.add(output);
+        String format, String... strings) {
+            String output = "";
+            for (String s : strings) {
+                output += s + " ";
+            }
+            outputs.add(output);
     }
 }
