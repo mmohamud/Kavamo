@@ -20,7 +20,6 @@ public class ReadingTip {
 
     public ReadingTip(String author, String title,
             String summary, String comment, String type) {
-        this.id = id;
         this.author = author;
         this.title = title;
         this.summary = summary;
@@ -103,7 +102,7 @@ public class ReadingTip {
     @Override
     public String toString() {
         return "Otsikko: " + title + "\nKirjailija: " + author
-                + "\ntyyppi: " + type;
+            + "\ntyyppi: " + type;
     }
 
 }

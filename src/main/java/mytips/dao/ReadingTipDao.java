@@ -82,7 +82,7 @@ public class ReadingTipDao implements Dao {
         String url = rs.getString("url");
         
         ReadingTip returnReadingTip 
-                = new ReadingTip(author, title, summary, comment, type);       
+            = new ReadingTip(author, title, summary, comment, type);       
         returnReadingTip.setIsbn(isbn);
         returnReadingTip.setUrl(url);
         
@@ -98,7 +98,7 @@ public class ReadingTipDao implements Dao {
         List readingTips = new ArrayList<>();
         Connection conn = db.getConnection();
         PreparedStatement stmt = conn.prepareStatement(
-                "SELECT * FROM ReadingTip");
+            "SELECT * FROM ReadingTip");
         ResultSet rs = stmt.executeQuery();
 
         while (rs.next()) {
@@ -124,13 +124,14 @@ public class ReadingTipDao implements Dao {
         Connection conn = db.getConnection();
         PreparedStatement stmt;
         String search = "'" + "%" + key + "%" + "'";
-        String searchCond = "SELECT * FROM ReadingTip WHERE author like " + search +
-                    " or title like " + search +
-                    " or summary like " + search +
-                    " or comment like " + search +
-                    " or isbn like " + search +
-                    " or url like " + search +
-                    " or type like "  + search;
+        String searchCond = "SELECT * FROM ReadingTip WHERE author like " 
+            + search
+            + " or title like " + search
+            + " or summary like " + search
+            + " or comment like " + search
+            + " or isbn like " + search
+            + " or url like " + search
+            + " or type like "  + search;
         
         stmt = conn.prepareStatement(searchCond);
 
@@ -160,9 +161,9 @@ public class ReadingTipDao implements Dao {
 
         try (Connection conn = db.getConnection()) {
             PreparedStatement stmt = conn.prepareStatement(
-                    "INSERT INTO ReadingTip "
-                    + "(author, title, summary, comment, isbn, url, type) "
-                    + "VALUES (?, ?, ?, ?, ?, ?, ?)"
+                "INSERT INTO ReadingTip "
+                + "(author, title, summary, comment, isbn, url, type) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?)"
             );
 
             stmt.setString(1, tip.getAuthor());
@@ -186,7 +187,7 @@ public class ReadingTipDao implements Dao {
 
         Connection conn = db.getConnection();
         PreparedStatement stmt = conn.prepareStatement(
-                "DELETE FROM ReadingTip WHERE id = ?"
+            "DELETE FROM ReadingTip WHERE id = ?"
         );
 
         stmt.setInt(1, readingTip.getId());
@@ -200,7 +201,7 @@ public class ReadingTipDao implements Dao {
     public Object findOneById(int key) throws SQLException {
         Connection conn = db.getConnection();
         PreparedStatement stmt = conn.prepareStatement(
-                "SELECT * FROM ReadingTip WHERE id = ?"
+            "SELECT * FROM ReadingTip WHERE id = ?"
         );
         
         //stmt.setString(1, bookTip.getTitle());
@@ -222,7 +223,7 @@ public class ReadingTipDao implements Dao {
         String type = rs.getString("type");
         String url = rs.getString("url");
         ReadingTip returnReadingTip
-                = new ReadingTip(author, title, summary, comment, type);
+            = new ReadingTip(author, title, summary, comment, type);
   
         returnReadingTip.setIsbn(isbn);
         returnReadingTip.setUrl(url);
