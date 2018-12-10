@@ -199,7 +199,7 @@ public class TextualUI {
 
         //Luodaan uusi kirjalukuvinkki
         ReadingTip bookTip = new ReadingTip(
-                author, title, summary, comment, "Kirja"
+                author, title, summary, comment, "Kirja", false
         );
 
         bookTip.setIsbn(isbn);
@@ -232,7 +232,7 @@ public class TextualUI {
         String type = io.nextLine();
 
         ReadingTip webTip = new ReadingTip(author, title, summary, comment,
-                type);
+                type, false);
         webTip.setIsbn(null);
         webTip.setUrl(url);
 
@@ -252,6 +252,17 @@ public class TextualUI {
         } catch (SQLException ex) {
             System.out.println("ex: " + ex);
             io.print("Lukuvinkin talletus ei onnistunut");
+        }
+    }
+    
+    private void markAsRead(int id) throws SQLException {
+        try {
+            ReadingTip tip = tipManager.getReadingTip(id);
+            tip.setReadStatus(true);
+            tipManager.addReadingTip(tip);
+        } catch (SQLException ex) {
+            System.out.println("ex: " + ex);
+            io.print("Lukuvinkin merkkaaminen luetuksi ei onnistunut");
         }
     }
 
@@ -316,16 +327,17 @@ public class TextualUI {
     private void printReadingTips() {
         ArrayList<ReadingTip> readingTips = tipManager.getReadingTips();
 
-        String format = "%-5s \t %-20s \t %-50s \t %-10s";
-        io.printFormat(format, "ID", "KIRJOITTAJA", "OTSIKKO", "TYYPPI");
+        String format = "%-5s \t %-20s \t %-50s \t %-10s \t %-10s";
+        io.printFormat(format, "ID", "KIRJOITTAJA", "OTSIKKO", "TYYPPI", "STATUS");
         io.print("");
         io.print("-----------------------------------------------------------"
-                + "------------------------------------");
+                + "--------------------------------------------------------");
         for (ReadingTip tip : readingTips) {
             io.printFormat(format, "" + tip.getId(), tip.getAuthor(),
-                    tip.getTitle(), tip.getType());
+                    tip.getTitle(), tip.getType(), tip.getReadStatusString());
             io.print("");
             //io.print(tip.toString());
+            io.print("Status: " + tip.getReadStatus());
         }
 
         this.searchReadingTips();

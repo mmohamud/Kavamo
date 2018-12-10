@@ -44,9 +44,10 @@ public class ReadingTipDao implements Dao {
         String isbn = rs.getString("isbn");
         String type = rs.getString("type");
         String url = rs.getString("url");
+        boolean readStatus = rs.getBoolean("readStatus");
         ReadingTip returnReadingTip
-                = new ReadingTip(author, title, summary, comment, type);
-  
+                = new ReadingTip(author, title, summary, comment, type, readStatus);
+
         returnReadingTip.setIsbn(isbn);
         returnReadingTip.setUrl(url);
         stmt.close();
@@ -56,11 +57,11 @@ public class ReadingTipDao implements Dao {
         return returnReadingTip;
     }
 
-        public Object findOneByValues(Object key) throws SQLException { 
+    public Object findOneByValues(Object key) throws SQLException {
         ReadingTip readingTip = (ReadingTip) key;
         Connection conn = db.getConnection();
         PreparedStatement stmt = conn.prepareStatement(
-            "SELECT * FROM ReadingTip WHERE title = ? and author = ?"
+                "SELECT * FROM ReadingTip WHERE title = ? and author = ?"
         );
         stmt.setString(1, readingTip.getTitle());
         stmt.setString(2, readingTip.getAuthor());
@@ -79,12 +80,12 @@ public class ReadingTipDao implements Dao {
         String isbn = rs.getString("isbn");
         String type = rs.getString("type");
         String url = rs.getString("url");
-        
-        ReadingTip returnReadingTip 
-                = new ReadingTip(author, title, summary, comment, type);       
+        boolean readStatus = rs.getBoolean("readStatus");
+        ReadingTip returnReadingTip
+                = new ReadingTip(author, title, summary, comment, type, readStatus);
         returnReadingTip.setIsbn(isbn);
         returnReadingTip.setUrl(url);
-        
+
         stmt.close();
         rs.close();
         conn.close();
@@ -109,30 +110,31 @@ public class ReadingTipDao implements Dao {
             String isbn = rs.getString("isbn");
             String type = rs.getString("type");
             String url = rs.getString("url");
+            boolean readStatus = rs.getBoolean("readStatus");
             ReadingTip returnReadingTip
-                = new ReadingTip(author, title, summary, comment, type);
-            returnReadingTip.setUrl(url);     
+                    = new ReadingTip(author, title, summary, comment, type, readStatus);
+            returnReadingTip.setUrl(url);
             returnReadingTip.setId(id);
             readingTips.add(returnReadingTip);
         }
         return readingTips;
     }
 
-    public ArrayList<ReadingTip> findBySearch(String key) throws SQLException { 
+    public ArrayList<ReadingTip> findBySearch(String key) throws SQLException {
         ArrayList readingTips = new ArrayList<>();
         Connection conn = db.getConnection();
         PreparedStatement stmt;
         String search = "'" + "%" + key + "%" + "'";
         String searchCond = "SELECT * "
-                + "FROM ReadingTip WHERE author like "  
-                + search + " or title like "  
-                + search +  " or summary like "  
-                + search + " or comment like "  
-                + search + " or isbn like "  
-                + search + " or url like " 
-                + search + " or type like "  
+                + "FROM ReadingTip WHERE author like "
+                + search + " or title like "
+                + search + " or summary like "
+                + search + " or comment like "
+                + search + " or isbn like "
+                + search + " or url like "
+                + search + " or type like "
                 + search;
-        
+
         stmt = conn.prepareStatement(searchCond);
 
         ResultSet rs = stmt.executeQuery();
@@ -146,15 +148,17 @@ public class ReadingTipDao implements Dao {
             String isbn = rs.getString("isbn");
             String type = rs.getString("type");
             String url = rs.getString("url");
+            boolean readStatus = rs.getBoolean("readStatus");
             ReadingTip returnReadingTip
-                = new ReadingTip(author, title, summary, comment, type);
-            returnReadingTip.setUrl(url);     
+                    = new ReadingTip(author, title, summary, comment, type, readStatus);
+            returnReadingTip.setUrl(url);
             returnReadingTip.setId(id);
             readingTips.add(returnReadingTip);
         }
         return readingTips;
-        
+
     }
+
     @Override
     public Object saveOrUpdate(Object object) throws SQLException {
         ReadingTip tip = (ReadingTip) object;
@@ -162,8 +166,8 @@ public class ReadingTipDao implements Dao {
         try (Connection conn = db.getConnection()) {
             PreparedStatement stmt = conn.prepareStatement(
                     "INSERT INTO ReadingTip "
-                    + "(author, title, summary, comment, isbn, url, type) "
-                    + "VALUES (?, ?, ?, ?, ?, ?, ?)"
+                    + "(author, title, summary, comment, isbn, url, type, readStatus) "
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
             );
 
             stmt.setString(1, tip.getAuthor());
@@ -173,10 +177,42 @@ public class ReadingTipDao implements Dao {
             stmt.setString(5, tip.getIsbn());
             stmt.setString(6, tip.getUrl());
             stmt.setString(7, tip.getType());
+            stmt.setBoolean(8, tip.getReadStatus());
             stmt.executeUpdate();
         }
-        return findOneByValues(tip); 
+        return findOneByValues(tip);
     }
+
+    /*public Object update(int key) throws SQLException {
+                Connection conn = db.getConnection();
+        PreparedStatement stmt = conn.prepareStatement(
+                "SELECT * FROM ReadingTip WHERE id = ?"
+        );
+        stmt.setInt(1, key);
+        
+        ResultSet rs = stmt.executeQuery();
+        boolean hasOne = rs.next();
+        if (!hasOne) {
+            return null;
+        }
+        int id = rs.getInt("id");
+        String author = rs.getString("author");
+        String title = rs.getString("title");
+        String summary = rs.getString("summary");
+        String comment = rs.getString("comment");
+        String isbn = rs.getString("isbn");
+        String type = rs.getString("type");
+        String url = rs.getString("url");
+        boolean readStatus = rs.getBoolean("readStatus");
+        ReadingTip returnReadingTip
+                = new ReadingTip(author, title, summary, comment, type, readStatus);
+
+        returnReadingTip.setIsbn(isbn);
+        returnReadingTip.setUrl(url);
+        returnReadingTip.setId(id);
+        
+        
+    }*/
 
     @Override
     public void delete(Object key) throws SQLException {
@@ -221,9 +257,10 @@ public class ReadingTipDao implements Dao {
         String isbn = rs.getString("isbn");
         String type = rs.getString("type");
         String url = rs.getString("url");
+        boolean readStatus = rs.getBoolean("readStatus");
         ReadingTip returnReadingTip
-                = new ReadingTip(author, title, summary, comment, type);
-  
+                = new ReadingTip(author, title, summary, comment, type, readStatus);
+
         returnReadingTip.setIsbn(isbn);
         returnReadingTip.setUrl(url);
         returnReadingTip.setId(id);

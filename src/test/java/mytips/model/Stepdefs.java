@@ -155,9 +155,14 @@ public class Stepdefs {
 
     //Helper methods
     private void prepareDB() {
-        try {
+        try {        
             db = new Database("jdbc:sqlite:?cache=shared");
             Connection c = db.getConnection();
+            Statement statement = c.createStatement();
+            String dropReadingTip = "DROP TABLE ReadingTip";
+            statement.execute(dropReadingTip);
+            
+            
             String sql = "CREATE TABLE IF NOT EXISTS ReadingTip ("
                     + "id integer PRIMARY KEY,"
                     + "author varchar(40),"
@@ -166,9 +171,10 @@ public class Stepdefs {
                     + "comment varchar(100),"
                     + "isbn varchar(20),"
                     + "url varchar(100),"
-                    + "type varchar(20)"
+                    + "type varchar(20),"
+                    + "readStatus boolean"
                     + ");";
-            Statement statement = c.createStatement();
+            
             statement.execute(sql);
             String sql2 = "DELETE FROM ReadingTip";
             statement.execute(sql2);
@@ -197,7 +203,7 @@ public class Stepdefs {
                 "Clean Code: A Handbook of Agile Software Craftsmanship",
                 "Even bad code can function. But if code isn't clean, "
                 + "it can bring a development organization to its knees.",
-                "kiinnostava kirja hyvästä koodista", "kirja");
+                "kiinnostava kirja hyvästä koodista", "kirja", false);
         bookTip1.setIsbn("978-0-13-235088-4");
 
         ReadingTip bookTip2 = new ReadingTip("Margaret Atwood", "Orjattaresi",
@@ -207,14 +213,14 @@ public class Stepdefs {
                 + "fundamentalistit ovat ottaneet vallan.Yli 30 vuotta "
                 + "ensijulkaisunsa jälkeen romaanin teemat vapaudesta ja "
                 + "naisten oikeuksista ovat nyt ajankohtaisempia kuin koskaan.",
-                "", "kirja");
+                "", "kirja", false);
 
         ReadingTip webTip1 = new ReadingTip("Nicola Apicella",
-                "Consistency models", "", "", "blogpost");
+                "Consistency models", "", "", "blogpost", false);
 
         ReadingTip webTip2 = new ReadingTip("", "Merge sort algorithm", "",
                 "Hyvä selitys merge sortin toiminnasta esimerkin avulla",
-                "video");
+                "video", false);
 
         readingTipDao.saveOrUpdate(bookTip1);
         readingTipDao.saveOrUpdate(bookTip2);

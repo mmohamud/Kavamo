@@ -24,7 +24,7 @@ public class InMemoryReadingTipDao implements Dao {
                 + "Software Craftsmanship", 
                 "Even bad code can function. But if code isn't clean, "
                 + "it can bring a development organization to its knees.",
-                "kiinnostava kirja hyvästä koodista", "kirja"));
+                "kiinnostava kirja hyvästä koodista", "kirja", false));
         readingTips.add(new ReadingTip("Margaret Atwood", "Orjattaresi", 
                 "Margaret Atwoodin Orjattaresi on vavahduttava dystopia "
                 + "lähitulevaisuuden Yhdysvalloista, jossa "
@@ -32,12 +32,12 @@ public class InMemoryReadingTipDao implements Dao {
                 + "fundamentalistit ovat ottaneet vallan.Yli 30 vuotta "
                 + "ensijulkaisunsa jälkeen romaanin teemat vapaudesta ja "
                 + "naisten oikeuksista ovat nyt ajankohtaisempia kuin koskaan.",
-                "", "kirja"));
+                "", "kirja", false));
         readingTips.add(new ReadingTip("Nicola Apicella",
-                "Consistency models", "", "", "blogpost"));
+                "Consistency models", "", "", "blogpost", false));
         readingTips.add(new ReadingTip("", "Merge sort algorithm", "",
                 "Hyvä selitys merge sortin toiminnasta esimerkin avulla", 
-                "video"));
+                "video", false));
         readingTips.get(0).setIsbn("978-0-13-235088-4");
     }
 

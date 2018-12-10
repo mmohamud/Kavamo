@@ -34,6 +34,13 @@ public class ReadingTipManager {
         ReadingTip newTip = (ReadingTip) readingTipDao.saveOrUpdate(readingTip);
         return newTip;
     }
+    
+    public ReadingTip updateReadingTip(ReadingTip readingTip) throws SQLException {
+        ReadingTip newTip = (ReadingTip) readingTip;
+        readingTip.setReadStatus(true);
+        readingTipDao.saveOrUpdate(readingTip);
+        return newTip;
+    }
 
 
     public ReadingTip getReadingTip(int id) {

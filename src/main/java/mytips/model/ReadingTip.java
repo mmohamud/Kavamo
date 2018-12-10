@@ -14,18 +14,20 @@ public class ReadingTip {
     private String type = "";
     private String url = "";
     private String isbn = "";
+    private boolean readStatus;
     //private ArrayList<String> tags;
     //private ArrayList<String> prerequisiteCourses;
     //private ArrayList<String> relatedCourses;
 
     public ReadingTip(String author, String title,
-            String summary, String comment, String type) {
+            String summary, String comment, String type, boolean readStatus) {
         this.id = id;
         this.author = author;
         this.title = title;
         this.summary = summary;
         this.comment = comment;
         this.type = type;
+        this.readStatus = readStatus;
     }
 
     public void setId(int id) {
@@ -106,4 +108,20 @@ public class ReadingTip {
                 + "\ntyyppi: " + type;
     }
 
+    public void setReadStatus(boolean readStatus) {
+        this.readStatus = readStatus;
+    }
+
+    public boolean getReadStatus() {
+        return readStatus;
+    }
+
+    public String getReadStatusString() {
+        if (this.readStatus == false) {
+            return "Ei luettu";
+        } else {
+            return "Luettu";
+        }
+    }
+    
 }
