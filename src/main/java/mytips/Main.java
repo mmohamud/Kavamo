@@ -33,7 +33,7 @@ public class Main {
         statement.execute(sql);
         statement.close();
         try {
-            sql = "ALTER TABLE ReadingTip ADD COLUMN readStatus";
+            sql = "ALTER TABLE ReadingTip ADD COLUMN readStatus boolean";
             statement = conn.createStatement();
             statement.execute(sql);
         } catch (SQLException e) {
