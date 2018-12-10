@@ -14,5 +14,9 @@ public interface Dao<T, K> {
 
     T saveOrUpdate(T object) throws SQLException;
 
+    T findBySearch(String key) throws SQLException;
+
+    T findBySelection(int key) throws SQLException;
+    
     void delete(K key) throws SQLException;
 }

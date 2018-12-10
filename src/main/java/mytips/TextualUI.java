@@ -76,7 +76,8 @@ public class TextualUI {
                 + "Mitä haluat tehdä?\n"
                 + "1 - Listaa kaikki lukuvinkit\n"
                 + "2 - Näytä yhden lukuvinkin tarkat tiedot\n"
-                + "3 - Palaa alkuun\n");
+                + "3 - Näytä hakuehdolla\n"
+                + "4 - Palaa alkuun\n");
 
         int action = io.nextInt();
 
@@ -88,6 +89,9 @@ public class TextualUI {
                 this.showReadingTip();
                 break;
             case 3:
+                this.conditionalSearch();
+                //break;
+            case 4:
                 this.start();
                 break;
             default:
@@ -146,7 +150,110 @@ public class TextualUI {
         this.printTipDetails(tip);
         io.print("");
 
-        this.searchReadingTips();
+        this.doModifications(tip);
+
+        this.manageReadingTips();
+    }
+    private void doModifications(ReadingTip tip) {
+        String field = "";
+        while (true) {
+            io.print("Anna kenttä jota haluat muokata (vain 'status' toimii)");
+            io.print("q lopettaa lukuvinkin muokkaamisen");
+            field = io.nextLine();
+
+            if (field.equals("q")) {
+                break;
+            }
+            
+            HashMap<String, TipField> fields = new HashMap<>();
+            fields.put("status", new TipStatus(tip));
+
+            TipField fieldToModify = fields.get(field.toLowerCase());
+
+            if (field.equals("status")) {
+                fieldToModify.setField("");
+            } else {
+                io.print("Anna uusi sisältö kentälle " + field);
+                String newContent = io.nextLine();
+                fieldToModify.setField(newContent);
+            }
+
+            //ReadingTip updatedTip = tipManager.updateReadingTip(tip);
+            //this.printTipDetails(updatedTip);
+            io.print("Muutokset tallennettu!");
+            io.print("");
+        }
+    }
+    private void conditionalSearch() {
+        io.print("\nLukuvinkin haku\n\n"
+                + "Miten haluat hakea?\n"
+                + "1 - Luetut/lukemattomat\n"
+                + "2 - Hakutekstin avulla\n"
+                + "3 - Palaa lukuvinkkien hallinnointivalikkoon\n");
+
+        int action = io.nextInt();
+
+        switch (action) {
+            case 1:
+                this.conditionalReadSearch();
+                break;
+            case 2:
+                this.conditionalStringSearch();
+            case 3:
+                this.addPodcast();
+                break;
+            default:
+                this.addReadingTip();
+                break;
+        }
+        
+    }
+
+    private void conditionalReadSearch() {
+        ArrayList<ReadingTip> tips = new ArrayList();
+        int searchTip = 0;
+        
+        io.print("\nLukuvinkin haku\n\n"
+                + "1 - Luetut\n"
+                + "2 - Lukemattomat\n");
+
+        searchTip = io.nextInt();
+        
+        tips = tipManager.getReadingTipBySelection(searchTip);
+        
+        if (tips.size() == 0) {
+            io.print("Lukuvinkkejä ei löytynyt antamallasi hakuehdolla");
+            this.showReadingTip();
+        }
+
+        for (int ind = 0; ind < tips.size(); ind++) {
+            this.printTipDetails(tips.get(ind));
+        }
+        io.print("");
+
+    }
+
+    private void conditionalStringSearch() {
+        ArrayList<ReadingTip> tips = new ArrayList();
+        String searchTip = "";
+        
+        io.print("\nLukuvinkin haku\n\n"
+                + "Anna jokin hekuteksti\n");
+
+        searchTip = io.nextLine();
+        
+        tips = tipManager.getReadingTipBySearch(searchTip);
+        
+        if (tips.size() == 0) {
+            io.print("Lukuvinkkejä ei löytynyt antamallasi hakuehdolla");
+            this.showReadingTip();
+        }
+
+        for (int ind = 0; ind < tips.size(); ind++) {
+            this.printTipDetails(tips.get(ind));
+        }
+        io.print("");
+
     }
 
     private void removeReadingTip() {

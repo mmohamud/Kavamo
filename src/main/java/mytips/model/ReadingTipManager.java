@@ -5,12 +5,7 @@ import java.sql.SQLException;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-//import java.util.logging.Level;
-//import java.util.logging.Logger;
 import mytips.dao.Dao;
-//import mytips.dao.BookTipDao;
-// import mytips.dao.WebTipDao;
-// import mytips.database.Database;
 
 public class ReadingTipManager {
 
@@ -53,4 +48,29 @@ public class ReadingTipManager {
         }
         return null;
     }
+    public ArrayList<ReadingTip> getReadingTipBySearch(String key) {
+        ArrayList foundTips = new ArrayList();
+        try {
+            foundTips = (ArrayList) readingTipDao.findBySearch(key);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        if (foundTips != null) {
+            return foundTips;
+        }
+        return null;
+    }
+    public ArrayList<ReadingTip> getReadingTipBySelection(int key) {
+        ArrayList foundTips = new ArrayList();
+        try {
+            foundTips = (ArrayList) readingTipDao.findBySelection(key);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        if (foundTips != null) {
+            return foundTips;
+        }
+        return null;
+    }
+
 }
