@@ -122,9 +122,9 @@ public class Stepdefs {
 
     @Then("^the system prints \"([^\"]*)\" and \"([^\"]*)\" and \"([^\"]*)\" and \"([^\"]*)\"$")
     public void the_system_prints_and_and_and(String arg1, String arg2, String arg3, String arg4) throws Throwable {
-//        for (String p : io.getPrints()) {
-//            System.out.println("p: " + p);
-//        }
+    //    for (String p : io.getPrints()) {
+    //        System.out.println("p: " + p + "l");
+    //    }
         assertTrue(io.getPrints().contains(arg1));
         assertTrue(io.getPrints().contains(arg2));
         assertTrue(io.getPrints().contains(arg3));
