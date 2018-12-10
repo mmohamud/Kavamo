@@ -123,13 +123,15 @@ public class ReadingTipDao implements Dao {
         Connection conn = db.getConnection();
         PreparedStatement stmt;
         String search = "'" + "%" + key + "%" + "'";
-        String searchCond = "SELECT * FROM ReadingTip WHERE author like " + search +
-                    " or title like " + search +
-                    " or summary like " + search +
-                    " or comment like " + search +
-                    " or isbn like " + search +
-                    " or url like " + search +
-                    " or type like "  + search;
+        String searchCond = "SELECT * "
+                + "FROM ReadingTip WHERE author like "  
+                + search + " or title like "  
+                + search +  " or summary like "  
+                + search + " or comment like "  
+                + search + " or isbn like "  
+                + search + " or url like " 
+                + search + " or type like "  
+                + search;
         
         stmt = conn.prepareStatement(searchCond);
 

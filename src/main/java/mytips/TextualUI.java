@@ -164,12 +164,12 @@ public class TextualUI {
         
         tips = tipManager.getReadingTipBySearch(searchTip);
         
-        if (tips.size()== 0) {
+        if (tips.size() == 0) {
             io.print("Lukuvinkkejä ei löytynyt antamallasi hakuehdolla");
             this.showReadingTip();
         }
 
-        for (int ind = 0; ind < tips.size(); ind++){
+        for (int ind = 0; ind < tips.size(); ind++) {
             this.printTipDetails(tips.get(ind));
         }
         io.print("");
