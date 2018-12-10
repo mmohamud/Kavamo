@@ -24,16 +24,20 @@ public class TipStatus implements TipField {
 
     @Override
     public String getField() {
-        if (tip.readStatus()) {
-            return "Luettu";
-        } else {
+//        if (tip.getReadStatus()) {
+//            return "Luettu";
+//        } else {
             return "Ei luettu";
-        }
+//        }
     }
 
     @Override
     public void setField(String status) {
-        tip.setReadStatus(true);
+//        if (tip.getReadStatus()) {
+//            tip.setReadStatus(false);
+//        } else {
+//            tip.setReadStatus(true);
+//        }
     }
 
     @Override
