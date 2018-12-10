@@ -355,10 +355,14 @@ public class TextualUI {
         io.print("-----------------------------------------------------------"
                 + "------------------------------------");
         for (ReadingTip tip : readingTips) {
-            io.printFormat(format, "" + tip.getId(), tip.getAuthor(),
-                    tip.getTitle(), tip.getType());
+            String author = tip.getAuthor();
+            String title = tip.getTitle();
+            String type = tip.getType();
+            io.printFormat(format, "" + tip.getId(), 
+                    author.substring(0, Math.min(19, author.length())),
+                    title.substring(0, Math.min(49, title.length())), 
+                    type.substring(0, Math.min(9, type.length())));
             io.print("");
-            //io.print(tip.toString());
         }
 
         this.searchReadingTips();
