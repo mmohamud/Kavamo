@@ -1,0 +1,20 @@
+/* Create BookTip table: */
+
+CREATE TABLE BookTip (
+  id integer PRIMARY KEY,
+  author varchar(40),
+  title varchar(40),
+  summary varchar(200),
+  comment varchar(100),
+  isbn varchar(20)
+);
+
+CREATE TABLE WebTip (
+	id integer PRIMARY KEY, 
+	author varchar(40),
+	title varchar(40),
+	summary varchar(40),
+	comment varchar(40),
+	url varchar(100)
+	);
+
