@@ -19,7 +19,7 @@ public class TipUrl implements TipField {
 
     @Override
     public boolean isEmpty() {
-        return tip.getUrl().isEmpty();
+        return tip.getUrl() == null;
     }
 
     @Override

@@ -9,32 +9,35 @@ package mytips.model;
  *
  * @author vseppane
  */
-public class TipIsbn implements TipField {
+public class TipStatus implements TipField {
 
     private ReadingTip tip;
-    
-    public TipIsbn(ReadingTip tip) {
+
+    public TipStatus(ReadingTip tip) {
         this.tip = tip;
     }
 
     @Override
     public boolean isEmpty() {
-        return tip.getIsbn() == null;
+        return false;
     }
 
     @Override
     public String getField() {
-        return tip.getIsbn();
+        if (tip.readStatus()) {
+            return "Luettu";
+        } else {
+            return "Ei luettu";
+        }
     }
 
     @Override
-    public void setField(String isbn) {
-        tip.setIsbn(isbn);
+    public void setField(String status) {
+        tip.setReadStatus(true);
     }
 
     @Override
     public String getFieldPrint() {
-        return "ISBN: ";
+        return "Status: ";
     }
-    
 }
