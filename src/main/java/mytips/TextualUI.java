@@ -162,7 +162,9 @@ public class TextualUI {
             io.print("q lopettaa lukuvinkin muokkaamisen");
             field = io.nextLine();
 
-            if (field.equals("q")) break;
+            if (field.equals("q")) {
+                break;
+            }
             
             HashMap<String, TipField> fields = new HashMap<>();
             fields.put("status", new TipStatus(tip));
