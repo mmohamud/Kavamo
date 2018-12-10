@@ -37,6 +37,7 @@ public class Main {
             statement = conn.createStatement();
             statement.execute(sql);
         } catch (SQLException e) {
+            System.out.print("");
         }
         
         statement.close();
