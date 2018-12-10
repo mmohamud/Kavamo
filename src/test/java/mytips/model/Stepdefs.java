@@ -175,6 +175,13 @@ public class Stepdefs {
             statement.execute(sql);
             String sql2 = "DELETE FROM ReadingTip";
             statement.execute(sql2);
+            try {
+                sql = "ALTER TABLE ReadingTip ADD COLUMN readStatus";
+                statement = c.createStatement();
+                statement.execute(sql);
+            } catch (SQLException e) {
+                System.out.println("Kanta ajantasalla");
+            }
             statement.close();
             c.close();
         } catch (ClassNotFoundException ex) {
