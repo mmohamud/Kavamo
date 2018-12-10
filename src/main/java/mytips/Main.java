@@ -32,6 +32,14 @@ public class Main {
         Statement statement = conn.createStatement();
         statement.execute(sql);
         statement.close();
+        try {
+            sql = "ALTER TABLE ReadingTip ADD COLUMN readStatus";
+            statement = conn.createStatement();
+            statement.execute(sql);
+        } catch (SQLException e) {
+        }
+        
+        statement.close();
         conn.close();
         ReadingTipDao readingTipDao = new ReadingTipDao(db);
 
