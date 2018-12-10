@@ -13,7 +13,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import mytips.ConsoleIO;
 import mytips.dao.ReadingTipDao;
 import mytips.database.Database;
 import static org.junit.Assert.assertEquals;
@@ -109,7 +108,7 @@ public class Stepdefs {
     public void commands_selaa_lukuvinkkejä_and_listaa_kaikki_lukuvinkit_are_selected() throws Throwable {
         inputInts.add(2);
         inputInts.add(1);
-        inputInts.add(3);
+        inputInts.add(4);
         inputInts.add(3);
 
         this.prepareDB();
@@ -138,7 +137,7 @@ public class Stepdefs {
     @When("^valid id \"([^\"]*)\" is given and command palaa alkuun is selected$")
     public void valid_id_is_given_and_command_palaa_alkuun_is_selected(String id) throws Throwable {
         inputInts.add(Integer.parseInt(id));
-        inputInts.add(3);
+        inputInts.add(4);
     }
 
     @Then("^all the details from the readingtip are printed$")
