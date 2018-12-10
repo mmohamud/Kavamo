@@ -370,8 +370,13 @@ public class TextualUI {
     private void printTipDetails(ReadingTip tip) {
         String format = "%-10s \t\t %-15s";
         ArrayList<TipField> fields = new ArrayList<>();
+        //fields.add(new TipId(tip));
         fields.add(new TipAuthor(tip));
         fields.add(new TipTitle(tip));
+        fields.add(new TipType(tip));
+        fields.add(new TipIsbn(tip));
+        fields.add(new TipUrl(tip));
+        fields.add(new TipComment(tip));
 
         io.printFormat(format, "Id: ", "" + tip.getId());
         io.print("");
@@ -382,18 +387,8 @@ public class TextualUI {
                 io.print("");
             }
         }
-        if (!tip.getType().isEmpty()) {
-            io.printFormat(format, "Tyyppi: ", tip.getType());
-            io.print("");
-        }
-        if (tip.getIsbn() != null) {
-            io.printFormat(format, "ISBN: ", tip.getIsbn());
-            io.print("");
-        }
-        if (tip.getUrl() != null) {
-            io.printFormat(format, "Url: ", tip.getUrl());
-            io.print("");
-        }
+
+
         if (!tip.getSummary().isEmpty()) {
             String summary = tip.getSummary();
             List<String> res = splitString(summary, 40);
@@ -406,10 +401,7 @@ public class TextualUI {
 
             io.print("");
         }
-        if (!tip.getComment().isEmpty()) {
-            io.printFormat(format, "Kommentti: ", tip.getComment());
-            io.print("");
-        }
+
         if (tip.getReadingDate() != null) {
             io.printFormat(format, "Status : ", tip.getAuthor());
             io.print("");
