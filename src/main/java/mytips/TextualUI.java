@@ -2,6 +2,8 @@ package mytips;
 
 import java.sql.SQLException;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import mytips.model.ReadingTip;
@@ -165,22 +167,31 @@ public class TextualUI {
             if (field.equals("q")) {
                 break;
             }
-            
+
             HashMap<String, TipField> fields = new HashMap<>();
             fields.put("status", new TipStatus(tip));
 
             TipField fieldToModify = fields.get(field.toLowerCase());
 
             if (field.equals("status")) {
-                fieldToModify.setField("");
+                if (tip.getReadStatus() == false) {
+                    tip.setReadStatus(true);
+                } else {
+                    tip.setReadStatus(false);
+                }
             } else {
                 io.print("Anna uusi sisältö kentälle " + field);
                 String newContent = io.nextLine();
                 fieldToModify.setField(newContent);
             }
+            ReadingTip updatedTip = null;
+            try {
+                updatedTip = tipManager.addReadingTip(tip);
+            } catch (SQLException ex) {
+                io.print(ex + "Lukuvinkin muokkaus epäonnistui");
 
-            //ReadingTip updatedTip = tipManager.updateReadingTip(tip);
-            //this.printTipDetails(updatedTip);
+            }
+            this.printTipDetails(updatedTip);
             io.print("Muutokset tallennettu!");
             io.print("");
         }
@@ -287,17 +298,7 @@ public class TextualUI {
             io.print("Lukuvinkin talletus ei onnistunut");
         }
     }
-    
-    private void markAsRead(int id) throws SQLException {
-        try {
-            ReadingTip tip = tipManager.getReadingTip(id);
-            tip.setReadStatus(true);
-            tipManager.addReadingTip(tip);
-        } catch (SQLException ex) {
-            System.out.println("ex: " + ex);
-            io.print("Lukuvinkin merkkaaminen luetuksi ei onnistunut");
-        }
-    }
+
 
 // Ei ole käytössä vielä
 //    private void additionalInfo(ReadingTip readingTip) {
@@ -366,11 +367,13 @@ public class TextualUI {
         io.print("-----------------------------------------------------------"
                 + "--------------------------------------------------------");
         for (ReadingTip tip : readingTips) {
-            io.printFormat(format, "" + tip.getId(), tip.getAuthor(),
-                    tip.getTitle(), tip.getType(), tip.getReadStatusString());
+            String author = tip.getAuthor();
+            String title = tip.getTitle();
+            String type = tip.getType();
+            io.printFormat(format, "" + tip.getId(), author.substring(0, Math.min(19, author.length())),
+                    title.substring(0, Math.min(49, title.length())),  type.substring(0, Math.min(9, type.length())), tip.getReadStatusString());
             io.print("");
             //io.print(tip.toString());
-            io.print("Status: " + tip.getReadStatus());
         }
 
         this.searchReadingTips();

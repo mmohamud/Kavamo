@@ -162,7 +162,35 @@ public class ReadingTipDao implements Dao {
     @Override
     public Object saveOrUpdate(Object object) throws SQLException {
         ReadingTip tip = (ReadingTip) object;
+        ReadingTip verrattava = (ReadingTip) findOne(tip); // Tarkistetaan onko tip tietokannassa
+        if (verrattava != null) {
+            try (Connection conn = db.getConnection()) {
+                PreparedStatement stmt = conn.prepareStatement(
+                        "UPDATE ReadingTip SET author = ? , "
+                        + "title = ? , "
+                        + "summary = ? , "
+                        + "comment = ? , "
+                        + "isbn = ? ,"
+                        + "url = ? ,"
+                        + "type = ? ,"
+                        + "readStatus = ? "
+                        + "WHERE id = ?"
+                );
 
+                stmt.setString(1, tip.getAuthor());
+                stmt.setString(1, tip.getAuthor());
+                stmt.setString(2, tip.getTitle());
+                stmt.setString(3, tip.getSummary());
+                stmt.setString(4, tip.getComment());
+                stmt.setString(5, tip.getIsbn());
+                stmt.setString(6, tip.getUrl());
+                stmt.setString(7, tip.getType());
+                stmt.setBoolean(8, tip.getReadStatus());
+                stmt.setInt(9, tip.getId());
+                stmt.executeUpdate();
+            }
+            return findOneByValues(tip);
+        }
         try (Connection conn = db.getConnection()) {
             PreparedStatement stmt = conn.prepareStatement(
                     "INSERT INTO ReadingTip "
@@ -183,7 +211,7 @@ public class ReadingTipDao implements Dao {
         return findOneByValues(tip);
     }
 
-    /*public Object update(int key) throws SQLException {
+    /*public Object update(Object object) throws SQLException {
                 Connection conn = db.getConnection();
         PreparedStatement stmt = conn.prepareStatement(
                 "SELECT * FROM ReadingTip WHERE id = ?"
@@ -213,7 +241,6 @@ public class ReadingTipDao implements Dao {
         
         
     }*/
-
     @Override
     public void delete(Object key) throws SQLException {
         if (findOne(key) == null) {
