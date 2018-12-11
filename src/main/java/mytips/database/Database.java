@@ -30,6 +30,7 @@ public class Database {
         try (Connection conn = this.getConnection();
                 Statement statement = conn.createStatement()) {
             statement.execute(createTables());
+            statement.close();
         }
     }
 
