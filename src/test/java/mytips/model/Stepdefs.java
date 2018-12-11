@@ -171,7 +171,7 @@ public class Stepdefs {
                     + "isbn varchar(20),"
                     + "url varchar(100),"
                     + "type varchar(20),"
-                    + "readStatus boolean"
+                    + "readStatus"
                     + ");";
             
             statement.execute(sql);
