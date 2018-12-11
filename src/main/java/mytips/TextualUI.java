@@ -155,6 +155,7 @@ public class TextualUI {
         this.doModifications(tip);
 
         this.manageReadingTips();
+
     }
 
     private void doModifications(ReadingTip tip) {
@@ -198,6 +199,55 @@ public class TextualUI {
     }
 
     private void conditionalSearch() {
+        io.print("\nLukuvinkin haku\n\n"
+                + "Miten haluat hakea?\n"
+                + "1 - Luetut/lukemattomat\n"
+                + "2 - Hakutekstin avulla\n"
+                + "3 - Palaa lukuvinkkien hallinnointivalikkoon\n");
+
+        int action = io.nextInt();
+
+        switch (action) {
+            case 1:
+                this.conditionalReadSearch();
+                break;
+            case 2:
+                this.conditionalStringSearch();
+            case 3:
+                this.addPodcast();
+                break;
+            default:
+                this.addReadingTip();
+                break;
+        }
+
+    }
+
+    private void conditionalReadSearch() {
+        ArrayList<ReadingTip> tips = new ArrayList();
+        int searchTip = 0;
+
+        io.print("\nLukuvinkin haku\n\n"
+                + "1 - Luetut\n"
+                + "2 - Lukemattomat\n");
+
+        searchTip = io.nextInt();
+
+        tips = tipManager.getReadingTipBySelection(searchTip);
+
+        if (tips.size() == 0) {
+            io.print("Lukuvinkkejä ei löytynyt antamallasi hakuehdolla");
+            this.showReadingTip();
+        }
+
+        for (int ind = 0; ind < tips.size(); ind++) {
+            this.printTipDetails(tips.get(ind));
+        }
+        io.print("");
+
+    }
+
+    private void conditionalStringSearch() {
         ArrayList<ReadingTip> tips = new ArrayList();
         String searchTip = "";
 
@@ -299,7 +349,6 @@ public class TextualUI {
         }
     }
 
-
 // Ei ole käytössä vielä
 //    private void additionalInfo(ReadingTip readingTip) {
 //
@@ -371,7 +420,7 @@ public class TextualUI {
             String title = tip.getTitle();
             String type = tip.getType();
             io.printFormat(format, "" + tip.getId(), author.substring(0, Math.min(19, author.length())),
-                    title.substring(0, Math.min(49, title.length())),  type.substring(0, Math.min(9, type.length())), tip.getReadStatusString());
+                    title.substring(0, Math.min(49, title.length())), type.substring(0, Math.min(9, type.length())), tip.getReadStatusString());
             io.print("");
             //io.print(tip.toString());
         }

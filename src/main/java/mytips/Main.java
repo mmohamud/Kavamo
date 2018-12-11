@@ -20,33 +20,35 @@ public class Main {
         Database db = new Database("jdbc:sqlite:readingtips.db");
         Connection conn = db.getConnection();
         String sql = "CREATE TABLE IF NOT EXISTS ReadingTip ("
-            + "id integer PRIMARY KEY,"
-            + "author varchar(40),"
-            + "title varchar(40),"
-            + "summary varchar(200),"
-            + "comment varchar(100),"
-            + "isbn varchar(20),"
-            + "url varchar(100),"
-            + "type varchar(20)"
-            + ");";
+                + "id integer PRIMARY KEY,"
+                + "author varchar(40),"
+                + "title varchar(40),"
+                + "summary varchar(200),"
+                + "comment varchar(100),"
+                + "isbn varchar(20),"
+                + "url varchar(100),"
+                + "type varchar(20)"
+                + ");";
         Statement statement = conn.createStatement();
         statement.execute(sql);
         statement.close();
         try {
-            sql = "ALTER TABLE ReadingTip ADD COLUMN readStatus";
+
+            sql = "ALTER TABLE ReadingTip ADD COLUMN readStatus boolean";
             statement = conn.createStatement();
             statement.execute(sql);
         } catch (SQLException e) {
-            System.out.print("");
+            System.out.println("Kanta ajantasalla");
+
         }
-        
+
         statement.close();
         conn.close();
         ReadingTipDao readingTipDao = new ReadingTipDao(db);
 
         ConsoleIO io = new ConsoleIO();
-        ReadingTipManager readingTipManager = 
-                new ReadingTipManager(readingTipDao);
+        ReadingTipManager readingTipManager
+                = new ReadingTipManager(readingTipDao);
         TextualUI ui = new TextualUI(readingTipManager, io);
         ui.start();
 

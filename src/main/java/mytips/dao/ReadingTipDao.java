@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import mytips.database.*;
 import mytips.model.ReadingTip;
 
@@ -298,4 +300,41 @@ public class ReadingTipDao implements Dao {
         return returnReadingTip;
     }
 
-}
+    @Override
+    public ArrayList<ReadingTip> findBySelection(int key) throws SQLException {
+            ArrayList readingTips = new ArrayList<>();
+            Connection conn = db.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(
+                    "SELECT * FROM ReadingTip WHERE readStatus = ?"
+            );
+            if (key == 1) { //luetut
+                stmt.setString(1, "TRUE");
+            } else {
+                stmt.setString(1, "FALSE");
+            }
+
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String author = rs.getString("author");
+                String title = rs.getString("title");
+                String summary = rs.getString("summary");
+                String comment = rs.getString("comment");
+                String isbn = rs.getString("isbn");
+                String type = rs.getString("type");
+                String url = rs.getString("url");
+                boolean readStatus = rs.getBoolean("readStatus");
+                ReadingTip returnReadingTip
+                        = new ReadingTip(author, title, summary, comment, type, readStatus);
+                returnReadingTip.setUrl(url);
+                returnReadingTip.setId(id);
+                readingTips.add(returnReadingTip);
+            }
+            return readingTips;
+
+        }
+
+    }
+
+

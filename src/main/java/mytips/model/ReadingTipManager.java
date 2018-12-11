@@ -67,4 +67,17 @@ public class ReadingTipManager {
         }
         return null;
     }
+    public ArrayList<ReadingTip> getReadingTipBySelection(int key) {
+        ArrayList foundTips = new ArrayList();
+        try {
+            foundTips = (ArrayList) readingTipDao.findBySelection(key);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        if (foundTips != null) {
+            return foundTips;
+        }
+        return null;
+    }
+
 }

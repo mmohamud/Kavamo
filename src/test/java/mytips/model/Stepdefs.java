@@ -122,9 +122,6 @@ public class Stepdefs {
 
     @Then("^the system prints \"([^\"]*)\" and \"([^\"]*)\" and \"([^\"]*)\" and \"([^\"]*)\"$")
     public void the_system_prints_and_and_and(String arg1, String arg2, String arg3, String arg4) throws Throwable {
-        for (String p : io.getPrints()) {
-            System.out.println("p: " + p);
-        }
         assertTrue(io.getPrints().contains(arg1));
         assertTrue(io.getPrints().contains(arg2));
         assertTrue(io.getPrints().contains(arg3));
@@ -181,6 +178,13 @@ public class Stepdefs {
             statement.execute(sql);
             String sql2 = "DELETE FROM ReadingTip";
             statement.execute(sql2);
+            try {
+                sql = "ALTER TABLE ReadingTip ADD COLUMN readStatus";
+                statement = c.createStatement();
+                statement.execute(sql);
+            } catch (SQLException e) {
+                System.out.println("Kanta ajantasalla");
+            }
             statement.close();
             c.close();
         } catch (ClassNotFoundException ex) {

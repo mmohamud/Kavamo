@@ -24,11 +24,13 @@ public class TipStatus implements TipField {
 
     @Override
     public String getField() {
+
         if (tip.getReadStatus() == false) {
             return "Ei luettu";
         } else {
             return "Luettu";
         }
+
     }
 
     @Override
@@ -38,6 +40,7 @@ public class TipStatus implements TipField {
         } else {
             tip.setReadStatus(true);
         }
+
     }
 
     @Override
