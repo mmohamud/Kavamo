@@ -159,9 +159,8 @@ public class Stepdefs {
             db = new Database("jdbc:sqlite:?cache=shared");
             Connection c = db.getConnection();
             Statement statement = c.createStatement();
-            String dropReadingTip = "DROP TABLE ReadingTip";
+            String dropReadingTip = "DROP TABLE ReadingTip;";
             statement.execute(dropReadingTip);
-            
             
             String sql = "CREATE TABLE IF NOT EXISTS ReadingTip ("
                     + "id integer PRIMARY KEY,"
@@ -176,7 +175,7 @@ public class Stepdefs {
                     + ");";
             
             statement.execute(sql);
-            String sql2 = "DELETE FROM ReadingTip";
+            String sql2 = "DELETE FROM ReadingTip;";
             statement.execute(sql2);
 //            try {
 //                sql = "ALTER TABLE ReadingTip ADD COLUMN readStatus";
