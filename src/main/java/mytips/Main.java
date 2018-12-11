@@ -25,7 +25,7 @@ public class Main {
                 = new ReadingTipManager(readingTipDao);
         TextualUI ui = new TextualUI(readingTipManager, io);
         ui.start();
-        db.close();
+//        db.close();
         System.out.println("Lopetetaan");
         System.exit(0);
 
