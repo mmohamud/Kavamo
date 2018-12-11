@@ -11,8 +11,6 @@ import static org.junit.Assert.*;
 import mytips.dao.InMemoryReadingTipDao;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import mytips.dao.ReadingTipDao;
 import mytips.database.Database;
 import static org.junit.Assert.assertEquals;
