@@ -40,7 +40,8 @@ public class ReadingTipTest {
                     + "comment varchar(100),"
                     + "isbn varchar(20),"
                     + "url varchar(100),"
-                    + "type varchar(20)"
+                    + "type varchar(20),"
+                    + "readStatus boolean"
                     + ");";
             Statement statement = c.createStatement();
             statement.execute(sql);
