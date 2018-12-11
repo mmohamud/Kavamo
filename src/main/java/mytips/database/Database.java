@@ -27,11 +27,11 @@ public class Database {
     }
     
     public void init() throws SQLException {
-        try (Connection conn = this.getConnection();
-                Statement statement = conn.createStatement()) {
-            statement.execute(createTables());
-            statement.close();
-        }
+        Connection conn = this.getConnection();
+        Statement statement = conn.createStatement();
+        statement.execute(createTables());
+        statement.close();
+        conn.close();
     }
 
     public void close() throws SQLException {
