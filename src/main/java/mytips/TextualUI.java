@@ -214,10 +214,10 @@ public class TextualUI {
             case 2:
                 this.conditionalStringSearch();
             case 3:
-                this.addPodcast();
+                this.manageReadingTips();
                 break;
             default:
-                this.addReadingTip();
+                this.manageReadingTips();
                 break;
         }
 
@@ -237,7 +237,7 @@ public class TextualUI {
 
         if (tips.size() == 0) {
             io.print("Lukuvinkkejä ei löytynyt antamallasi hakuehdolla");
-            this.showReadingTip();
+            this.conditionalSearch();
         }
 
         for (int ind = 0; ind < tips.size(); ind++) {
