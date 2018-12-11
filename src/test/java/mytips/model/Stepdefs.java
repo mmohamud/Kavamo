@@ -159,9 +159,9 @@ public class Stepdefs {
             db = new Database("jdbc:sqlite:?cache=shared");
             Connection c = db.getConnection();
             Statement statement = c.createStatement();
-            String dropReadingTip = "DROP TABLE ReadingTip;";
+            String dropReadingTip = "DROP TABLE IF EXISTS ReadingTip;";
             statement.execute(dropReadingTip);
-            statement = c.createStatement();
+
             String sql = "CREATE TABLE IF NOT EXISTS ReadingTip ("
                     + "id integer PRIMARY KEY,"
                     + "author varchar(40),"
@@ -171,28 +171,18 @@ public class Stepdefs {
                     + "isbn varchar(20),"
                     + "url varchar(100),"
                     + "type varchar(20),"
-                    + "readStatus"
+                    + "readStatus boolean"
                     + ");";
-            
+
             statement.execute(sql);
-            // String sql2 = "DELETE FROM ReadingTip;";
-            // statement.execute(sql2);
-            // try {
-            //     sql = "ALTER TABLE ReadingTip ADD COLUMN readStatus boolean;";
-            //     statement = c.createStatement();
-            //     statement.execute(sql);
-            // } catch (SQLException e) {
-            //     System.out.println("Kanta ajantasalla");
-            //     System.out.println(e);
-            // }
             statement.close();
             c.close();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ReadingTipTest.class.getName()).log(Level.SEVERE,
-                    null, ex);
         } catch (SQLException e) {
-            System.out.println("Tietokannan alustus epäonnistui");
-            System.out.println(e.getMessage());
+            System.out.println("Testitietokannan alustus epäonnistui, SQL-virhe");
+            System.out.println(e);
+        } catch (Exception e) {
+            System.out.println("Testitietokannan alustus epäonnistui");
+            System.out.println(e);
         }
         this.readingTipDao = new ReadingTipDao(db);
 

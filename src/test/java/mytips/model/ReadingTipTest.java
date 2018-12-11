@@ -32,6 +32,9 @@ public class ReadingTipTest {
         try {
             db = new Database("jdbc:sqlite:?cache=shared");
             Connection c = db.getConnection();
+            Statement statement = c.createStatement();
+            String dropReadingTip = "DROP TABLE IF EXISTS ReadingTip;";
+            statement.execute(dropReadingTip);
             String sql = "CREATE TABLE IF NOT EXISTS ReadingTip ("
                     + "id integer PRIMARY KEY,"
                     + "author varchar(40),"
@@ -43,18 +46,16 @@ public class ReadingTipTest {
                     + "type varchar(20),"
                     + "readStatus boolean"
                     + ");";
-            Statement statement = c.createStatement();
+
             statement.execute(sql);
-            String sql2 = "DELETE FROM ReadingTip";
-            statement.execute(sql2);
             statement.close();
             c.close();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ReadingTipTest.class.getName()).log(Level.SEVERE,
-                    null, ex);
         } catch (SQLException e) {
+            System.out.println("Tietokannan alustus epäonnistui, SQL-virhe");
+            System.out.println(e);
+        } catch (Exception e) {
             System.out.println("Tietokannan alustus epäonnistui");
-            System.out.println(e.getMessage());
+            System.out.println(e);
         }
         readingTipDao = new ReadingTipDao(db);
     }
