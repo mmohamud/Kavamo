@@ -161,7 +161,7 @@ public class Stepdefs {
             Statement statement = c.createStatement();
             String dropReadingTip = "DROP TABLE ReadingTip;";
             statement.execute(dropReadingTip);
-            
+            statement = c.createStatement();
             String sql = "CREATE TABLE IF NOT EXISTS ReadingTip ("
                     + "id integer PRIMARY KEY,"
                     + "author varchar(40),"
