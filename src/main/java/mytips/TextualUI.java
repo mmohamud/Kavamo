@@ -90,7 +90,7 @@ public class TextualUI {
                 break;
             case 3:
                 this.conditionalSearch();
-                //break;
+            //break;
             case 4:
                 this.start();
                 break;
@@ -150,20 +150,53 @@ public class TextualUI {
         this.printTipDetails(tip);
         io.print("");
 
-        this.searchReadingTips();
+        this.doModifications(tip);
+
+        this.manageReadingTips();
+    }
+
+    private void doModifications(ReadingTip tip) {
+        String field = "";
+        while (true) {
+            io.print("Anna kenttä jota haluat muokata (vain 'status' toimii)");
+            io.print("q lopettaa lukuvinkin muokkaamisen");
+            field = io.nextLine();
+
+            if (field.equals("q")) {
+                break;
+            }
+            
+            HashMap<String, TipField> fields = new HashMap<>();
+            fields.put("status", new TipStatus(tip));
+
+            TipField fieldToModify = fields.get(field.toLowerCase());
+
+            if (field.equals("status")) {
+                fieldToModify.setField("");
+            } else {
+                io.print("Anna uusi sisältö kentälle " + field);
+                String newContent = io.nextLine();
+                fieldToModify.setField(newContent);
+            }
+
+            //ReadingTip updatedTip = tipManager.updateReadingTip(tip);
+            //this.printTipDetails(updatedTip);
+            io.print("Muutokset tallennettu!");
+            io.print("");
+        }
     }
 
     private void conditionalSearch() {
         ArrayList<ReadingTip> tips = new ArrayList();
         String searchTip = "";
-        
+
         io.print("\nLukuvinkin haku\n\n"
                 + "Anna jokin hekuteksti\n");
 
         searchTip = io.nextLine();
-        
+
         tips = tipManager.getReadingTipBySearch(searchTip);
-        
+
         if (tips.size() == 0) {
             io.print("Lukuvinkkejä ei löytynyt antamallasi hakuehdolla");
             this.showReadingTip();
@@ -382,11 +415,14 @@ public class TextualUI {
     private void printTipDetails(ReadingTip tip) {
         String format = "%-10s \t\t %-15s";
         ArrayList<TipField> fields = new ArrayList<>();
+        fields.add(new TipId(tip));
         fields.add(new TipAuthor(tip));
         fields.add(new TipTitle(tip));
-
-        io.printFormat(format, "Id: ", "" + tip.getId());
-        io.print("");
+        fields.add(new TipType(tip));
+        fields.add(new TipIsbn(tip));
+        fields.add(new TipUrl(tip));
+        fields.add(new TipComment(tip));
+        fields.add(new TipStatus(tip));
 
         for (TipField f : fields) {
             if (!f.isEmpty()) {
@@ -394,18 +430,7 @@ public class TextualUI {
                 io.print("");
             }
         }
-        if (!tip.getType().isEmpty()) {
-            io.printFormat(format, "Tyyppi: ", tip.getType());
-            io.print("");
-        }
-        if (tip.getIsbn() != null) {
-            io.printFormat(format, "ISBN: ", tip.getIsbn());
-            io.print("");
-        }
-        if (tip.getUrl() != null) {
-            io.printFormat(format, "Url: ", tip.getUrl());
-            io.print("");
-        }
+
         if (!tip.getSummary().isEmpty()) {
             String summary = tip.getSummary();
             List<String> res = splitString(summary, 40);
@@ -418,16 +443,14 @@ public class TextualUI {
 
             io.print("");
         }
-        if (!tip.getComment().isEmpty()) {
-            io.printFormat(format, "Kommentti: ", tip.getComment());
-            io.print("");
-        }
-        if (tip.getReadingDate() != null) {
-            io.printFormat(format, "Status : ", tip.getAuthor());
-            io.print("");
-        } else {
-            io.printFormat(format, "Status: ", "Ei luettu");
-            io.print("");
-        }
+//
+//        if (tip.getReadingDate() != null) {
+//            io.printFormat(format, "Status : ", tip.getAuthor());
+//            io.print("");
+//        } else {
+//            io.printFormat(format, "Status: ", "Ei luettu");
+//            io.print("");
+//        }
     }
+
 }
