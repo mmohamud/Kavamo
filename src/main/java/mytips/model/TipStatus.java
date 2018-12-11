@@ -25,7 +25,7 @@ public class TipStatus implements TipField {
     @Override
     public String getField() {
 
-        if (tip.getReadStatus() == false) {
+        if (!tip.getReadStatus()) {
             return "Ei luettu";
         } else {
             return "Luettu";

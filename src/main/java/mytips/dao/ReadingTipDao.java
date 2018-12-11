@@ -6,8 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+// import java.util.logging.Level;  // checkstyle herjaa: unused
+// import java.util.logging.Logger;  // checkstyle herjaa: unused
 import mytips.database.*;
 import mytips.model.ReadingTip;
 
@@ -48,7 +48,8 @@ public class ReadingTipDao implements Dao {
         String url = rs.getString("url");
         boolean readStatus = rs.getBoolean("readStatus");
         ReadingTip returnReadingTip
-                = new ReadingTip(author, title, summary, comment, type, readStatus);
+                = new ReadingTip(author, title, summary, comment, type, 
+                        readStatus);
 
         returnReadingTip.setIsbn(isbn);
         returnReadingTip.setUrl(url);
@@ -84,7 +85,8 @@ public class ReadingTipDao implements Dao {
         String url = rs.getString("url");
         boolean readStatus = rs.getBoolean("readStatus");
         ReadingTip returnReadingTip
-                = new ReadingTip(author, title, summary, comment, type, readStatus);
+                = new ReadingTip(author, title, summary, comment, type, 
+                        readStatus);
         returnReadingTip.setIsbn(isbn);
         returnReadingTip.setUrl(url);
 
@@ -114,7 +116,8 @@ public class ReadingTipDao implements Dao {
             String url = rs.getString("url");
             boolean readStatus = rs.getBoolean("readStatus");
             ReadingTip returnReadingTip
-                    = new ReadingTip(author, title, summary, comment, type, readStatus);
+                    = new ReadingTip(author, title, summary, comment, type, 
+                            readStatus);
             returnReadingTip.setUrl(url);
             returnReadingTip.setId(id);
             readingTips.add(returnReadingTip);
@@ -152,7 +155,8 @@ public class ReadingTipDao implements Dao {
             String url = rs.getString("url");
             boolean readStatus = rs.getBoolean("readStatus");
             ReadingTip returnReadingTip
-                    = new ReadingTip(author, title, summary, comment, type, readStatus);
+                    = new ReadingTip(author, title, summary, comment, type, 
+                            readStatus);
             returnReadingTip.setUrl(url);
             returnReadingTip.setId(id);
             readingTips.add(returnReadingTip);
@@ -164,7 +168,8 @@ public class ReadingTipDao implements Dao {
     @Override
     public Object saveOrUpdate(Object object) throws SQLException {
         ReadingTip tip = (ReadingTip) object;
-        ReadingTip verrattava = (ReadingTip) findOne(tip); // Tarkistetaan onko tip tietokannassa
+        // Tarkistetaan onko tip tietokannassa:
+        ReadingTip verrattava = (ReadingTip) findOne(tip);
         if (verrattava != null) {
             try (Connection conn = db.getConnection()) {
                 PreparedStatement stmt = conn.prepareStatement(
@@ -196,7 +201,8 @@ public class ReadingTipDao implements Dao {
         try (Connection conn = db.getConnection()) {
             PreparedStatement stmt = conn.prepareStatement(
                     "INSERT INTO ReadingTip "
-                    + "(author, title, summary, comment, isbn, url, type, readStatus) "
+                    + "(author, title, summary, comment, isbn, url, type, "
+                    + "readStatus) "
                     + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
             );
 
@@ -235,7 +241,8 @@ public class ReadingTipDao implements Dao {
         String url = rs.getString("url");
         boolean readStatus = rs.getBoolean("readStatus");
         ReadingTip returnReadingTip
-                = new ReadingTip(author, title, summary, comment, type, readStatus);
+                = new ReadingTip(author, title, summary, comment, type, 
+    readStatus);
 
         returnReadingTip.setIsbn(isbn);
         returnReadingTip.setUrl(url);
@@ -288,7 +295,8 @@ public class ReadingTipDao implements Dao {
         String url = rs.getString("url");
         boolean readStatus = rs.getBoolean("readStatus");
         ReadingTip returnReadingTip
-                = new ReadingTip(author, title, summary, comment, type, readStatus);
+                = new ReadingTip(author, title, summary, comment, type, 
+                        readStatus);
 
         returnReadingTip.setIsbn(isbn);
         returnReadingTip.setUrl(url);
@@ -326,7 +334,8 @@ public class ReadingTipDao implements Dao {
                 String url = rs.getString("url");
                 boolean readStatus = rs.getBoolean("readStatus");
                 ReadingTip returnReadingTip
-                        = new ReadingTip(author, title, summary, comment, type, readStatus);
+                        = new ReadingTip(author, title, summary, comment, type, 
+                                readStatus);
                 returnReadingTip.setUrl(url);
                 returnReadingTip.setId(id);
                 readingTips.add(returnReadingTip);

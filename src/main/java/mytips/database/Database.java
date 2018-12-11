@@ -3,6 +3,7 @@ package mytips.database;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class Database {
 
@@ -10,7 +11,6 @@ public class Database {
 
     public Database(String databaseAddress) throws ClassNotFoundException {
         this.databaseAddress = databaseAddress;
-//        System.out.println("Database syntyy nyt täällä");
     }
 
     public Connection getConnection() throws SQLException {
@@ -25,4 +25,27 @@ public class Database {
 
         return DriverManager.getConnection("jdbc:sqlite:readingtips.db");
     }
+    
+    public void init() throws SQLException {
+        Connection conn = this.getConnection();
+        Statement statement = conn.createStatement();
+        statement.execute(createTables());
+        statement.close();
+        conn.close();
+    }
+
+    private String createTables() {
+	return "CREATE TABLE IF NOT EXISTS ReadingTip ("
+                + "id integer PRIMARY KEY,"
+                + "author varchar(40),"
+                + "title varchar(40),"
+                + "summary varchar(200),"
+                + "comment varchar(100),"
+                + "isbn varchar(20),"
+                + "url varchar(100),"
+                + "type varchar(20),"
+                + "readStatus boolean"
+                + ");";
+        }
 }
+

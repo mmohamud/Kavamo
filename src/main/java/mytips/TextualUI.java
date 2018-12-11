@@ -2,8 +2,8 @@ package mytips;
 
 import java.sql.SQLException;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+// import java.util.logging.Level; // checkstyle herjaa: unused
+// import java.util.logging.Logger; // checkstyle herjaa: unused
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import mytips.model.ReadingTip;
@@ -175,7 +175,7 @@ public class TextualUI {
             TipField fieldToModify = fields.get(field.toLowerCase());
 
             if (field.equals("status")) {
-                if (tip.getReadStatus() == false) {
+                if (!tip.getReadStatus()) {
                     tip.setReadStatus(true);
                 } else {
                     tip.setReadStatus(false);
@@ -411,7 +411,8 @@ public class TextualUI {
         ArrayList<ReadingTip> readingTips = tipManager.getReadingTips();
 
         String format = "%-5s \t %-20s \t %-50s \t %-10s \t %-10s";
-        io.printFormat(format, "ID", "KIRJOITTAJA", "OTSIKKO", "TYYPPI", "STATUS");
+        io.printFormat(format, "ID", "KIRJOITTAJA", "OTSIKKO", "TYYPPI", 
+                "STATUS");
         io.print("");
         io.print("-----------------------------------------------------------"
                 + "--------------------------------------------------------");
@@ -419,8 +420,10 @@ public class TextualUI {
             String author = tip.getAuthor();
             String title = tip.getTitle();
             String type = tip.getType();
-            io.printFormat(format, "" + tip.getId(), author.substring(0, Math.min(19, author.length())),
-                    title.substring(0, Math.min(49, title.length())), type.substring(0, Math.min(9, type.length())), tip.getReadStatusString());
+            io.printFormat(format, "" + tip.getId(), author.substring(0, 
+                    Math.min(19, author.length())), title.substring(0, 
+                    Math.min(49, title.length())), type.substring(0, 
+                    Math.min(9, type.length())), tip.getReadStatusString());
             io.print("");
             //io.print(tip.toString());
         }

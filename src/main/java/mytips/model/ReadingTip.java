@@ -117,7 +117,7 @@ public class ReadingTip {
     }
 
     public String getReadStatusString() {
-        if (this.readStatus == false) {
+        if (!this.readStatus) {
             return "Ei luettu";
         } else {
             return "Luettu";
