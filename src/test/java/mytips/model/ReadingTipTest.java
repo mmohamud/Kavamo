@@ -112,10 +112,10 @@ public class ReadingTipTest {
                 = new ReadingTip("Author Y", "Title Z", "Summary",
                         "Comment", "web", false);
         webTip.setUrl("url-osoite");
-        readingTipDao.saveOrUpdate(webTip);
-        
-        webTip.setReadStatus(true);
         ReadingTip luotu = (ReadingTip) readingTipDao.saveOrUpdate(webTip);
-        assertEquals(luotu.getReadStatus(), true);
+        
+        luotu.setReadStatus(true);
+        ReadingTip modified = (ReadingTip) readingTipDao.saveOrUpdate(luotu);
+        assertEquals(modified.getReadStatus(), true);
     }
 }

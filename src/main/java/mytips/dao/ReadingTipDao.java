@@ -89,6 +89,7 @@ public class ReadingTipDao implements Dao {
                         readStatus);
         returnReadingTip.setIsbn(isbn);
         returnReadingTip.setUrl(url);
+        returnReadingTip.setId(id);
 
         stmt.close();
         rs.close();
@@ -169,7 +170,7 @@ public class ReadingTipDao implements Dao {
     public Object saveOrUpdate(Object object) throws SQLException {
         ReadingTip tip = (ReadingTip) object;
         // Tarkistetaan onko tip tietokannassa:
-        ReadingTip verrattava = (ReadingTip) findOne(tip);
+        ReadingTip verrattava = (ReadingTip) findOneById(tip.getId());
         if (verrattava != null) {
             try (Connection conn = db.getConnection()) {
                 PreparedStatement stmt = conn.prepareStatement(
