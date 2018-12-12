@@ -5,4 +5,4 @@ Feature: User can modify existing reading tip
     When an existing id "1" is given
     And the field to be modified "status" is given
     And commands lopeta (q), palaa alkuun (4) and lopeta (3) are selected
-    Then the system prints "Status: luettu "
+    Then the system prints "Status:  Luettu "

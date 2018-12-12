@@ -182,9 +182,9 @@ public class Stepdefs {
 
     @Then("^the system prints \"([^\"]*)\"$")
     public void the_system_prints(String output) throws Throwable {
-//        for (String p : io.getPrints()) {
-//            System.out.println("p: " + p);
-//        }
+    //    for (String p : io.getPrints()) {
+    //        System.out.println("p: " + p + "q");
+    //    }
         assertTrue(io.getPrints().contains(output));
     }
 

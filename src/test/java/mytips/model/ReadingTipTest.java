@@ -97,7 +97,7 @@ public class ReadingTipTest {
     @Test
     public void webTipSetUrl() throws SQLException {
         ReadingTip webTip
-                = new ReadingTip("Author", "Title", "Summary",
+                = new ReadingTip("Author X", "Title", "Summary",
                         "Comment", "web", false);
         String url = "www.saitti.com";
         webTip.setUrl(url);
@@ -109,7 +109,7 @@ public class ReadingTipTest {
     @Test
     public void markAsRead() throws SQLException {
         ReadingTip webTip
-                = new ReadingTip("Author", "Title", "Summary",
+                = new ReadingTip("Author Y", "Title Z", "Summary",
                         "Comment", "web", false);
         webTip.setUrl("url-osoite");
         readingTipDao.saveOrUpdate(webTip);
