@@ -102,8 +102,22 @@ public class Stepdefs {
         inputInts.add(1);
     }
 
-    @When("^commands palaa alkuun ja lopeta are selected$")
-    public void commands_palaa_alkuun_ja_lopeta_are_selected() throws Throwable {
+//    @When("^commands palaa alkuun ja lopeta are selected$")
+//    public void commands_palaa_alkuun_ja_lopeta_are_selected() throws Throwable {
+//        inputInts.add(5);
+//        inputInts.add(3);
+//
+//        this.startUI();
+//    }
+    @Given("^commands selaa lukuvinkkejä \\((\\d+)\\) and listaa lukuvinkit statuksen mukaan \\((\\d+)\\) and lukemattomat \\((\\d+)\\) are selected$")
+    public void commands_selaa_lukuvinkkejä_and_listaa_lukuvinkit_statuksen_mukaan_and_lukemattomat_are_selected(int arg1, int arg2, int arg3) throws Throwable {
+        inputInts.add(arg1);
+        inputInts.add(arg2);
+        inputInts.add(arg3);
+    }
+
+    @When("^commands palaa alkuun \\((\\d+)\\) and lopeta \\((\\d+)\\) are selected$")
+    public void commands_palaa_alkuun_and_lopeta_are_selected(int arg1, int arg2) throws Throwable {
         inputInts.add(5);
         inputInts.add(3);
 
@@ -176,15 +190,15 @@ public class Stepdefs {
         inputStrings.add("q");
         inputInts.add(arg1);
         inputInts.add(arg2);
-        
+
         this.startUI();
     }
 
     @Then("^the system prints \"([^\"]*)\"$")
     public void the_system_prints(String output) throws Throwable {
-    //    for (String p : io.getPrints()) {
-    //        System.out.println("p: " + p + "q");
-    //    }
+        //    for (String p : io.getPrints()) {
+        //        System.out.println("p: " + p + "q");
+        //    }
         assertTrue(io.getPrints().contains(output));
     }
 
@@ -254,10 +268,23 @@ public class Stepdefs {
                 "Hyvä selitys merge sortin toiminnasta esimerkin avulla",
                 "video", false);
 
+        ReadingTip readTip = new ReadingTip("Mika Walteri", "Sinuhe egyptiläinen",
+                "Sinuhe on löytölapsi, joka kasvaa köyhän lääkärin poikana "
+                + "Thebassa ja "
+                + "ryhtyy itsekin lääkäriksi. Kohtalo vie hänet seikkailuihin "
+                + "silloisen maailman merkittäviin valtakuntiin Syyriaan, "
+                + "Babyloniaan ja jälleen Egyptiin. Thebassa Sinuhe nimitetään "
+                + "faarao Ekhnatonin aivokirurgiksi ja hän seuraa läheltä "
+                + "kiihkoilevan hallitsijan uudistuspyrkimyksiä. Monien "
+                + "myrskyisten vaiheiden, rakkauksien ja pettymyksien jälkeen "
+                + "Sinuhe muistelee maanpakolaisena elämäänsä.", "Hyvä kirja",
+                "kirja", true);
+
         readingTipDao.saveOrUpdate(bookTip1);
         readingTipDao.saveOrUpdate(bookTip2);
         readingTipDao.saveOrUpdate(webTip1);
         readingTipDao.saveOrUpdate(webTip2);
+        readingTipDao.saveOrUpdate(readTip);
     }
 
     private void startUI() {
