@@ -51,13 +51,7 @@ public class Stepdefs {
     public void command_lopeta_is_selected() throws Throwable {
         inputInts.add(3);
 
-        this.prepareDB();
-
-        io = new StubIO(inputStrings, inputInts);
-
-        manager = new ReadingTipManager(readingTipDao);
-        ui = new TextualUI(manager, io);
-        ui.start();
+        this.startUI();
     }
 
     @Then("^the booktip is saved and the system prints \"([^\"]*)\"$")
@@ -107,26 +101,20 @@ public class Stepdefs {
         inputInts.add(2);
         inputInts.add(1);
     }
-    
+
     @When("^commands palaa alkuun ja lopeta are selected$")
     public void commands_palaa_alkuun_ja_lopeta_are_selected() throws Throwable {
         inputInts.add(5);
         inputInts.add(3);
-        
-        this.prepareDB();
 
-        io = new StubIO(inputStrings, inputInts);
-
-        manager = new ReadingTipManager(readingTipDao);
-        ui = new TextualUI(manager, io);
-        ui.start();
+        this.startUI();
     }
 
     @Then("^the system prints \"([^\"]*)\" and \"([^\"]*)\" and \"([^\"]*)\" and \"([^\"]*)\"$")
     public void the_system_prints_and_and_and(String arg1, String arg2, String arg3, String arg4) throws Throwable {
-        for (String p : io.getPrints()) {
-            System.out.println("p: " + p);
-        }
+//        for (String p : io.getPrints()) {
+//            System.out.println("p: " + p);
+//        }
         assertTrue(io.getPrints().contains(arg1));
         assertTrue(io.getPrints().contains(arg2));
         assertTrue(io.getPrints().contains(arg3));
@@ -156,8 +144,8 @@ public class Stepdefs {
         assertTrue(io.getPrints().contains("Kommentti:  kiinnostava kirja hyvästä koodista "));
         assertTrue(io.getPrints().contains("Status:  Ei luettu "));
     }
-    
-        @When("^non-existing id \"([^\"]*)\" is given$")
+
+    @When("^non-existing id \"([^\"]*)\" is given$")
     public void non_existing_id_is_given(String id) throws Throwable {
         inputInts.add(Integer.parseInt(id));
     }
@@ -167,14 +155,42 @@ public class Stepdefs {
         inputInts.add(-1);
     }
 
+    @Given("^commands hallinnoi lukuvinkkejä \\((\\d+)\\) and muokkaa lukuvinkkiä \\((\\d+)\\) are selected$")
+    public void commands_hallinnoi_lukuvinkkejä_and_muokkaa_lukuvinkkiä_are_selected(int arg1, int arg2) throws Throwable {
+        inputInts.add(arg1);
+        inputInts.add(arg2);
+    }
+
+    @When("^an existing id \"([^\"]*)\" is given$")
+    public void an_existing_id_is_given(String id) throws Throwable {
+        inputInts.add(Integer.parseInt(id));
+    }
+
+    @When("^the field to be modified \"([^\"]*)\" is given$")
+    public void the_field_to_be_modified_is_given(String field) throws Throwable {
+        inputStrings.add(field);
+    }
+
+    @When("^commands lopeta \\(q\\), palaa alkuun \\((\\d+)\\) and lopeta \\((\\d+)\\) are selected$")
+    public void commands_lopeta_q_palaa_alkuun_and_lopeta_are_selected(int arg1, int arg2) throws Throwable {
+        inputStrings.add("q");
+        inputInts.add(arg1);
+        inputInts.add(arg2);
+        
+        this.startUI();
+    }
+
     @Then("^the system prints \"([^\"]*)\"$")
     public void the_system_prints(String output) throws Throwable {
+//        for (String p : io.getPrints()) {
+//            System.out.println("p: " + p);
+//        }
         assertTrue(io.getPrints().contains(output));
     }
 
     //Helper methods
     private void prepareDB() {
-        try {        
+        try {
             db = new Database("jdbc:sqlite:?cache=shared");
             Connection c = db.getConnection();
             Statement statement = c.createStatement();
@@ -242,6 +258,16 @@ public class Stepdefs {
         readingTipDao.saveOrUpdate(bookTip2);
         readingTipDao.saveOrUpdate(webTip1);
         readingTipDao.saveOrUpdate(webTip2);
+    }
+
+    private void startUI() {
+        this.prepareDB();
+
+        io = new StubIO(inputStrings, inputInts);
+
+        manager = new ReadingTipManager(readingTipDao);
+        ui = new TextualUI(manager, io);
+        ui.start();
     }
 
 }
