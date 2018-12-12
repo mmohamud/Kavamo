@@ -86,6 +86,7 @@ public class TextualUI {
         switch (action) {
             case 1:
                 this.printReadingTips(tipManager.getReadingTips());
+                this.searchReadingTips();
                 break;
             case 2:
                 this.showReadingTip();
@@ -414,8 +415,6 @@ public class TextualUI {
             io.print("");
             //io.print(tip.toString());
         }
-
-        this.searchReadingTips();
     }
 
     private void showReadingTip() {
