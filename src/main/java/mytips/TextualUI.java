@@ -46,7 +46,6 @@ public class TextualUI {
 
     private void manageReadingTips() {
         io.print("\nLukuvinkkien hallinnointi\n\n"
-                + "Mitä haluat tehdä?\n"
                 + "1 - Lisää lukuvinkki\n"
                 + "2 - Muokkaa lukuvinkkiä\n"
                 + "3 - Poista lukuvinkki\n"
@@ -75,25 +74,29 @@ public class TextualUI {
 
     private void searchReadingTips() {
         io.print("\nLukuvinkkien selaus\n\n"
-                + "Mitä haluat tehdä?\n"
                 + "1 - Listaa kaikki lukuvinkit\n"
                 + "2 - Näytä yhden lukuvinkin tarkat tiedot\n"
-                + "3 - Näytä hakuehdolla\n"
-                + "4 - Palaa alkuun\n");
+                + "3 - Listaa lukuvinkit statuksen mukaan "
+                + "(luetut/lukemattomat)\n"
+                + "4 - Etsi lukuvinkkejä hakutekstillä\n"
+                + "5 - Palaa alkuun\n");
 
         int action = io.nextInt();
 
         switch (action) {
             case 1:
-                this.printReadingTips();
+                this.printReadingTips(tipManager.getReadingTips());
                 break;
             case 2:
                 this.showReadingTip();
                 break;
             case 3:
-                this.conditionalSearch();
-            //break;
+                this.conditionalReadSearch();
+                break;
             case 4:
+                this.conditionalStringSearch();
+                break;
+            case 5:
                 this.start();
                 break;
             default:
@@ -198,31 +201,6 @@ public class TextualUI {
         }
     }
 
-    private void conditionalSearch() {
-        io.print("\nLukuvinkin haku\n\n"
-                + "Miten haluat hakea?\n"
-                + "1 - Luetut/lukemattomat\n"
-                + "2 - Hakutekstin avulla\n"
-                + "3 - Palaa lukuvinkkien hallinnointivalikkoon\n");
-
-        int action = io.nextInt();
-
-        switch (action) {
-            case 1:
-                this.conditionalReadSearch();
-                break;
-            case 2:
-                this.conditionalStringSearch();
-            case 3:
-                this.manageReadingTips();
-                break;
-            default:
-                this.manageReadingTips();
-                break;
-        }
-
-    }
-
     private void conditionalReadSearch() {
         ArrayList<ReadingTip> tips = new ArrayList();
         int searchTip = 0;
@@ -237,37 +215,39 @@ public class TextualUI {
 
         if (tips.size() == 0) {
             io.print("Lukuvinkkejä ei löytynyt antamallasi hakuehdolla");
-            this.conditionalSearch();
+            this.searchReadingTips();
+            return;
         }
 
-        for (int ind = 0; ind < tips.size(); ind++) {
-            this.printTipDetails(tips.get(ind));
-        }
+        this.printReadingTips(tips);
         io.print("");
-
+        this.searchReadingTips();
     }
 
     private void conditionalStringSearch() {
         ArrayList<ReadingTip> tips = new ArrayList();
         String searchTip = "";
 
-        io.print("\nLukuvinkin haku\n\n"
-                + "Anna jokin hekuteksti\n");
+        while (true) {
+            io.print("\nLukuvinkin haku\n\n"
+                    + "Anna jokin hakuteksti\n"
+                    + "q lopettaa");
 
-        searchTip = io.nextLine();
+            searchTip = io.nextLine();
 
-        tips = tipManager.getReadingTipBySearch(searchTip);
+            if (searchTip.equals("q")) {
+                break;
+            }
 
-        if (tips.size() == 0) {
-            io.print("Lukuvinkkejä ei löytynyt antamallasi hakuehdolla");
-            this.showReadingTip();
+            tips = tipManager.getReadingTipBySearch(searchTip);
+
+            if (tips.size() == 0) {
+                io.print("Lukuvinkkejä ei löytynyt antamallasi hakuehdolla");
+            } else {
+                this.printReadingTips(tips);
+            }
         }
-
-        for (int ind = 0; ind < tips.size(); ind++) {
-            this.printTipDetails(tips.get(ind));
-        }
-        io.print("");
-
+        this.searchReadingTips();
     }
 
     private void removeReadingTip() {
@@ -293,7 +273,7 @@ public class TextualUI {
 
         //Luodaan uusi kirjalukuvinkki
         ReadingTip bookTip = new ReadingTip(
-                author, title, summary, comment, "Kirja", false
+                author, title, summary, comment, "kirja", false
         );
 
         bookTip.setIsbn(isbn);
@@ -322,8 +302,16 @@ public class TextualUI {
         io.print("\nLisää kommentti");
         String comment = io.nextLine();
 
-        io.print("\nAnna lukuvinkin tyyppi (esim. blogi)");
-        String type = io.nextLine();
+        String type = "";
+        while (true) {
+            io.print("\nAnna lukuvinkin tyyppi (video tai blogi)");
+            type = io.nextLine().toLowerCase();
+            if (type.equals("video") || type.equals("blogi")) {
+                break;
+            } else {
+                io.print("Tyypin täytyy olla video tai blogi");
+            }
+        }
 
         ReadingTip webTip = new ReadingTip(author, title, summary, comment,
                 type, false);
@@ -407,11 +395,10 @@ public class TextualUI {
 //        io.print(headline);
 //        return io.nextLine();
 //    }
-    private void printReadingTips() {
-        ArrayList<ReadingTip> readingTips = tipManager.getReadingTips();
+    private void printReadingTips(ArrayList<ReadingTip> readingTips) {
 
         String format = "%-5s \t %-20s \t %-50s \t %-10s \t %-10s";
-        io.printFormat(format, "ID", "KIRJOITTAJA", "OTSIKKO", "TYYPPI", 
+        io.printFormat(format, "ID", "KIRJOITTAJA", "OTSIKKO", "TYYPPI",
                 "STATUS");
         io.print("");
         io.print("-----------------------------------------------------------"
@@ -420,9 +407,9 @@ public class TextualUI {
             String author = tip.getAuthor();
             String title = tip.getTitle();
             String type = tip.getType();
-            io.printFormat(format, "" + tip.getId(), author.substring(0, 
-                    Math.min(19, author.length())), title.substring(0, 
-                    Math.min(49, title.length())), type.substring(0, 
+            io.printFormat(format, "" + tip.getId(), author.substring(0,
+                    Math.min(19, author.length())), title.substring(0,
+                    Math.min(49, title.length())), type.substring(0,
                     Math.min(9, type.length())), tip.getReadStatusString());
             io.print("");
             //io.print(tip.toString());
@@ -498,14 +485,6 @@ public class TextualUI {
 
             io.print("");
         }
-//
-//        if (tip.getReadingDate() != null) {
-//            io.printFormat(format, "Status : ", tip.getAuthor());
-//            io.print("");
-//        } else {
-//            io.printFormat(format, "Status: ", "Ei luettu");
-//            io.print("");
-//        }
     }
 
 }

@@ -106,9 +106,13 @@ public class Stepdefs {
     public void commands_selaa_lukuvinkkejä_and_listaa_kaikki_lukuvinkit_are_selected() throws Throwable {
         inputInts.add(2);
         inputInts.add(1);
-        inputInts.add(4);
+    }
+    
+    @When("^commands palaa alkuun ja lopeta are selected$")
+    public void commands_palaa_alkuun_ja_lopeta_are_selected() throws Throwable {
+        inputInts.add(5);
         inputInts.add(3);
-
+        
         this.prepareDB();
 
         io = new StubIO(inputStrings, inputInts);
@@ -120,6 +124,9 @@ public class Stepdefs {
 
     @Then("^the system prints \"([^\"]*)\" and \"([^\"]*)\" and \"([^\"]*)\" and \"([^\"]*)\"$")
     public void the_system_prints_and_and_and(String arg1, String arg2, String arg3, String arg4) throws Throwable {
+        for (String p : io.getPrints()) {
+            System.out.println("p: " + p);
+        }
         assertTrue(io.getPrints().contains(arg1));
         assertTrue(io.getPrints().contains(arg2));
         assertTrue(io.getPrints().contains(arg3));
@@ -132,10 +139,9 @@ public class Stepdefs {
         inputInts.add(2);
     }
 
-    @When("^valid id \"([^\"]*)\" is given and command palaa alkuun is selected$")
-    public void valid_id_is_given_and_command_palaa_alkuun_is_selected(String id) throws Throwable {
+    @When("^valid id \"([^\"]*)\" is given$")
+    public void valid_id_is_given(String id) throws Throwable {
         inputInts.add(Integer.parseInt(id));
-        inputInts.add(4);
     }
 
     @Then("^all the details from the readingtip are printed$")
@@ -211,7 +217,7 @@ public class Stepdefs {
                 "", "kirja", false);
 
         ReadingTip webTip1 = new ReadingTip("Nicola Apicella",
-                "Consistency models", "", "", "blogpost", false);
+                "Consistency models", "", "", "blogi", false);
 
         ReadingTip webTip2 = new ReadingTip("", "Merge sort algorithm", "",
                 "Hyvä selitys merge sortin toiminnasta esimerkin avulla",
