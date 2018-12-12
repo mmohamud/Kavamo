@@ -156,6 +156,21 @@ public class Stepdefs {
         assertTrue(io.getPrints().contains("Kommentti:  kiinnostava kirja hyvästä koodista "));
         assertTrue(io.getPrints().contains("Status:  Ei luettu "));
     }
+    
+        @When("^non-existing id \"([^\"]*)\" is given$")
+    public void non_existing_id_is_given(String id) throws Throwable {
+        inputInts.add(Integer.parseInt(id));
+    }
+
+    @When("^command palaa edelliseen valikkoon is given$")
+    public void command_palaa_edelliseen_valikkoon_is_given() throws Throwable {
+        inputInts.add(-1);
+    }
+
+    @Then("^the system prints \"([^\"]*)\"$")
+    public void the_system_prints(String output) throws Throwable {
+        assertTrue(io.getPrints().contains(output));
+    }
 
     //Helper methods
     private void prepareDB() {
