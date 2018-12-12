@@ -91,7 +91,7 @@ public class ReadingTipTest {
         bookTip.setIsbn("isbntest");
         ReadingTip luotu
                 = (ReadingTip) readingTipDao.saveOrUpdate(bookTip);
-        assertEquals(bookTip.getIsbn(), "isbntest");
+        assertEquals(luotu.getIsbn(), "isbntest");
     }
 
     @Test
@@ -99,10 +99,11 @@ public class ReadingTipTest {
         ReadingTip webTip
                 = new ReadingTip("Author", "Title", "Summary",
                         "Comment", "web", false);
-        webTip.setUrl("url-osoite");
+        String url = "www.saitti.com";
+        webTip.setUrl(url);
         ReadingTip luotu
                 = (ReadingTip) readingTipDao.saveOrUpdate(webTip);
-        assertEquals(webTip.getUrl(), "url-osoite");
+        assertEquals(luotu.getUrl(), url);
     }
 
     @Test
@@ -111,10 +112,10 @@ public class ReadingTipTest {
                 = new ReadingTip("Author", "Title", "Summary",
                         "Comment", "web", false);
         webTip.setUrl("url-osoite");
-        ReadingTip luotu
-                = (ReadingTip) readingTipDao.saveOrUpdate(webTip);
+        readingTipDao.saveOrUpdate(webTip);
+        
         webTip.setReadStatus(true);
-        luotu = (ReadingTip) readingTipDao.saveOrUpdate(webTip);
-        assertEquals(webTip.getReadStatus(), true);
+        ReadingTip luotu = (ReadingTip) readingTipDao.saveOrUpdate(webTip);
+        assertEquals(luotu.getReadStatus(), true);
     }
 }
