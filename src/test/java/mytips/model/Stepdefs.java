@@ -5,7 +5,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import java.util.ArrayList;
 import java.util.List;
-import mytips.StubIO;
+import mytips.io.StubIO;
 import mytips.TextualUI;
 import static org.junit.Assert.*;
 import java.sql.SQLException;
@@ -186,6 +186,11 @@ public class Stepdefs {
         inputInts.add(Integer.parseInt(id));
     }
 
+    @When("^invalid id \"([^\"]*)\" is given$")
+    public void invalid_id_is_given(String arg1) throws Throwable {
+        inputInts.add(-1);
+    }
+
     @When("^the field to be modified \"([^\"]*)\" is given$")
     public void the_field_to_be_modified_is_given(String field) throws Throwable {
         inputStrings.add(field);
@@ -206,6 +211,12 @@ public class Stepdefs {
         //        System.out.println("p: " + p + "q");
         //    }
         assertTrue(io.getPrints().contains(output));
+    }
+
+    @Then("^the system print contains \"([^\"]*)\"$")
+    public void the_system_print_contains(String output) throws Throwable {
+        ArrayList<String> outputs = io.getPrints();
+        assertTrue(outputs.get(outputs.size() - 2).contains(output));
     }
 
     //Helper methods

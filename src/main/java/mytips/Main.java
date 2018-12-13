@@ -5,6 +5,7 @@ import mytips.model.ReadingTipManager;
 import mytips.database.Database;
 import java.sql.*;
 import mytips.dao.ReadingTipDao;
+import mytips.io.ConsoleIO;
 
 public class Main {
 

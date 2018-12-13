@@ -7,7 +7,6 @@ package mytips.model;
 
 import java.sql.SQLException;
 import java.sql.Statement;
-import mytips.ConsoleIO;
 import mytips.dao.ReadingTipDao;
 import mytips.database.Database;
 import static org.junit.Assert.assertEquals;
@@ -22,7 +21,6 @@ import java.sql.Connection;
 public class ReadingTipTest {
 
     private static Database db;
-    private ConsoleIO io;
     private static ReadingTipDao readingTipDao;
 
     @BeforeClass
