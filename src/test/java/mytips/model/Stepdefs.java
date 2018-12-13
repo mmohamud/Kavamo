@@ -8,7 +8,6 @@ import java.util.List;
 import mytips.StubIO;
 import mytips.TextualUI;
 import static org.junit.Assert.*;
-import mytips.dao.InMemoryReadingTipDao;
 import java.sql.SQLException;
 import java.sql.Statement;
 import mytips.dao.ReadingTipDao;
