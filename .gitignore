@@ -9,3 +9,4 @@ build/
 .vscode
 ?cache=shared
 readingtips.db
+readingtips__.db

@@ -12,16 +12,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import mytips.dao.ReadingTipDao;
 import mytips.database.Database;
-import static org.junit.Assert.assertEquals;
-import org.junit.Test;
-import org.junit.BeforeClass;
 import java.sql.Connection;
 
 public class Stepdefs {
 
     private List<String> inputStrings = new ArrayList<>();
     private List<Integer> inputInts = new ArrayList<>();
-    private ArrayList<ReadingTip> readingTips = new ArrayList<>();
+    //private ArrayList<ReadingTip> readingTips = new ArrayList<>();
     private StubIO io;
     private TextualUI ui;
     private ReadingTipManager manager;
