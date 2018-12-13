@@ -116,6 +116,13 @@ public class Stepdefs {
         inputInts.add(arg3);
     }
 
+    @Given("^commands selaa lukuvinkkejä \\((\\d+)\\) and listaa lukuvinkit statuksen mukaan \\((\\d+)\\) and luetut \\((\\d+)\\) are selected$")
+    public void commands_selaa_lukuvinkkejä_and_listaa_lukuvinkit_statuksen_mukaan_and_luetut_are_selected(int arg1, int arg2, int arg3) throws Throwable {
+        inputInts.add(arg1);
+        inputInts.add(arg2);
+        inputInts.add(arg3);
+    }
+
     @When("^commands palaa alkuun \\((\\d+)\\) and lopeta \\((\\d+)\\) are selected$")
     public void commands_palaa_alkuun_and_lopeta_are_selected(int arg1, int arg2) throws Throwable {
         inputInts.add(5);
