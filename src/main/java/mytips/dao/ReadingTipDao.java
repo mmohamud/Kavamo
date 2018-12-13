@@ -316,9 +316,9 @@ public class ReadingTipDao implements Dao {
                     "SELECT * FROM ReadingTip WHERE readStatus = ?"
             );
             if (key == 1) { //luetut
-                stmt.setString(1, "TRUE");
+                stmt.setInt(1, 1);
             } else {
-                stmt.setString(1, "FALSE");
+                stmt.setInt(1, 0);
             }
 
             ResultSet rs = stmt.executeQuery();
