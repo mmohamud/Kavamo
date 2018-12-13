@@ -70,13 +70,13 @@ public class ReadingTip {
         return comment;
     }
 
-    public void setReadingDate(Date date) {
-        this.readingDate = date;
-    }
-
-    public Date getReadingDate() {
-        return this.readingDate;
-    }
+//    public void setReadingDate(Date date) {
+//        this.readingDate = date;
+//    }
+//
+//    public Date getReadingDate() {
+//        return this.readingDate;
+//    }
 
     public String getType() {
         return type;

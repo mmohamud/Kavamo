@@ -95,6 +95,16 @@ public class ReadingTipTest {
     }
 
     @Test
+    public void bookTipSetSummary() throws SQLException {
+        ReadingTip bookTip
+                = new ReadingTip("Author X", "Title", "Summary",
+                        "Comment", "kirja", false);
+        String summary = "Summa summarum";
+        bookTip.setSummary(summary);
+        assertEquals(bookTip.getSummary(), summary);
+    }
+
+    @Test
     public void markAsRead() throws SQLException {
         ReadingTip webTip
                 = new ReadingTip("Author Y", "Title Z", "Summary",

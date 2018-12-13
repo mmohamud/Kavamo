@@ -30,7 +30,6 @@ public class TipId implements TipField {
     @Override
     public void setField(String s) {
         System.out.println("Kenttää id ei voi muuttaa");
-        return;
     }
 
     @Override
