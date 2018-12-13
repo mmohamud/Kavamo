@@ -180,10 +180,14 @@ public class TextualUI {
 
             if (field.equals("status")) {
                 fieldToModify.setField("");
-            } else {
+            } else if (fields.containsKey(field)) {
                 io.print("Anna uusi sisältö kentälle " + field);
                 String newContent = io.nextLine();
                 fieldToModify.setField(newContent);
+            } else {
+                System.out.println("Antamaasi kenttää ei ole olemassa "
+                + "tai sitä ei pysty muuttamaan\n");
+                continue;
             }
             ReadingTip updatedTip = null;
             try {
