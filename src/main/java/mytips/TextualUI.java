@@ -179,11 +179,7 @@ public class TextualUI {
             TipField fieldToModify = fields.get(field.toLowerCase());
 
             if (field.equals("status")) {
-                if (!tip.getReadStatus()) {
-                    tip.setReadStatus(true);
-                } else {
-                    tip.setReadStatus(false);
-                }
+                fieldToModify.setField("");
             } else {
                 io.print("Anna uusi sisältö kentälle " + field);
                 String newContent = io.nextLine();

@@ -6,7 +6,7 @@ import java.util.*;
 
 public interface Dao<T, K> {
 
-    T findOne(Object key) throws SQLException;
+    //T findOne(Object key) throws SQLException;
 
     T findOneById(int key) throws SQLException;
 
@@ -18,5 +18,5 @@ public interface Dao<T, K> {
 
     T findBySelection(int key) throws SQLException;
     
-    void delete(K key) throws SQLException;
+    //void delete(K key) throws SQLException;
 }

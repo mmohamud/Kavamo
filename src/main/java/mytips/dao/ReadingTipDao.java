@@ -21,44 +21,44 @@ public class ReadingTipDao implements Dao {
 
 // Mallista AiheDao korvattu "Aihe" sanalla "BookTip" ja "nimi" sanalla "author"
 // Katsotaan, löytyykö booktip nimen ja id:n yhdistelmällä tai ID:llä
-    @Override
-    public Object findOne(Object key) throws SQLException {
-        ReadingTip readingTip = (ReadingTip) key;
-        Connection conn = db.getConnection();
-        PreparedStatement stmt = conn.prepareStatement(
-                "SELECT * FROM ReadingTip WHERE id = ?"
-        );
-//        stmt.setString(1, bookTip.getTitle());
-//        stmt.setInt(2, etsittavaAihe.getKurssiId());
-        stmt.setInt(1, readingTip.getId());
+//     @Override
+//     public Object findOne(Object key) throws SQLException {
+//         ReadingTip readingTip = (ReadingTip) key;
+//         Connection conn = db.getConnection();
+//         PreparedStatement stmt = conn.prepareStatement(
+//                 "SELECT * FROM ReadingTip WHERE id = ?"
+//         );
+// //        stmt.setString(1, bookTip.getTitle());
+// //        stmt.setInt(2, etsittavaAihe.getKurssiId());
+//         stmt.setInt(1, readingTip.getId());
 
-        ResultSet rs = stmt.executeQuery();
-        boolean hasOne = rs.next();
-        if (!hasOne) {
-            return null;
-        }
+//         ResultSet rs = stmt.executeQuery();
+//         boolean hasOne = rs.next();
+//         if (!hasOne) {
+//             return null;
+//         }
 
-        int id = rs.getInt("id");
-        String author = rs.getString("author");
-        String title = rs.getString("title");
-        String summary = rs.getString("summary");
-        String comment = rs.getString("comment");
-        String isbn = rs.getString("isbn");
-        String type = rs.getString("type");
-        String url = rs.getString("url");
-        boolean readStatus = rs.getBoolean("readStatus");
-        ReadingTip returnReadingTip
-                = new ReadingTip(author, title, summary, comment, type, 
-                        readStatus);
+//         int id = rs.getInt("id");
+//         String author = rs.getString("author");
+//         String title = rs.getString("title");
+//         String summary = rs.getString("summary");
+//         String comment = rs.getString("comment");
+//         String isbn = rs.getString("isbn");
+//         String type = rs.getString("type");
+//         String url = rs.getString("url");
+//         boolean readStatus = rs.getBoolean("readStatus");
+//         ReadingTip returnReadingTip
+//                 = new ReadingTip(author, title, summary, comment, type, 
+//                         readStatus);
 
-        returnReadingTip.setIsbn(isbn);
-        returnReadingTip.setUrl(url);
-        stmt.close();
-        rs.close();
-        conn.close();
+//         returnReadingTip.setIsbn(isbn);
+//         returnReadingTip.setUrl(url);
+//         stmt.close();
+//         rs.close();
+//         conn.close();
 
-        return returnReadingTip;
-    }
+//         return returnReadingTip;
+//     }
 
     public Object findOneByValues(Object key) throws SQLException {
         ReadingTip readingTip = (ReadingTip) key;
@@ -250,24 +250,24 @@ public class ReadingTipDao implements Dao {
         
         
     }*/
-    @Override
-    public void delete(Object key) throws SQLException {
-        if (findOne(key) == null) {
-            return;
-        }
-        ReadingTip readingTip = (ReadingTip) findOne(key);
+    // @Override
+    // public void delete(Object key) throws SQLException {
+    //     if (findOne(key) == null) {
+    //         return;
+    //     }
+    //     ReadingTip readingTip = (ReadingTip) findOne(key);
 
-        Connection conn = db.getConnection();
-        PreparedStatement stmt = conn.prepareStatement(
-                "DELETE FROM ReadingTip WHERE id = ?"
-        );
+    //     Connection conn = db.getConnection();
+    //     PreparedStatement stmt = conn.prepareStatement(
+    //             "DELETE FROM ReadingTip WHERE id = ?"
+    //     );
 
-        stmt.setInt(1, readingTip.getId());
-        stmt.executeUpdate();
+    //     stmt.setInt(1, readingTip.getId());
+    //     stmt.executeUpdate();
 
-        stmt.close();
-        conn.close();
-    }
+    //     stmt.close();
+    //     conn.close();
+    // }
 
     @Override
     public Object findOneById(int key) throws SQLException {
