@@ -19,12 +19,7 @@ public class Database {
             return DriverManager.getConnection(dbUrl);
         }
 
-        // if (databaseAddress != null) {
-        //     return DriverManager.getConnection(databaseAddress);
-        // }
-
         return DriverManager.getConnection(databaseAddress);
-        //return DriverManager.getConnection("jdbc:sqlite:readingtips.db");
     }
     
     public void init() throws SQLException {
@@ -32,11 +27,12 @@ public class Database {
         Statement statement = conn.createStatement();
         statement.execute(createTables());
         statement.close();
+        addColumnReadStatus(conn);
         conn.close();
     }
 
     private String createTables() {
-	return "CREATE TABLE IF NOT EXISTS ReadingTip ("
+	    return "CREATE TABLE IF NOT EXISTS ReadingTip ("
                 + "id integer PRIMARY KEY,"
                 + "author varchar(40),"
                 + "title varchar(40),"
@@ -47,6 +43,18 @@ public class Database {
                 + "type varchar(20),"
                 + "readStatus boolean"
                 + ");";
+    }
+
+    private void addColumnReadStatus(Connection conn) {
+        try {
+            Statement statement = conn.createStatement();
+            statement.execute(
+                "ALTER TABLE ReadingTip ADD COLUMN readStatus boolean"
+            );
+            statement.close();
+        } catch (SQLException e) {
+            System.out.println("Kanta ajantasalla");
         }
+    }
 }
 
