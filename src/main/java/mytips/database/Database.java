@@ -19,11 +19,12 @@ public class Database {
             return DriverManager.getConnection(dbUrl);
         }
 
-        if (databaseAddress != null) {
-            return DriverManager.getConnection(databaseAddress);
-        }
+        // if (databaseAddress != null) {
+        //     return DriverManager.getConnection(databaseAddress);
+        // }
 
-        return DriverManager.getConnection("jdbc:sqlite:readingtips.db");
+        return DriverManager.getConnection(databaseAddress);
+        //return DriverManager.getConnection("jdbc:sqlite:readingtips.db");
     }
     
     public void init() throws SQLException {
