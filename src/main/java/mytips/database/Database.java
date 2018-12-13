@@ -48,7 +48,7 @@ public class Database {
                 + "isbn varchar(20),"
                 + "url varchar(100),"
                 + "type varchar(20),"
-                + "readStatus"
+                + "readStatus boolean"
                 + ");";
         }
 }

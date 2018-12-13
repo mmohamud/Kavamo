@@ -144,7 +144,6 @@ public class ReadingTipDao implements Dao {
         stmt = conn.prepareStatement(searchCond);
 
         ResultSet rs = stmt.executeQuery();
-
         while (rs.next()) {
             int id = rs.getInt("id");
             String author = rs.getString("author");
