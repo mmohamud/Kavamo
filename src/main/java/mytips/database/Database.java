@@ -35,10 +35,6 @@ public class Database {
         conn.close();
     }
 
-    public void close() throws SQLException {
-        this.close();
-    }
-
     private String createTables() {
 	return "CREATE TABLE IF NOT EXISTS ReadingTip ("
                 + "id integer PRIMARY KEY,"
