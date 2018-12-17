@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Database {
-
     private String databaseAddress;
 
     public Database(String databaseAddress) throws ClassNotFoundException {
@@ -56,5 +55,26 @@ public class Database {
             System.out.println("Kanta ajantasalla");
         }
     }
+	
+	public void init() throws SQLException {
+		Connection conn = this.getConnection();
+        Statement statement = conn.createStatement();
+        statement.execute(createTables());
+        statement.close();
+        conn.close();
+	}
+	
+	private String createTables() {
+		return "CREATE TABLE IF NOT EXISTS ReadingTip ("
+            + "id integer PRIMARY KEY,"
+            + "author varchar(40),"
+            + "title varchar(40),"
+            + "summary varchar(200),"
+            + "comment varchar(100),"
+            + "isbn varchar(20),"
+            + "url varchar(100),"
+            + "type varchar(20)"
+            + ");";
+	}
 }
 
