@@ -1,12 +1,13 @@
 # Kavamo
 [![Build Status](https://travis-ci.org/mmohamud/Kavamo.svg?branch=master)](https://travis-ci.org/mmohamud/Kavamo)
 
+[Loppuraportti](https://docs.google.com/document/d/1wx20kjL9jjrroIxMNa-xpjeYLPAsa_XrzJ8niEEnm_0/edit?usp=sharing)
 
-Product backlog: https://docs.google.com/spreadsheets/d/15lDRqxfrTMXDCPrglwGqPN0BPR3I7Vm245LOIWF9vEQ/edit?usp=sharing
+[Product backlog ja sprint backlogit](https://docs.google.com/spreadsheets/d/15lDRqxfrTMXDCPrglwGqPN0BPR3I7Vm245LOIWF9vEQ/edit?usp=sharing)
 
-Travis: https://travis-ci.org/mmohamud/Kavamo
+[Travis CI](https://travis-ci.org/mmohamud/Kavamo)
 
-Codecov: https://codecov.io/gh/mmohamud/Kavamo
+[Codecov testikattavuus](https://codecov.io/gh/mmohamud/Kavamo)
 
 Definition of done:
 - User story toteuttaa hyväksymäkriteerit ja Cucumberissa määritellyt hyväksymätestit menevät läpi.
